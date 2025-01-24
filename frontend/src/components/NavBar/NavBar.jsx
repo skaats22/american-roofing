@@ -13,27 +13,44 @@ export default function NavBar({ user, setUser }) {
 
   return (
     <nav className="NavBar">
+      <Link to="/" id="home">
+        <img
+          src="https://plus.unsplash.com/premium_photo-1666788168089-3142e8471488?q=80&w=3821&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt="Home"
+        />
+      </Link>
       <NavLink to="/">Home</NavLink>
       &nbsp; | &nbsp;
       {user ? (
         <>
           <NavLink to="/posts" end>
-            Post List
+            Our Services
           </NavLink>
           &nbsp; | &nbsp;
-          <NavLink to="/posts/new">New Post</NavLink>
+          <NavLink to="/posts/new">About Us</NavLink>
           &nbsp; | &nbsp;
-          <Link to="" onClick={handleLogOut}>
-            Log Out
-          </Link>
-          {/* TODO: Add Log Out Link */}
-          <span>Welcome, {user.name}</span>
+          <NavLink to="/posts/new">FAQs</NavLink>
+          &nbsp; | &nbsp;
+          <span>📞 213-270-3527</span>
+          &nbsp; | &nbsp;
+          <span>Request a free quote!</span>
         </>
       ) : (
         <>
-          <NavLink to="/login">Log In</NavLink>
+          <NavLink to="/posts" end>
+            Our Services
+          </NavLink>
           &nbsp; | &nbsp;
-          <NavLink to="/signup">Sign Up</NavLink>
+          <NavLink to="/posts/new">About Us</NavLink>
+          &nbsp; | &nbsp;
+          <NavLink to="/posts/new">FAQs</NavLink>
+          &nbsp; | &nbsp;
+          <span>📞 213-270-3527</span>
+          &nbsp; | &nbsp;
+          <div>
+          <NavLink to="/signup">Sign Up</NavLink> / <NavLink to="/login">Log In</NavLink>
+          </div>
+          <span>Request a free quote!</span>
         </>
       )}
     </nav>

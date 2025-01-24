@@ -28,3 +28,15 @@
     color: rgb(108, 9, 87);
   }
 }
+
+#home {
+  justify-self: start; 
+  text-decoration: none;
+}
+
+#home img {
+  width: 50px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
