@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router';
 import * as postService from '../../services/postService';
 
-export default function NewPostPage() {
+export default function AboutPage() {
   const [content, setContent] = useState('');
 
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ export default function NewPostPage() {
 
   return (
     <>
-      <h2>New Post</h2>
+      <h2>About Us</h2>
       <form autoComplete="off" onSubmit={handleSubmit}>
         <label>Post Content</label>
         <input

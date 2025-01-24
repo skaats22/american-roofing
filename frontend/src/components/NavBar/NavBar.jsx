@@ -23,32 +23,36 @@ export default function NavBar({ user, setUser }) {
       &nbsp; | &nbsp;
       {user ? (
         <>
-          <NavLink to="/posts" end>
+          <NavLink to="/services" end>
             Our Services
           </NavLink>
           &nbsp; | &nbsp;
-          <NavLink to="/posts/new">About Us</NavLink>
+          <NavLink to="/about">About Us</NavLink>
           &nbsp; | &nbsp;
-          <NavLink to="/posts/new">FAQs</NavLink>
+          <NavLink to="/resources">Resources</NavLink>
           &nbsp; | &nbsp;
           <span>📞 213-270-3527</span>
           &nbsp; | &nbsp;
+          <Link to="" onClick={handleLogOut}>
+            Log Out
+          </Link>
           <span>Request a free quote!</span>
         </>
       ) : (
         <>
-          <NavLink to="/posts" end>
+          <NavLink to="/services" end>
             Our Services
           </NavLink>
           &nbsp; | &nbsp;
-          <NavLink to="/posts/new">About Us</NavLink>
+          <NavLink to="/about">About Us</NavLink>
           &nbsp; | &nbsp;
-          <NavLink to="/posts/new">FAQs</NavLink>
+          <NavLink to="/resources">Resources</NavLink>
           &nbsp; | &nbsp;
           <span>📞 213-270-3527</span>
           &nbsp; | &nbsp;
           <div>
-          <NavLink to="/signup">Sign Up</NavLink> / <NavLink to="/login">Log In</NavLink>
+            <NavLink to="/signup">Sign Up</NavLink> /{" "}
+            <NavLink to="/login">Log In</NavLink>
           </div>
           <span>Request a free quote!</span>
         </>
