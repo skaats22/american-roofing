@@ -13,5 +13,7 @@ router.get('/', jobsCtrl.indexJob);
 // GET /api/jobs/:jobId
 router.get('/:jobId', jobsCtrl.showJob)
 
+// PUT /api/jobs/:jobId
+router.put('/:jobId', jobsCtrl.updateJob)
 
 module.exports = router;
