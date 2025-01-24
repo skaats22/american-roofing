@@ -6,7 +6,8 @@ const SALT_ROUNDS = 6;
 
 const userSchema = new Schema(
   {
-    name: { type: String, required: true },
+    firstName: { type: String, required: true },
+    lastName: { type: String, required: true },
     email: {
       type: String,
       unique: true,
@@ -14,11 +15,24 @@ const userSchema = new Schema(
       trim: true,
       lowercase: true,
       required: true,
+      match: [/^\S+@\S+\.\S+$/, 'Please use a valid email address'],
     },
     password: {
       type: String,
       required: true,
+      minLength: 8,
     },
+    clientType: {
+      type: String,
+      enum: ["Commercial", "Residential", "Other"],
+      required: true,
+      default: "Commercial",
+    },
+    isAdmin: {
+      type: Boolean,
+      required: true,
+      default: false,
+    }
   },
   {
     timestamps: true,
@@ -26,6 +40,7 @@ const userSchema = new Schema(
     toJSON: {
       transform: function (doc, ret) {
         delete ret.password;
+        delete ret.isAdmin;
         return ret;
       },
     },
