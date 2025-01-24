@@ -5,6 +5,7 @@ module.exports = {
   indexJob,
   showJob,
   updateJob,
+  deleteJob,
 }
 
 async function indexJob(req, res) {
@@ -57,6 +58,23 @@ async function updateJob(req, res) {
 
     // Issue JSON response:
     res.status(200).json(updatedJob);
+  } catch (err) {
+    res.status(500).json({ err: err.message });
+  }
+}
+
+// TODO: ensure isAdmin permission to delete
+async function deleteJob(req, res) {
+  try {
+    const job = await Job.findById(req.params.jobId);
+
+    // Check permissions:
+    if (job.owner.isAdmin === false) {
+      return res.status(403).send("You're not allowed to do that!");
+    }
+
+    const deletedJob = await Job.findByIdAndDelete(req.params.jobId);
+    res.status(200).json(deletedJob);
   } catch (err) {
     res.status(500).json({ err: err.message });
   }

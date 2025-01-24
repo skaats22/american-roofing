@@ -16,4 +16,9 @@ router.get('/:jobId', jobsCtrl.showJob)
 // PUT /api/jobs/:jobId
 router.put('/:jobId', jobsCtrl.updateJob)
 
+// DELETE /api/jobs/:jobId
+router.delete('/:jobId', jobsCtrl.deleteJob)
+
+
+
 module.exports = router;
