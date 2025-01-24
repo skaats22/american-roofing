@@ -3,6 +3,7 @@ const Job = require('../models/job');
 module.exports = {
   createJob,
   indexJob,
+  showJob,
 }
 
 async function indexJob(req, res) {
@@ -23,5 +24,14 @@ async function createJob(req, res) {
   } catch (err) {
     console.log(err);
     res.status(400).json({ message: 'Create Job Failed' });
+  }
+}
+
+async function showJob(req, res) {
+  try {
+    const job = await Job.findById(req.params.jobId);
+    res.status(200).json(job);
+  } catch (err) {
+    res.status(500).json({ err: err.message });
   }
 }
