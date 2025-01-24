@@ -10,8 +10,8 @@ router.post('/', quotesCtrl.createQuote);
 // GET /api/quotes
 router.get('/', quotesCtrl.indexQuote);
 
-// // GET /api/quotes/:quoteId
-// router.get('/:quoteId', quotesCtrl.showQuote)
+// GET /api/quotes/:quoteId
+router.get('/:quoteId', quotesCtrl.showQuote)
 
 // // PUT /api/quotes/:quoteId
 // router.put('/:quoteId', quotesCtrl.updateQuote)

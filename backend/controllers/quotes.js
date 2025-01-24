@@ -3,6 +3,7 @@ const Quote = require('../models/quote');
 module.exports = {
   createQuote,
   indexQuote,
+  showQuote,
 }
 
 // TODO: Only admins can see all quotes
@@ -15,6 +16,7 @@ async function indexQuote(req, res) {
   }
 }
 
+// TODO: Permissions
 async function createQuote(req, res) {
   try {
     req.body.owner = req.user._id;
@@ -26,14 +28,15 @@ async function createQuote(req, res) {
   }
 }
 
-// async function showQuote(req, res) {
-//   try {
-//     const job = await Job.findById(req.params.jobId);
-//     res.status(200).json(job);
-//   } catch (err) {
-//     res.status(500).json({ err: err.message });
-//   }
-// }
+// TODO: Permissions
+async function showQuote(req, res) {
+  try {
+    const quote = await Quote.findById(req.params.quoteId);
+    res.status(200).json(quote);
+  } catch (err) {
+    res.status(500).json({ err: err.message });
+  }
+}
 
 // // TODO: ensure isAdmin permission to update
 // async function updateQuote(req, res) {
