@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
-import * as postService from '../../services/postService';
+import * as postService from '../../services/jobService';
 
 export default function AboutPage() {
   const [content, setContent] = useState('');

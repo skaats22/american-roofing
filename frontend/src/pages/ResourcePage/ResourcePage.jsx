@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import * as postService from '../../services/postService';
+import * as postService from '../../services/jobService';
 
 export default function ResourcePage() {
 

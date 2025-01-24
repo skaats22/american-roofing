@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import * as postService from '../../services/postService';
+import * as postService from '../../services/jobService';
 import './ServicesPage.css';
-import PostItem from '../../components/PostItem/PostItem';
+import PostItem from '../../components/JobItem/JobItem';
 
 export default function ServicesPage() {
 
