@@ -1,42 +1,42 @@
-import { useState, useEffect } from 'react';
-import { Routes, Route } from 'react-router';
-import { getUser } from '../../services/authService';
-import './App.css';
-import HomePage from '../HomePage/HomePage';
-import ServicesPage from "../ServicesPage/ServicesPage"
-import AboutPage from '../AboutPage/AboutPage';
-import SignUpPage from '../SignUpPage/SignUpPage';
-import LogInPage from '../LogInPage/LogInPage'
-import NavBar from '../../components/NavBar/NavBar';
-import ResourcePage from '../ResourcePage/ResourcePage';
-import Footer from '../../components/Footer/Footer';
-import PortfolioPage from '../PortfolioPage/PortfolioPage';
-import PortfolioDetailPage from '../PortfolioDetailPage/PortfolioDetailPage'
-import * as jobService from '../../services/jobService';
+import { useState, useEffect } from "react";
+import { Routes, Route } from "react-router";
+import { getUser } from "../../services/authService";
+import "./App.css";
+import HomePage from "../HomePage/HomePage";
+import ServicesPage from "../ServicesPage/ServicesPage";
+import AboutPage from "../AboutPage/AboutPage";
+import SignUpPage from "../SignUpPage/SignUpPage";
+import LogInPage from "../LogInPage/LogInPage";
+import NavBar from "../../components/NavBar/NavBar";
+import ResourcePage from "../ResourcePage/ResourcePage";
+import Footer from "../../components/Footer/Footer";
+import PortfolioPage from "../PortfolioPage/PortfolioPage";
+import PortfolioDetailPage from "../PortfolioDetailPage/PortfolioDetailPage";
+import * as jobService from "../../services/jobService";
 
 export default function App() {
   const [user, setUser] = useState(getUser());
   const [jobs, setJobs] = useState([]);
 
-  async function handleAddHoot(hootFormData) {
-    const newHoot = await hootService.create(hootFormData);
-    setHoots([newHoot, ...hoots]);
-    navigate("/hoots");
-  };
+  async function handleAddJob(jobFormData) {
+    const newJob = await jobService.create(jobFormData);
+    setJobs([newJob, ...jobs]);
+    navigate("/jobs");
+  }
 
   async function handleDeleteHoot(hootId) {
     const deletedHoot = await hootService.deleteHoot(hootId);
     // Filter state using deletedHoot._id:
     setHoots(hoots.filter((hoot) => hoot._id !== deletedHoot._id));
     navigate("/hoots");
-  };
+  }
 
   async function handleUpdateHoot(hootId, hootFormData) {
     const updatedHoot = await hootService.update(hootId, hootFormData);
     // We use map() here to update a specific hoot in the hoots state array.
     setHoots(hoots.map((hoot) => (hootId === hoot._id ? updatedHoot : hoot)));
     navigate(`/hoots/${hootId}`);
-  };
+  }
 
   useEffect(() => {
     async function fetchAllJobs() {
@@ -63,6 +63,7 @@ export default function App() {
               path="/jobs/:jobId"
               element={
                 <PortfolioDetailPage
+                  jobs={jobs}
                   user={user}
                   handleDeleteHoot={handleDeleteHoot}
                 />

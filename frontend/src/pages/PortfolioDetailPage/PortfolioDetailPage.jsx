@@ -4,9 +4,9 @@ import { useParams, Link } from "react-router";
 import { useState, useEffect } from "react";
 import * as jobService from "../../services/jobService";
 
-const PortfolioDetailPage = (props) => {
+function PortfolioDetailPage(props) {
   const { jobId } = useParams();
-  const [job, setJob] = useState(null);
+  const [job, setJob] = useState([]);
 
   const user = props.user;
 
