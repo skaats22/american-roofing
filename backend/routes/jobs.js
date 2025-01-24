@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const postsCtrl = require('../controllers/posts');
+const jobsCtrl = require('../controllers/jobs');
 
 // All paths start with '/api/posts'
 
 // POST /api/posts
-router.post('/', postsCtrl.create);
+router.post('/', jobsCtrl.createJob);
 // GET /api/posts
-router.get('/', postsCtrl.index);
+router.get('/', jobsCtrl.indexJob);
 
 module.exports = router;

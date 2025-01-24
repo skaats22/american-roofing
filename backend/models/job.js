@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const jobSchema = new Schema({
   address: {
-    type: Number,
+    type: String,
     required: false,
   },
   city: {
@@ -53,7 +53,12 @@ const jobSchema = new Schema({
   displayInGallery: {
     type: Boolean,
     required: true,
-  }
+  },
+  owner: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+  },
 },
   {
     timestamps: true,
