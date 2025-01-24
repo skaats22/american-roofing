@@ -6,8 +6,9 @@ module.exports = {
   showJob,
   updateJob,
   deleteJob,
-}
+};
 
+// TODO: Admins needs to be able to see all jobs and decide if displayInGallery = T/F
 async function indexJob(req, res) {
   try {
     const jobs = await Job.find({ displayInGallery: true });
@@ -15,8 +16,9 @@ async function indexJob(req, res) {
   } catch (err) {
     res.status(500).json({ err: err.message });
   }
-}
+};
 
+// TODO: displayInGallery is always true - might need to change
 async function createJob(req, res) {
   try {
     req.body.owner = req.user._id;
@@ -27,7 +29,7 @@ async function createJob(req, res) {
     console.log(err);
     res.status(400).json({ message: 'Create Job Failed' });
   }
-}
+};
 
 async function showJob(req, res) {
   try {
@@ -36,7 +38,7 @@ async function showJob(req, res) {
   } catch (err) {
     res.status(500).json({ err: err.message });
   }
-}
+};
 
 // TODO: ensure isAdmin permission to update
 async function updateJob(req, res) {
@@ -61,7 +63,7 @@ async function updateJob(req, res) {
   } catch (err) {
     res.status(500).json({ err: err.message });
   }
-}
+};
 
 // TODO: ensure isAdmin permission to delete
 async function deleteJob(req, res) {
@@ -78,4 +80,4 @@ async function deleteJob(req, res) {
   } catch (err) {
     res.status(500).json({ err: err.message });
   }
-}
+};
