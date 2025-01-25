@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function QuoteForm(props, { onSubmit }) {
+export default function QuoteForm(props) {
   const [formData, setFormData] = useState({
     phone: "",
     address: "",
@@ -123,7 +123,7 @@ export default function QuoteForm(props, { onSubmit }) {
   const handleSubmit = (evt) => {
     evt.preventDefault();
     if (validate()) {
-      onSubmit(formData);
+      props.handleAddQuote(formData);
       setFormData({
         phone: "",
         address: "",
