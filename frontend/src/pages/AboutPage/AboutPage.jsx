@@ -20,16 +20,6 @@ export default function AboutPage() {
   return (
     <>
       <h2>About Us</h2>
-      <form autoComplete="off" onSubmit={handleSubmit}>
-        <label>Post Content</label>
-        <input
-          type="text"
-          value={content}
-          onChange={(evt) => setContent(evt.target.value)}
-          required
-        />
-        <button type="submit">ADD POST</button>
-      </form>
     </>
   );
 }

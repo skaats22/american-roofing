@@ -16,6 +16,7 @@ import * as jobService from "../../services/jobService";
 import * as quoteService from "../../services/quoteService"
 import QuoteFormPage from "../QuoteFormPage/QuoteFormPage";
 import QuotePage from "../QuotePage/Quotepage";
+import PortfolioFormPage from "../PortfolioFormPage/PortfolioFormPage"
 
 
 
@@ -40,11 +41,11 @@ export default function App() {
     navigate("/quotes");
   }
 
-  async function handleDeleteHoot(hootId) {
-    const deletedHoot = await hootService.deleteHoot(hootId);
+  async function handleDeleteJob(jobId) {
+    const deletedJob = await jobService.deleteJob(jobId);
     // Filter state using deletedHoot._id:
-    setHoots(hoots.filter((hoot) => hoot._id !== deletedHoot._id));
-    navigate("/hoots");
+    setJobs(jobs.filter((job) => job._id !== deletedJob._id));
+    navigate("/jobs");
   }
 
   async function handleUpdateHoot(hootId, hootFormData) {
@@ -72,16 +73,17 @@ export default function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/services" element={<ServicesPage />} />
-            <Route path="/jobs" element={<PortfolioPage jobs={jobs} />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/resources" element={<ResourcePage />} />
+            <Route path="/jobs" element={<PortfolioPage jobs={jobs} />} />
+            <Route path="/jobs/new" element={<PortfolioFormPage user={user} handleAddJob={handleAddJob} />} />
             <Route
               path="/jobs/:jobId"
               element={
                 <PortfolioDetailPage
                   jobs={jobs}
                   user={user}
-                  handleDeleteHoot={handleDeleteHoot}
+                  handleDeleteJob={handleDeleteJob}
                 />
               }
             />

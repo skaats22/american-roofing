@@ -42,6 +42,7 @@ export default function PortfolioPage(props) {
         </ul>
       </article>
     ))}
+    <Link to="/jobs/new"><button>Add to Portfolio</button></Link>
   </main>
   );
 }

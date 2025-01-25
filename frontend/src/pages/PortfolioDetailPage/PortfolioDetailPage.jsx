@@ -56,6 +56,7 @@ function PortfolioDetailPage(props) {
         </header>
         <p>{job.text}</p>
       </section>
+      <button onClick={() => props.handleDeleteJob(jobId)}>Delete Job</button>
     </main>
   );
 };
