@@ -13,6 +13,11 @@ import Footer from "../../components/Footer/Footer";
 import PortfolioPage from "../PortfolioPage/PortfolioPage";
 import PortfolioDetailPage from "../PortfolioDetailPage/PortfolioDetailPage";
 import * as jobService from "../../services/jobService";
+import QuotePage from "../QuotePage/Quotepage";
+
+
+
+
 
 export default function App() {
   const [user, setUser] = useState(getUser());
@@ -69,10 +74,26 @@ export default function App() {
                 />
               }
             />
+            <Route path="/quotes" element={<QuotePage user={user} />} />
           </Routes>
         ) : (
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/services" element={<ServicesPage />} />
+            <Route path="/jobs" element={<PortfolioPage jobs={jobs} />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/resources" element={<ResourcePage />} />
+            <Route
+              path="/jobs/:jobId"
+              element={
+                <PortfolioDetailPage
+                  jobs={jobs}
+                  user={user}
+                  handleDeleteHoot={handleDeleteHoot}
+                />
+              }
+            />
+            <Route path="/quotes" element={<QuotePage user={user} />} />
             <Route path="/signup" element={<SignUpPage setUser={setUser} />} />
             <Route path="/login" element={<LogInPage setUser={setUser} />} />
           </Routes>
