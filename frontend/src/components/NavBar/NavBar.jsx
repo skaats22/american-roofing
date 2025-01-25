@@ -38,7 +38,8 @@ export default function NavBar({ user, setUser }) {
           <Link to="" onClick={handleLogOut}>
             Log Out
           </Link>
-          <NavLink to="/quotes">Request a free quote!</NavLink>
+          <NavLink to="/quotes/new">Request a free quote!</NavLink>
+          <NavLink to="/quotes">View Quotes</NavLink>
         </>
       ) : (
         <>
@@ -56,7 +57,7 @@ export default function NavBar({ user, setUser }) {
             <NavLink to="/signup">Sign Up</NavLink> /{" "}
             <NavLink to="/login">Log In</NavLink>
           </div>
-          <NavLink to="/quotes">Request a free quote!</NavLink>
+          <NavLink to="/quotes/new">Request a free quote!</NavLink>
         </>
       )}
     </nav>

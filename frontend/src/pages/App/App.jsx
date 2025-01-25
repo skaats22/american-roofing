@@ -13,6 +13,7 @@ import Footer from "../../components/Footer/Footer";
 import PortfolioPage from "../PortfolioPage/PortfolioPage";
 import PortfolioDetailPage from "../PortfolioDetailPage/PortfolioDetailPage";
 import * as jobService from "../../services/jobService";
+import QuoteFormPage from "../QuoteFormPage/QuoteFormPage";
 import QuotePage from "../QuotePage/Quotepage";
 
 
@@ -27,6 +28,13 @@ export default function App() {
     const newJob = await jobService.create(jobFormData);
     setJobs([newJob, ...jobs]);
     navigate("/jobs");
+  }
+
+  async function handleAddQuote(quoteFormData) {
+    const newQuote = await quoteService.create(quoteFormData);
+    setJobs([newQuote, ...quotes]);
+    res.json("Thank you for submitting a quote, we will be in touch shortly.")
+    // navigate("/quotes");
   }
 
   async function handleDeleteHoot(hootId) {
@@ -75,6 +83,7 @@ export default function App() {
               }
             />
             <Route path="/quotes" element={<QuotePage user={user} />} />
+            <Route path="/quotes/new" element={<QuoteFormPage user={user} />} />
           </Routes>
         ) : (
           <Routes>
@@ -94,6 +103,7 @@ export default function App() {
               }
             />
             <Route path="/quotes" element={<QuotePage user={user} />} />
+            <Route path="/quotes/new" element={<QuoteFormPage user={user} />} />
             <Route path="/signup" element={<SignUpPage setUser={setUser} />} />
             <Route path="/login" element={<LogInPage setUser={setUser} />} />
           </Routes>

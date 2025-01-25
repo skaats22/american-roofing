@@ -10,6 +10,6 @@ export async function create(content) {
   return sendRequest(BASE_URL, 'POST', { content });
 }
 
-export async function show(jobId) {
-  return sendRequest(`${BASE_URL}/${jobId}`);
+export async function show(quoteId) {
+  return sendRequest(`${BASE_URL}/${quoteId}`);
 }
