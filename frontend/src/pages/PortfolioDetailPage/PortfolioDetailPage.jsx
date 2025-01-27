@@ -32,6 +32,14 @@ function PortfolioDetailPage(props) {
     // Empty dependency array means run this only once after rendering
   }, [jobId]);
 
+  // Fn to add a pop-up to ensure no accidental deletes
+  function handleDeleteJobWithConfirmation() {
+    const confirmDelete = window.confirm("Are you sure you want to delete this job? This action cannot be undone.");
+    if (confirmDelete) {
+      props.handleDeleteJob(jobId);
+    }
+  };
+
   return (
     <main>
       <section>
@@ -59,7 +67,7 @@ function PortfolioDetailPage(props) {
       <Link to={`/jobs/${jobId}/edit`}>
         <button>Edit Job</button>
       </Link>
-      <button onClick={() => props.handleDeleteJob(jobId)}>Delete Job</button>
+      <button onClick={handleDeleteJobWithConfirmation}>Delete Job</button>
     </main>
   );
 }

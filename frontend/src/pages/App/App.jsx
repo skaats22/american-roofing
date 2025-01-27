@@ -17,6 +17,7 @@ import * as quoteService from "../../services/quoteService";
 import QuoteFormPage from "../QuoteFormPage/QuoteFormPage";
 import QuotePage from "../QuotePage/Quotepage";
 import PortfolioFormPage from "../PortfolioFormPage/PortfolioFormPage";
+import QuoteDetailPage from "../QuoteDetailPage/QuoteDetailPage"
 
 export default function App() {
   const [user, setUser] = useState(getUser());
@@ -98,6 +99,7 @@ export default function App() {
                 }
               />
               <Route path="/quotes" element={<QuotePage user={user} />} />
+              <Route path="/quotes/:quoteId" element={<QuoteDetailPage user={user} />} />
               <Route
                 path="/quotes/new"
                 element={

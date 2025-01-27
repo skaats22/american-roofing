@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router";
-import * as jobService from "../../services/jobService"
+import { Link, useNavigate, useParams } from "react-router";
+import * as jobService from "../../services/jobService";
 
 export default function JobForm(props) {
   const { jobId } = useParams();
@@ -90,11 +90,10 @@ export default function JobForm(props) {
     const fetchJob = async () => {
       const jobData = await jobService.show(jobId);
       setFormData(jobData);
-    }
+    };
 
     if (jobId) fetchJob();
-
-    }, [jobId]);
+  }, [jobId]);
 
   const validate = () => {
     const newErrors = {};
@@ -334,7 +333,8 @@ export default function JobForm(props) {
           )}
         </div>
 
-        <button type="submit">Submit Job</button>
+        <button type="submit">Submit Job Details</button>
+        <Link to="/jobs"><button>Cancel</button></Link>
       </form>
     </div>
   );

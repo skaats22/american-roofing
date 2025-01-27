@@ -19,7 +19,7 @@ export default function QuotePage() {
       <ul>
         {quotes.map((quote) => (
           <li key={quote._id}>
-            <Link to="/quotes/:quoteId">
+            <Link to={`/quotes/${quote._id}`}>
               <h2>
                 {quote.address}, {quote.city}, {quote.state}
               </h2>
