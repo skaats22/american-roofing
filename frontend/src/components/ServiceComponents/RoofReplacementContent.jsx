@@ -1,15 +1,18 @@
 export default function RoofReplacementContent() {
   return (
-    <div>
-      At American Roofing and Waterproofing, we specialize in hassle-free roof replacement
-      services that restore the safety, durability, and appearance of your
-      property. Whether your roof has reached the end of its lifespan or
-      suffered extensive damage, our expert team will guide you through every
-      step of the process—from selecting the best materials to completing a
-      flawless installation. With a focus on quality craftsmanship, efficiency,
-      and minimal disruption to your daily life, we ensure your new roof is
-      built to last and tailored to your needs. Trust us to protect what matters
-      most with a roof you can depend on.
-    </div>
+    <>
+      <h1>Roof Replacement with American Roofing and Waterproofing</h1>
+      <div>
+        At American Roofing and Waterproofing, we specialize in hassle-free roof
+        replacement services that restore the safety, durability, and appearance
+        of your property. Whether your roof has reached the end of its lifespan
+        or suffered extensive damage, our expert team will guide you through
+        every step of the process—from selecting the best materials to
+        completing a flawless installation. With a focus on quality
+        craftsmanship, efficiency, and minimal disruption to your daily life, we
+        ensure your new roof is built to last and tailored to your needs. Trust
+        us to protect what matters most with a roof you can depend on.
+      </div>
+    </>
   );
 }

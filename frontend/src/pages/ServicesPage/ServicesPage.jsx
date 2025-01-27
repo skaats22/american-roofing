@@ -19,17 +19,39 @@ export default function ServicesPage() {
   return (
     <div>
       <div className={styles.dropdownMenu}>
-        <button onClick={() => setServiceType("commercial")}>Commercial Roofing</button>
-        <button onClick={() => setServiceType("repair")}>Roof Repair</button>
-        <button onClick={() => setServiceType("replacement")}>Roof Replacement</button>
-        <button onClick={() => setServiceType("construction-condition-report")}>Construction Condition Report</button>
+        <button
+          className={styles.serviceButton}
+          onClick={() => setServiceType("commercial")}
+        >
+          Commercial Roofing
+        </button>
+        <button
+          className={styles.serviceButton}
+          onClick={() => setServiceType("repair")}
+        >
+          Roof Repair
+        </button>
+        <button
+          className={styles.serviceButton}
+          onClick={() => setServiceType("replacement")}
+        >
+          Roof Replacement
+        </button>
+        <button
+          className={styles.serviceButton}
+          onClick={() => setServiceType("construction-condition-report")}
+        >
+          Construction Condition Report
+        </button>
       </div>
 
       <div>
         {serviceType === "commercial" && <CommercialContent />}
         {serviceType === "repair" && <RoofRepairContent />}
         {serviceType === "replacement" && <RoofReplacementContent />}
-        {serviceType === "construction-condition-report" && <ConstructionConditionReport />}
+        {serviceType === "construction-condition-report" && (
+          <ConstructionConditionReport />
+        )}
       </div>
     </div>
   );
