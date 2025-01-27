@@ -37,23 +37,19 @@ function QuoteDetailPage(props) {
         <header>
           <article>
             <header>
-              <h2>{quote.title}</h2>
-              <h3>{quote.photo}</h3>
+              <h2>{quote.address}</h2>
             </header>
             <ul>
-              <li>
-                {quote.city}, {quote.state}
-              </li>
+              <li>{quote.phone}</li>
+              <li>{quote.city}, {quote.state} {quote.zip}</li>
               <li>{quote.propertyType}</li>
               <li>{quote.serviceType}</li>
               <li>{quote.roofMaterial}</li>
-              <li>{quote.projectLength}</li>
-              <li>{quote.projectPrice}</li>
               <li>{quote.description}</li>
+              <li>{quote.photo}</li>
             </ul>
           </article>
         </header>
-        <p>{quote.text}</p>
       </section>
     </main>
   );
