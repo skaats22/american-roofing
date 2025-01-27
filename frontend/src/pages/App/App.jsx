@@ -44,11 +44,11 @@ export default function App() {
     navigate("/jobs");
   }
 
-  async function handleUpdateHoot(hootId, hootFormData) {
-    const updatedHoot = await hootService.update(hootId, hootFormData);
-    // We use map() here to update a specific hoot in the hoots state array.
-    setHoots(hoots.map((hoot) => (hootId === hoot._id ? updatedHoot : hoot)));
-    navigate(`/hoots/${hootId}`);
+  async function handleUpdateJob(jobId, jobFormData) {
+    const updatedJob = await jobService.updateJob(jobId, jobFormData);
+    // We use map() here to update a specific job in the jobs state array.
+    setJobs(jobs.map((job) => (jobId === job._id ? updatedJob : job)));
+    navigate(`/jobs/${jobId}`);
   }
 
   useEffect(() => {
@@ -76,8 +76,16 @@ export default function App() {
               <Route
                 path="/jobs/new"
                 element={
-                  <PortfolioFormPage user={user} handleAddJob={handleAddJob} />
+                  <PortfolioFormPage
+                    user={user}
+                    handleAddJob={handleAddJob}
+                    handleUpdateJob={handleUpdateJob}
+                  />
                 }
+              />
+              <Route
+                path="/jobs/:jobId/edit"
+                element={<PortfolioFormPage handleUpdateJob={handleUpdateJob} />}
               />
               <Route
                 path="/jobs/:jobId"

@@ -56,9 +56,12 @@ function PortfolioDetailPage(props) {
         </header>
         <p>{job.text}</p>
       </section>
+      <Link to={`/jobs/${jobId}/edit`}>
+        <button>Edit Job</button>
+      </Link>
       <button onClick={() => props.handleDeleteJob(jobId)}>Delete Job</button>
     </main>
   );
-};
+}
 
 export default PortfolioDetailPage;

@@ -1,7 +1,9 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router";
+import * as jobService from "../../services/jobService"
 
 export default function JobForm(props) {
+  const { jobId } = useParams();
   const [formData, setFormData] = useState({
     title: "",
     address: "",
@@ -22,12 +24,77 @@ export default function JobForm(props) {
   const navigate = useNavigate();
 
   const stateOptions = [
-    "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY",
+    "AL",
+    "AK",
+    "AZ",
+    "AR",
+    "CA",
+    "CO",
+    "CT",
+    "DE",
+    "FL",
+    "GA",
+    "HI",
+    "ID",
+    "IL",
+    "IN",
+    "IA",
+    "KS",
+    "KY",
+    "LA",
+    "ME",
+    "MD",
+    "MA",
+    "MI",
+    "MN",
+    "MS",
+    "MO",
+    "MT",
+    "NE",
+    "NV",
+    "NH",
+    "NJ",
+    "NM",
+    "NY",
+    "NC",
+    "ND",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VT",
+    "VA",
+    "WA",
+    "WV",
+    "WI",
+    "WY",
   ];
 
   const propertyTypeOptions = ["Commercial", "Residential", "Other"];
-  const serviceTypeOptions = ["Repair", "Replace", "New Roof", "Maintenance", "Other"];
+  const serviceTypeOptions = [
+    "Repair",
+    "Replace",
+    "New Roof",
+    "Maintenance",
+    "Other",
+  ];
   const roofMaterialOptions = ["Shingles", "Metal", "Tile", "Flat", "Other"];
+
+  useEffect(() => {
+    const fetchJob = async () => {
+      const jobData = await jobService.show(jobId);
+      setFormData(jobData);
+    }
+
+    if (jobId) fetchJob();
+
+    }, [jobId]);
 
   const validate = () => {
     const newErrors = {};
@@ -35,12 +102,17 @@ export default function JobForm(props) {
     if (!formData.title) newErrors.title = "Title is required.";
     if (!formData.city) newErrors.city = "City is required.";
     if (!formData.state) newErrors.state = "State is required.";
-    if (!formData.propertyType) newErrors.propertyType = "Property type is required.";
-    if (!formData.serviceType) newErrors.serviceType = "Service type is required.";
-    if (!formData.roofMaterial) newErrors.roofMaterial = "Roof material is required.";
-    if (!formData.description) newErrors.description = "Description is required.";
+    if (!formData.propertyType)
+      newErrors.propertyType = "Property type is required.";
+    if (!formData.serviceType)
+      newErrors.serviceType = "Service type is required.";
+    if (!formData.roofMaterial)
+      newErrors.roofMaterial = "Roof material is required.";
+    if (!formData.description)
+      newErrors.description = "Description is required.";
     if (!formData.photo) newErrors.photo = "Photo URL is required.";
-    if (formData.displayInGallery === undefined) newErrors.displayInGallery = "Display in gallery must be selected.";
+    if (formData.displayInGallery === undefined)
+      newErrors.displayInGallery = "Display in gallery must be selected.";
     if (!formData.owner) newErrors.owner = "Owner is required.";
 
     setErrors(newErrors);
@@ -58,34 +130,38 @@ export default function JobForm(props) {
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     if (validate()) {
-      try {
-        await props.handleAddJob(formData);
-        setFormData({
-          title: "",
-          address: "",
-          city: "",
-          state: "",
-          propertyType: "",
-          serviceType: "",
-          roofMaterial: "",
-          projectLength: "",
-          projectPrice: "",
-          description: "",
-          photo: "",
-          displayInGallery: false,
-          owner: "",
-        });
-        navigate("/jobs");  // Navigate to the jobs page after successful submission
-      } catch (error) {
-        console.error("Error submitting job:", error);
-        alert("Error submitting the job. Please try again.");
+      if (jobId) {
+        await props.handleUpdateJob(jobId, formData);
+      } else {
+        try {
+          await props.handleAddJob(formData);
+          setFormData({
+            title: "",
+            address: "",
+            city: "",
+            state: "",
+            propertyType: "",
+            serviceType: "",
+            roofMaterial: "",
+            projectLength: "",
+            projectPrice: "",
+            description: "",
+            photo: "",
+            displayInGallery: false,
+            owner: "",
+          });
+          navigate("/jobs");
+        } catch (error) {
+          console.error("Error submitting job:", error);
+          alert("Error submitting the job. Please try again.");
+        }
       }
     }
   };
 
   return (
     <div>
-      <h1>Submit a New Job</h1>
+      <h1>{jobId ? "Edit Job" : "New Job"}</h1>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Title:</label>

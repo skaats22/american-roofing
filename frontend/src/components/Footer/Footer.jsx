@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.footerContent}>
-        <Link to="/services" className={styles.link} end>
+        <Link to="/services" className={styles.link}>
           Our Services
         </Link>
         <Link to="/about" className={styles.link}>
