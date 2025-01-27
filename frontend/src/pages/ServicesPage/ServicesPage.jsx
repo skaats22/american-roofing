@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router";
-import ResidentialContent from "../../components/ServiceComponents/ResidentialContent";
 import CommercialContent from "../../components/ServiceComponents/CommercialContent";
-import WaterproofingContent from "../../components/ServiceComponents/WaterproofingContent";
+import RoofRepairContent from "../../components/ServiceComponents/RoofRepairContent";
+import RoofReplacementContent from "../../components/ServiceComponents/RoofReplacementContent";
+import ConstructionConditionReport from "../../components/ServiceComponents/ConstructionConditionReport";
 import styles from "./ServicesPage.module.css";
 
 export default function ServicesPage() {
@@ -18,15 +19,17 @@ export default function ServicesPage() {
   return (
     <div>
       <div className={styles.dropdownMenu}>
-        <button onClick={() => setServiceType("residential")}>Residential Roofing</button>
         <button onClick={() => setServiceType("commercial")}>Commercial Roofing</button>
-        <button onClick={() => setServiceType("waterproofing")}>Waterproofing</button>
+        <button onClick={() => setServiceType("repair")}>Roof Repair</button>
+        <button onClick={() => setServiceType("replacement")}>Roof Replacement</button>
+        <button onClick={() => setServiceType("construction-condition-report")}>Construction Condition Report</button>
       </div>
 
       <div>
-        {serviceType === "residential" && <ResidentialContent />}
         {serviceType === "commercial" && <CommercialContent />}
-        {serviceType === "waterproofing" && <WaterproofingContent />}
+        {serviceType === "repair" && <RoofRepairContent />}
+        {serviceType === "replacement" && <RoofReplacementContent />}
+        {serviceType === "construction-condition-report" && <ConstructionConditionReport />}
       </div>
     </div>
   );

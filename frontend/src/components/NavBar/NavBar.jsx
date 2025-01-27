@@ -27,9 +27,10 @@ export default function NavBar({ user, setUser }) {
       <div className={styles.dropdown}>
         <span className={styles.dropdownToggle}>Our Services</span>
         <div className={styles.dropdownMenu}>
-          <NavLink to="/services?type=residential">Residential Roofing</NavLink>
           <NavLink to="/services?type=commercial">Commercial Roofing</NavLink>
-          <NavLink to="/services?type=waterproofing">Waterproofing</NavLink>
+          <NavLink to="/services?type=repair">Roof Repair</NavLink>
+          <NavLink to="/services?type=replacement">Roof Replacement</NavLink>
+          <NavLink to="/services?type=construction-condition-report">Construction Condition Report</NavLink>
         </div>
       </div>
       &nbsp; | &nbsp;
