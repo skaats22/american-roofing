@@ -18,6 +18,7 @@ import QuoteFormPage from "../QuoteFormPage/QuoteFormPage";
 import QuotePage from "../QuotePage/Quotepage";
 import PortfolioFormPage from "../PortfolioFormPage/PortfolioFormPage";
 import QuoteDetailPage from "../QuoteDetailPage/QuoteDetailPage"
+import ResourceDetail from "../../components/ResourceDetail/ResourceDetail";
 
 export default function App() {
   const [user, setUser] = useState(getUser());
@@ -73,6 +74,7 @@ export default function App() {
               <Route path="/services" element={<ServicesPage />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/resources" element={<ResourcePage />} />
+              <Route path="/resources/:resourceId" element={<ResourceDetail />} />
               <Route path="/jobs" element={<PortfolioPage jobs={jobs} />} />
               <Route
                 path="/jobs/new"
