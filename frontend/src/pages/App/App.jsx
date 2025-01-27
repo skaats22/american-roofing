@@ -13,14 +13,10 @@ import Footer from "../../components/Footer/Footer";
 import PortfolioPage from "../PortfolioPage/PortfolioPage";
 import PortfolioDetailPage from "../PortfolioDetailPage/PortfolioDetailPage";
 import * as jobService from "../../services/jobService";
-import * as quoteService from "../../services/quoteService"
+import * as quoteService from "../../services/quoteService";
 import QuoteFormPage from "../QuoteFormPage/QuoteFormPage";
 import QuotePage from "../QuotePage/Quotepage";
-import PortfolioFormPage from "../PortfolioFormPage/PortfolioFormPage"
-
-
-
-
+import PortfolioFormPage from "../PortfolioFormPage/PortfolioFormPage";
 
 export default function App() {
   const [user, setUser] = useState(getUser());
@@ -66,54 +62,75 @@ export default function App() {
   }, []);
 
   return (
-    <main className="App">
-      <NavBar user={user} setUser={setUser} />
-      <section id="main-section">
-        {user ? (
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/services" element={<ServicesPage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/resources" element={<ResourcePage />} />
-            <Route path="/jobs" element={<PortfolioPage jobs={jobs} />} />
-            <Route path="/jobs/new" element={<PortfolioFormPage user={user} handleAddJob={handleAddJob} />} />
-            <Route
-              path="/jobs/:jobId"
-              element={
-                <PortfolioDetailPage
-                  jobs={jobs}
-                  user={user}
-                  handleDeleteJob={handleDeleteJob}
-                />
-              }
-            />
-            <Route path="/quotes" element={<QuotePage user={user} />} />
-            <Route path="/quotes/new" element={<QuoteFormPage user={user} handleAddQuote={handleAddQuote} />} />
-          </Routes>
-        ) : (
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/services" element={<ServicesPage />} />
-            <Route path="/jobs" element={<PortfolioPage jobs={jobs} />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/resources" element={<ResourcePage />} />
-            <Route
-              path="/jobs/:jobId"
-              element={
-                <PortfolioDetailPage
-                  jobs={jobs}
-                  user={user}
-                  // handleDeleteHoot={handleDeleteHoot}
-                />
-              }
-            />
-            <Route path="/quotes" element={<QuotePage user={user} />} />
-            <Route path="/quotes/new" element={<QuoteFormPage user={user} handleAddQuote={handleAddQuote} />} />
-            <Route path="/signup" element={<SignUpPage setUser={setUser} />} />
-            <Route path="/login" element={<LogInPage setUser={setUser} />} />
-          </Routes>
-        )}
-      </section>
-    </main>
+    <>
+      <main className="App">
+        <NavBar user={user} setUser={setUser} />
+        <section id="main-section">
+          {user ? (
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/services" element={<ServicesPage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/resources" element={<ResourcePage />} />
+              <Route path="/jobs" element={<PortfolioPage jobs={jobs} />} />
+              <Route
+                path="/jobs/new"
+                element={
+                  <PortfolioFormPage user={user} handleAddJob={handleAddJob} />
+                }
+              />
+              <Route
+                path="/jobs/:jobId"
+                element={
+                  <PortfolioDetailPage
+                    jobs={jobs}
+                    user={user}
+                    handleDeleteJob={handleDeleteJob}
+                  />
+                }
+              />
+              <Route path="/quotes" element={<QuotePage user={user} />} />
+              <Route
+                path="/quotes/new"
+                element={
+                  <QuoteFormPage user={user} handleAddQuote={handleAddQuote} />
+                }
+              />
+            </Routes>
+          ) : (
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/services" element={<ServicesPage />} />
+              <Route path="/jobs" element={<PortfolioPage jobs={jobs} />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/resources" element={<ResourcePage />} />
+              <Route
+                path="/jobs/:jobId"
+                element={
+                  <PortfolioDetailPage
+                    jobs={jobs}
+                    user={user}
+                    // handleDeleteHoot={handleDeleteHoot}
+                  />
+                }
+              />
+              <Route path="/quotes" element={<QuotePage user={user} />} />
+              <Route
+                path="/quotes/new"
+                element={
+                  <QuoteFormPage user={user} handleAddQuote={handleAddQuote} />
+                }
+              />
+              <Route
+                path="/signup"
+                element={<SignUpPage setUser={setUser} />}
+              />
+              <Route path="/login" element={<LogInPage setUser={setUser} />} />
+            </Routes>
+          )}
+        </section>
+      </main>
+      <Footer />
+    </>
   );
 }
