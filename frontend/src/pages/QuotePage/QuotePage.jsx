@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { NavLink, Link, useNavigate } from "react-router";
 import * as quoteService from "../../services/quoteService";
 
 export default function QuotePage() {
@@ -18,13 +19,17 @@ export default function QuotePage() {
       <ul>
         {quotes.map((quote) => (
           <li key={quote._id}>
-            <h2>{quote.address}, {quote.city}, {quote.state}</h2>
-            <p><strong>Phone:</strong> {quote.phone}</p>
+            <Link to="/quotes/:quoteId">
+              <h2>
+                {quote.address}, {quote.city}, {quote.state}
+              </h2>
+              {/* <p><strong>Phone:</strong> {quote.phone}</p>
             <p><strong>Zip Code:</strong> {quote.zipCode}</p>
             <p><strong>Property Type:</strong> {quote.propertyType}</p>
             <p><strong>Service Type:</strong> {quote.serviceType}</p>
             <p><strong>Roof Material:</strong> {quote.roofMaterial}</p>
-            <p><strong>Description:</strong> {quote.description}</p>
+            <p><strong>Description:</strong> {quote.description}</p> */}
+            </Link>
           </li>
         ))}
       </ul>

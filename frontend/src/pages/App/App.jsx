@@ -103,7 +103,7 @@ export default function App() {
                 <PortfolioDetailPage
                   jobs={jobs}
                   user={user}
-                  handleDeleteHoot={handleDeleteHoot}
+                  // handleDeleteHoot={handleDeleteHoot}
                 />
               }
             />

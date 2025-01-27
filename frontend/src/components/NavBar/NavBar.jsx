@@ -35,7 +35,7 @@ export default function NavBar({ user, setUser }) {
           &nbsp; | &nbsp;
           <span>📞 213-270-3527</span>
           &nbsp; | &nbsp;
-          <Link to="" onClick={handleLogOut}>
+          <Link to="/" onClick={handleLogOut}>
             Log Out
           </Link>
           <NavLink to="/quotes/new">Request a free quote!</NavLink>
