@@ -17,7 +17,7 @@ export default function ServicesPage() {
   }, [location]);
 
   return (
-    <div>
+    <div className={styles.pageContainer}>
       <div className={styles.dropdownMenu}>
         <button
           className={styles.serviceButton}
@@ -45,7 +45,7 @@ export default function ServicesPage() {
         </button>
       </div>
 
-      <div>
+      <div className={styles.contentContainer}>
         {serviceType === "commercial" && <CommercialContent />}
         {serviceType === "repair" && <RoofRepairContent />}
         {serviceType === "replacement" && <RoofReplacementContent />}

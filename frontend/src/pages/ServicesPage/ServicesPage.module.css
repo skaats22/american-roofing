@@ -1,13 +1,62 @@
+.pageContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
 .dropdownMenu {
   display: flex;
   justify-content: center;
-  align-items: center;
-  margin: 10px
+  gap: 20px;
+  margin-bottom: 30px;
 }
 
 .serviceButton {
-  margin: 10px;
-  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  font-size: 1.1rem;
+  padding: 12px 20px;
+  border: none;
   border-radius: 5px;
-  font-size: 2.5vh;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-transform: uppercase;
+}
+
+.serviceButton:hover {
+  background-color: #0056b3;
+}
+
+.contentContainer {
+  background-color: #f9f9f9;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contentContainer > div {
+  margin-bottom: 30px;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+p {
+  font-size: 1rem;
+  color: #555;
+}
+
+@media (max-width: 768px) {
+  .dropdownMenu {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .serviceButton {
+    width: 100%;
+    margin-bottom: 10px;
+  }
 }

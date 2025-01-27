@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import * as postService from "../../services/jobService";
+import styles from "./AboutPage.module.css"
 
 export default function AboutPage() {
   const [content, setContent] = useState("");
