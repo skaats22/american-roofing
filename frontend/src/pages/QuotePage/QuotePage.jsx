@@ -44,9 +44,6 @@ export default function QuotePage() {
           </div>
         ))}
       </div>
-      <div className={styles.quoteAddButtonContainer}>
-        <button className={styles.quoteAddButton}>Add New Quote</button>
-      </div>
     </div>
   );
 }

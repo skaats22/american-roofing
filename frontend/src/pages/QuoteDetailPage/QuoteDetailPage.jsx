@@ -1,25 +1,11 @@
 import { useParams, Link } from "react-router";
 import { useState, useEffect } from "react";
 import * as quoteService from "../../services/quoteService";
+import styles from "./QuoteDetailPage.module.css"; // Assuming you've added styles for this page
 
 function QuoteDetailPage(props) {
   const { quoteId } = useParams();
   const [quote, setQuote] = useState([]);
-
-  const user = props.user;
-
-  // async function handleAddComment(commentFormData) {
-  //   const newComment = await hootService.createComment(hootId, commentFormData);
-  //   setHoot({ ...hoot, comments: [...hoot.comments, newComment] });
-  // }
-
-  // async function handleDeleteComment(commentId) {
-  //   const deletedHoot = await hootService.deleteComment(hootId, commentId);
-  //   setHoot({
-  //     ...hoot,
-  //     comments: hoot.comments.filter((comment) => comment._id !== commentId),
-  //   });
-  // }
 
   useEffect(() => {
     async function fetchQuote() {
@@ -27,32 +13,48 @@ function QuoteDetailPage(props) {
       setQuote(quoteData);
     }
     fetchQuote();
-    // Empty dependency array means run this only once after rendering
   }, [quoteId]);
 
   return (
-    <main>
-      <section>
-        <header>
-          <article>
-            <header>
-              <h2>{quote.address}</h2>
-            </header>
-            <ul>
-              <li>{quote.phone}</li>
-              <li>
-                {quote.city}, {quote.state} {quote.zip}
-              </li>
-              <li>{quote.propertyType}</li>
-              <li>{quote.serviceType}</li>
-              <li>{quote.roofMaterial}</li>
-              <li>{quote.description}</li>
-            </ul>
-            <div>
-              <img src={quote.photo} alt="Quote image" className="PostItem" />
-            </div>
-          </article>
+    <main className={styles.mainContainer}>
+      <section className={styles.jobDetailContainer}>
+        <header className={styles.jobHeader}>
+          <h2 className={styles.jobTitle}>{quote.address}</h2>
         </header>
+
+        <div className={styles.textImgContainer}>
+          <div>
+            <ul className={styles.jobDetails}>
+              <li>
+                <strong>Phone:</strong> {quote.phone}
+              </li>
+              <li>
+                <strong>Location:</strong> {quote.city}, {quote.state}{" "}
+                {quote.zip}
+              </li>
+              <li>
+                <strong>Property Type:</strong> {quote.propertyType}
+              </li>
+              <li>
+                <strong>Service Type:</strong> {quote.serviceType}
+              </li>
+              <li>
+                <strong>Roof Material:</strong> {quote.roofMaterial}
+              </li>
+              <li>
+                <strong>Description:</strong> {quote.description}
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <img
+              src={quote.photo}
+              alt="Quote image"
+              className={styles.jobImage}
+            />
+          </div>
+        </div>
       </section>
     </main>
   );
