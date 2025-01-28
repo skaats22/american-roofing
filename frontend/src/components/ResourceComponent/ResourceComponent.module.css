@@ -5,10 +5,17 @@
   background: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease-in-out;
+  text-decoration: none;
+  color: black;
 }
 
 .ResourceCard:hover {
   transform: translateY(-5px);
+}
+
+.resourceLink {
+  text-decoration: none;
+  color: inherit;
 }
 
 .category {

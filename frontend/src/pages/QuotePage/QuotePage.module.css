@@ -1,0 +1,43 @@
+.quotePageContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: "Arial", sans-serif;
+  text-decoration: none;
+}
+
+.quoteList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.quoteCard {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.quoteCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.quoteLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.quoteHeader {
+  margin-bottom: 15px;
+}
+
+.quoteTitle {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #333;
+  margin: 0 0;
+}

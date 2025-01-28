@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { NavLink, Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 import * as quoteService from "../../services/quoteService";
+import styles from "./QuotePage.module.css";
 
 export default function QuotePage() {
   const [quotes, setQuotes] = useState([]);
@@ -14,25 +15,44 @@ export default function QuotePage() {
   }, []);
 
   return (
-    <div>
+    <div className={styles.quotePageContainer}>
       <h1>All Quotes</h1>
-      <ul>
+      <div className={styles.quoteList}>
         {quotes.map((quote) => (
-          <li key={quote._id}>
-            <Link to={`/quotes/${quote._id}`}>
-              <h2>
-                {quote.address}, {quote.city}, {quote.state}
-              </h2>
-              {/* <p><strong>Phone:</strong> {quote.phone}</p>
-            <p><strong>Zip Code:</strong> {quote.zipCode}</p>
-            <p><strong>Property Type:</strong> {quote.propertyType}</p>
-            <p><strong>Service Type:</strong> {quote.serviceType}</p>
-            <p><strong>Roof Material:</strong> {quote.roofMaterial}</p>
-            <p><strong>Description:</strong> {quote.description}</p> */}
+          <div className={styles.quoteCard} key={quote._id}>
+            <Link className={styles.quoteLink} to={`/quotes/${quote._id}`}>
+              <div className={styles.quoteHeader}>
+                <h2 className={styles.quoteTitle}>
+                  {quote.address}, {quote.city}, {quote.state}
+                </h2>
+              </div>
+              <ul className={styles.quoteDetails}>
+                <li>
+                  <strong>Phone:</strong> {quote.phone}
+                </li>
+                <li>
+                  <strong>Zip Code:</strong> {quote.zipCode}
+                </li>
+                <li>
+                  <strong>Property Type:</strong> {quote.propertyType}
+                </li>
+                <li>
+                  <strong>Service Type:</strong> {quote.serviceType}
+                </li>
+                <li>
+                  <strong>Roof Material:</strong> {quote.roofMaterial}
+                </li>
+                <li>
+                  <strong>Description:</strong> {quote.description}
+                </li>
+              </ul>
             </Link>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
+      <div className={styles.quoteAddButtonContainer}>
+        <button className={styles.quoteAddButton}>Add New Quote</button>
+      </div>
     </div>
   );
 }

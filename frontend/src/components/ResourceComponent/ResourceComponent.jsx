@@ -4,12 +4,12 @@ import styles from "./ResourceComponent.module.css";
 export default function ResourceCard({ resource }) {
   return (
     <>
-      <Link to={resource.link}>
+      <Link className={styles.resourceLink} to={resource.link}>
         <div className={styles.ResourceCard}>
           <h3>{resource.title}</h3>
           <p>{resource.description}</p>
-          <Link to={resource.link}>Read More</Link>
-          <span className={styles.category}>{resource.category}</span>
+          <p>Details</p>
+          <span className={styles.category}>Category: {resource.category}</span>
         </div>
       </Link>
     </>
