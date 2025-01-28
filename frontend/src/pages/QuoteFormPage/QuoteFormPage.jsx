@@ -160,27 +160,36 @@ export default function QuoteForm(props) {
     }
   };
 
-  // async function handleSubmit(evt) {
-  //   evt.preventDefault();
-  //   if (validate()) {
-  //     try {
-  //       const formData = new FormData();
-  //       formData.append("content", content);
-  //       // 'image' will be the name we use to access the file on the server
-  //       if (fileInputRef.current.files.length)
-  //         formData.append("image", fileInputRef.current.files[0]);
-  //       await quoteService.create(formData);
-  //       navigate("/");
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   }
-  // }
-
   return (
     <div className={styles.formContainer}>
       <h1>Request a Quote{props.user ? `, ${props.user.firstName}` : ""}!</h1>
       <form onSubmit={handleSubmit} className={styles.form}>
+        {/* First Name & Last Name */}
+        <div className={styles.row}>
+          <div className={styles.inputGroup}>
+            <label>First Name:</label>
+            <input
+              type="text"
+              name="firstName"
+              value={formData.firstName}
+              onChange={handleChange}
+              className={styles.input}
+            />
+          </div>
+
+          <div className={styles.inputGroup}>
+            <label>Last Name:</label>
+            <input
+              type="text"
+              name="lastName"
+              value={formData.lastName}
+              onChange={handleChange}
+              className={styles.input}
+            />
+          </div>
+        </div>
+
+        {/* Phone */}
         <div className={styles.inputGroup}>
           <label>Phone:</label>
           <input
@@ -191,9 +200,9 @@ export default function QuoteForm(props) {
             placeholder="xxx-xxx-xxxx"
             className={styles.input}
           />
-          {errors.phone && <p className={styles.errorText}>{errors.phone}</p>}
         </div>
 
+        {/* Address */}
         <div className={styles.inputGroup}>
           <label>Address:</label>
           <input
@@ -203,116 +212,107 @@ export default function QuoteForm(props) {
             onChange={handleChange}
             className={styles.input}
           />
-          {errors.address && (
-            <p className={styles.errorText}>{errors.address}</p>
-          )}
         </div>
 
-        <div className={styles.inputGroup}>
-          <label>City:</label>
-          <input
-            type="text"
-            name="city"
-            value={formData.city}
-            onChange={handleChange}
-            className={styles.input}
-          />
-          {errors.city && <p className={styles.errorText}>{errors.city}</p>}
+        {/* City, State, Zip */}
+        <div className={styles.row}>
+          <div className={styles.inputGroup}>
+            <label>City:</label>
+            <input
+              type="text"
+              name="city"
+              value={formData.city}
+              onChange={handleChange}
+              className={styles.input}
+            />
+          </div>
+
+          <div className={styles.inputGroup}>
+            <label>State:</label>
+            <select
+              name="state"
+              id="state"
+              value={formData.state}
+              onChange={handleChange}
+              className={styles.select}
+            >
+              <option value="">-- Select State --</option>
+              {stateOptions.map((state) => (
+                <option key={state} value={state}>
+                  {state}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className={styles.inputGroup}>
+            <label>Zip Code:</label>
+            <input
+              type="text"
+              name="zipCode"
+              value={formData.zipCode}
+              onChange={handleChange}
+              maxLength="5"
+              className={styles.input}
+            />
+          </div>
         </div>
 
-        <div className={styles.inputGroup}>
-          <label>State:</label>
-          <select
-            name="state"
-            value={formData.state}
-            onChange={handleChange}
-            className={styles.select}
-          >
-            <option value="">-- Select State --</option>
-            {stateOptions.map((state) => (
-              <option key={state} value={state}>
-                {state}
-              </option>
-            ))}
-          </select>
-          {errors.state && <p className={styles.errorText}>{errors.state}</p>}
+        {/* Property Type, Service Type, Roof Material */}
+        <div className={styles.row}>
+          <div className={styles.inputGroup}>
+            <label>Property Type:</label>
+            <select
+              name="propertyType"
+              value={formData.propertyType}
+              onChange={handleChange}
+              className={styles.select}
+            >
+              <option value="">-- Property Type --</option>
+              {propertyTypeOptions.map((type) => (
+                <option key={type} value={type}>
+                  {type}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className={styles.inputGroup}>
+            <label>Service Type:</label>
+            <select
+              name="serviceType"
+              value={formData.serviceType}
+              onChange={handleChange}
+              className={styles.select}
+            >
+              <option value="">-- Service Type --</option>
+              {serviceTypeOptions.map((type) => (
+                <option key={type} value={type}>
+                  {type}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className={styles.inputGroup}>
+            <label>Roof Material:</label>
+            <select
+              name="roofMaterial"
+              value={formData.roofMaterial}
+              onChange={handleChange}
+              className={styles.select}
+            >
+              <option value="">-- Roof Material --</option>
+              {roofMaterialOptions.map((material) => (
+                <option key={material} value={material}>
+                  {material}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
 
-        <div className={styles.inputGroup}>
-          <label>Zip Code:</label>
-          <input
-            type="text"
-            name="zipCode"
-            value={formData.zipCode}
-            onChange={handleChange}
-            maxLength="5"
-            className={styles.input}
-          />
-          {errors.zipCode && (
-            <p className={styles.errorText}>{errors.zipCode}</p>
-          )}
-        </div>
-
-        <div className={styles.inputGroup}>
-          <label>Property Type:</label>
-          <select
-            name="propertyType"
-            value={formData.propertyType}
-            onChange={handleChange}
-            className={styles.select}
-          >
-            <option value="">-- Select Property Type --</option>
-            {propertyTypeOptions.map((type) => (
-              <option key={type} value={type}>
-                {type}
-              </option>
-            ))}
-          </select>
-          {errors.propertyType && (
-            <p className={styles.errorText}>{errors.propertyType}</p>
-          )}
-        </div>
-
-        <div className={styles.inputGroup}>
-          <label>Service Type:</label>
-          <select
-            name="serviceType"
-            value={formData.serviceType}
-            onChange={handleChange}
-            className={styles.select}
-          >
-            <option value="">-- Select Service Type --</option>
-            {serviceTypeOptions.map((type) => (
-              <option key={type} value={type}>
-                {type}
-              </option>
-            ))}
-          </select>
-          {errors.serviceType && (
-            <p className={styles.errorText}>{errors.serviceType}</p>
-          )}
-        </div>
-
-        <div className={styles.inputGroup}>
-          <label>Roof Material:</label>
-          <select
-            name="roofMaterial"
-            value={formData.roofMaterial}
-            onChange={handleChange}
-            className={styles.select}
-          >
-            <option value="">-- Select Roof Material --</option>
-            {roofMaterialOptions.map((material) => (
-              <option key={material} value={material}>
-                {material}
-              </option>
-            ))}
-          </select>
-          {errors.roofMaterial && (
-            <p className={styles.errorText}>{errors.roofMaterial}</p>
-          )}
-        </div>
-
+        {/* Description */}
         <div className={styles.inputGroup}>
           <label>Description:</label>
           <textarea
@@ -321,11 +321,9 @@ export default function QuoteForm(props) {
             onChange={handleChange}
             className={styles.textarea}
           />
-          {errors.description && (
-            <p className={styles.errorText}>{errors.description}</p>
-          )}
         </div>
 
+        {/* Image File */}
         <div className={styles.inputGroup}>
           <label>Image File:</label>
           <input
@@ -333,14 +331,6 @@ export default function QuoteForm(props) {
             accept=".png, .gif, .jpg, .jpeg"
             ref={fileInputRef}
           />
-          <button type="submit">ADD POST</button>
-          {/* <input
-            type="text"
-            name="photo"
-            value={formData.photo}
-            onChange={handleChange}
-            className={styles.input}
-          /> */}
         </div>
 
         <button type="submit" className={styles.submitButton}>

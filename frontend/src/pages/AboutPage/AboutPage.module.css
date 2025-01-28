@@ -1,3 +1,10 @@
+.mainA {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .blurb {
   min-width: 300px;
   max-width: 60%;

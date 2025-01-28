@@ -23,18 +23,38 @@ export default function PortfolioPage(props) {
             <Link to={`/jobs/${j._id}`} className={styles.jobLink}>
               <header className={styles.jobHeader}>
                 <h2 className={styles.jobTitle}>{j.title}</h2>
-                {j.photo && <img src={j.photo} alt={j.title} className={styles.jobImage} />}
+                {j.photo && (
+                  <img
+                    src={j.photo}
+                    alt={j.title}
+                    className={styles.jobImage}
+                  />
+                )}
               </header>
+              <ul className={styles.jobDetails}>
+                <li>
+                  <strong>Location:</strong> {j.city}, {j.state}
+                </li>
+                <li>
+                  <strong>Property Type:</strong> {j.propertyType}
+                </li>
+                <li>
+                  <strong>Service Type:</strong> {j.serviceType}
+                </li>
+                <li>
+                  <strong>Roof Material:</strong> {j.roofMaterial}
+                </li>
+                <li>
+                  <strong>Project Length:</strong> {j.projectLength}
+                </li>
+                <li>
+                  <strong>Price:</strong> {j.projectPrice}
+                </li>
+                <li>
+                  <strong>Description:</strong> {j.description}
+                </li>
+              </ul>
             </Link>
-            <ul className={styles.jobDetails}>
-              <li><strong>Location:</strong> {j.city}, {j.state}</li>
-              <li><strong>Property Type:</strong> {j.propertyType}</li>
-              <li><strong>Service Type:</strong> {j.serviceType}</li>
-              <li><strong>Roof Material:</strong> {j.roofMaterial}</li>
-              <li><strong>Project Length:</strong> {j.projectLength}</li>
-              <li><strong>Price:</strong> {j.projectPrice}</li>
-              <li><strong>Description:</strong> {j.description}</li>
-            </ul>
           </article>
         ))}
       </div>
