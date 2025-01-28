@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import * as authService from "../../services/authService";
+import styles from "./LogInPage.module.css"
 
 export default function SignUpPage({ setUser }) {
   const [formData, setFormData] = useState({
@@ -20,7 +21,7 @@ export default function SignUpPage({ setUser }) {
     try {
       const user = await authService.logIn(formData);
       setUser(user);
-      navigate('/');
+      navigate("/");
     } catch (err) {
       console.log(err);
       setErrorMsg("Log In Failed - Try Again");
@@ -31,26 +32,28 @@ export default function SignUpPage({ setUser }) {
 
   return (
     <>
-      <h2>Log In!</h2>
-      <form autoComplete="off" onSubmit={handleSubmit}>
-        <label>Email</label>
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
-        <label>Password</label>
-        <input
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
-        <button type="submit">LOG IN</button>
-      </form>
+      <main className={styles.mainBody}>
+        <h2>Log In!</h2>
+        <form autoComplete="off" onSubmit={handleSubmit} className={styles.suForm}>
+          <label>Email</label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+          <label>Password</label>
+          <input
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
+          <button type="submit">LOG IN</button>
+        </form>
+      </main>
       <p className="error-message">&nbsp;{errorMsg}</p>
     </>
   );
