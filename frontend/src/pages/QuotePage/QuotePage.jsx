@@ -42,9 +42,6 @@ export default function QuotePage() {
                 <li>
                   <strong>Roof Material:</strong> {quote.roofMaterial}
                 </li>
-                <li>
-                  <strong>Description:</strong> {quote.description}
-                </li>
               </ul>
             </Link>
           </div>

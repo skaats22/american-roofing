@@ -1,5 +1,5 @@
 .quotePageContainer {
-  max-width: 1200px;
+  max-width: 1350px;
   margin: 0 auto;
   padding: 20px;
   font-family: "Arial", sans-serif;
@@ -7,8 +7,8 @@
 }
 
 .quoteList {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 20px;
 }
 
@@ -19,6 +19,7 @@
   padding: 20px;
   transition: transform 0.2s ease-in-out;
   cursor: pointer;
+  max-width: 300px;
 }
 
 .quoteCard:hover {
