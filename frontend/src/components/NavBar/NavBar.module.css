@@ -7,6 +7,12 @@
   font-weight: bold;
 }
 
+.topBanner {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 5px 5px 0px 5px;
+  background-color: lightgreen;
+}
 
 #home img {
   width: 50px;
@@ -71,3 +77,4 @@
 .dropdown:hover .dropdownMenu {
   display: block;
 }
+
