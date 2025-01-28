@@ -6,9 +6,8 @@ export default function ResourceCard({ resource }) {
     <>
       <Link className={styles.resourceLink} to={resource.link}>
         <div className={styles.ResourceCard}>
-          <h3>{resource.title}</h3>
+          <h3 className={styles.resourceTitle}>{resource.title}</h3>
           <p>{resource.description}</p>
-          <p>Details</p>
           <span className={styles.category}>Category: {resource.category}</span>
         </div>
       </Link>

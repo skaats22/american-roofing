@@ -25,4 +25,9 @@
   color: #555;
 }
 
+.resourceTitle {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
 
