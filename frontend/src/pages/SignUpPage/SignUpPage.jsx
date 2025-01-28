@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import * as authService from "../../services/authService";
+import styles from "./SignUpPage.module.css"
 
 export default function SignUpPage({ setUser }) {
   const [formData, setFormData] = useState({
@@ -35,8 +36,9 @@ export default function SignUpPage({ setUser }) {
 
   return (
     <>
+    <main className={styles.mainBody}>
       <h2>Sign Up!</h2>
-      <form autoComplete="off" onSubmit={handleSubmit}>
+      <form autoComplete="off" onSubmit={handleSubmit} className={styles.suForm}>
         <label>First Name</label>
         <input
           type="text"
@@ -81,6 +83,7 @@ export default function SignUpPage({ setUser }) {
           SIGN UP
         </button>
       </form>
+    </main>
       <p className="error-message">&nbsp;{errorMsg}</p>
     </>
   );

@@ -1,0 +1,10 @@
+.mainBody {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.suForm {
+  min-width: 280px;
+}
