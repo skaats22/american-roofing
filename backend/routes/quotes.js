@@ -17,8 +17,8 @@ router.get('/:quoteId', quotesCtrl.showQuote)
 // // PUT /api/quotes/:quoteId
 // router.put('/:quoteId', quotesCtrl.updateQuote)
 
-// // DELETE /api/quotes/:quoteId
-// router.delete('/:quoteId', quotesCtrl.deleteQuote)
+// DELETE /api/quotes/:quoteId
+router.delete('/:quoteId', quotesCtrl.deleteQuote)
 
 
 

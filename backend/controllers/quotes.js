@@ -7,6 +7,7 @@ module.exports = {
   createQuote,
   indexQuote,
   showQuote,
+  deleteQuote,
   uploadFile,
 }
 
@@ -45,6 +46,16 @@ async function showQuote(req, res) {
     res.status(500).json({ err: err.message });
   }
 }
+
+async function deleteQuote(req, res) {
+  try {
+    const quote = await Quote.findById(req.params.quoteId);
+    const deletedQuote = await Quote.findByIdAndDelete(req.params.quoteId);
+    res.status(200).json(deletedQuote);
+  } catch (err) {
+    res.status(500).json({ err: err.message });
+  }
+};
 
 async function uploadFile(file) {
   // Create an instance of the S3 client

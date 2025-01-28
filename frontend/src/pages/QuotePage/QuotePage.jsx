@@ -31,9 +31,6 @@ export default function QuotePage() {
                   <strong>Phone:</strong> {quote.phone}
                 </li>
                 <li>
-                  <strong>Zip Code:</strong> {quote.zipCode}
-                </li>
-                <li>
                   <strong>Property Type:</strong> {quote.propertyType}
                 </li>
                 <li>

@@ -12,7 +12,7 @@ export default function AboutPage() {
     evt.preventDefault();
     try {
       const post = await postService.create(content);
-      navigate("/posts");
+      navigate("/jobs");
     } catch (err) {
       console.log(err);
     }
