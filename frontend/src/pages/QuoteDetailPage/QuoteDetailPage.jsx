@@ -30,7 +30,6 @@ function QuoteDetailPage(props) {
     // Empty dependency array means run this only once after rendering
   }, [quoteId]);
 
-
   return (
     <main>
       <section>
@@ -41,13 +40,17 @@ function QuoteDetailPage(props) {
             </header>
             <ul>
               <li>{quote.phone}</li>
-              <li>{quote.city}, {quote.state} {quote.zip}</li>
+              <li>
+                {quote.city}, {quote.state} {quote.zip}
+              </li>
               <li>{quote.propertyType}</li>
               <li>{quote.serviceType}</li>
               <li>{quote.roofMaterial}</li>
               <li>{quote.description}</li>
-              <li>{quote.photo}</li>
             </ul>
+            <div>
+              <img src={quote.photo} alt="Quote image" className="PostItem" />
+            </div>
           </article>
         </header>
       </section>

@@ -1,5 +1,7 @@
-import { useState } from "react";
-import styles from './QuoteFormPage.module.css';
+import { useState, useRef } from "react";
+import { Link, useNavigate } from "react-router";
+import styles from "./QuoteFormPage.module.css";
+import * as quoteService from "../../services/quoteService";
 
 export default function QuoteForm(props) {
   const [formData, setFormData] = useState({
@@ -15,15 +17,81 @@ export default function QuoteForm(props) {
     photo: "",
   });
 
+  const [content, setContent] = useState("");
   const [errors, setErrors] = useState({});
 
+  const navigate = useNavigate();
+  const fileInputRef = useRef();
+
   const stateOptions = [
-    "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY",
+    "AL",
+    "AK",
+    "AZ",
+    "AR",
+    "CA",
+    "CO",
+    "CT",
+    "DE",
+    "FL",
+    "GA",
+    "HI",
+    "ID",
+    "IL",
+    "IN",
+    "IA",
+    "KS",
+    "KY",
+    "LA",
+    "ME",
+    "MD",
+    "MA",
+    "MI",
+    "MN",
+    "MS",
+    "MO",
+    "MT",
+    "NE",
+    "NV",
+    "NH",
+    "NJ",
+    "NM",
+    "NY",
+    "NC",
+    "ND",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VT",
+    "VA",
+    "WA",
+    "WV",
+    "WI",
+    "WY",
   ];
 
   const propertyTypeOptions = ["Commercial", "Residential", "Other"];
-  const serviceTypeOptions = ["Repair", "Replace", "New Roof", "Maintenance", "Other"];
-  const roofMaterialOptions = ["Shingles", "Metal", "Tile", "Flat", "Other", "Not Sure"];
+  const serviceTypeOptions = [
+    "Repair",
+    "Replace",
+    "New Roof",
+    "Maintenance",
+    "Other",
+  ];
+  const roofMaterialOptions = [
+    "Shingles",
+    "Metal",
+    "Tile",
+    "Flat",
+    "Other",
+    "Not Sure",
+  ];
 
   const validate = () => {
     const newErrors = {};
@@ -38,10 +106,14 @@ export default function QuoteForm(props) {
     if (!formData.zipCode || formData.zipCode.length !== 5) {
       newErrors.zipCode = "Zip code must be exactly 5 digits.";
     }
-    if (!formData.propertyType) newErrors.propertyType = "Property type is required.";
-    if (!formData.serviceType) newErrors.serviceType = "Service type is required.";
-    if (!formData.roofMaterial) newErrors.roofMaterial = "Roof material is required.";
-    if (!formData.description) newErrors.description = "Description is required.";
+    if (!formData.propertyType)
+      newErrors.propertyType = "Property type is required.";
+    if (!formData.serviceType)
+      newErrors.serviceType = "Service type is required.";
+    if (!formData.roofMaterial)
+      newErrors.roofMaterial = "Roof material is required.";
+    if (!formData.description)
+      newErrors.description = "Description is required.";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -55,21 +127,55 @@ export default function QuoteForm(props) {
   const handleSubmit = (evt) => {
     evt.preventDefault();
     if (validate()) {
-      props.handleAddQuote(formData);
-      setFormData({
-        phone: "",
-        address: "",
-        city: "",
-        state: "",
-        zipCode: "",
-        propertyType: "",
-        serviceType: "",
-        roofMaterial: "",
-        description: "",
-        photo: "",
-      });
+      try {
+        const formData2 = new FormData();
+        formData2.append("phone", formData.phone);
+        formData2.append("address", formData.address);
+        formData2.append("city", formData.city);
+        formData2.append("state", formData.state);
+        formData2.append("zipCode", formData.zipCode);
+        formData2.append("propertyType", formData.propertyType);
+        formData2.append("serviceType", formData.serviceType);
+        formData2.append("roofMaterial", formData.roofMaterial);
+        formData2.append("description", formData.description);
+        // 'image' will be the name we use to access the file on the server
+        if (fileInputRef.current.files.length)
+          formData2.append("photo", fileInputRef.current.files[0]);
+        props.handleAddQuote(formData2);
+        setFormData({
+          phone: "",
+          address: "",
+          city: "",
+          state: "",
+          zipCode: "",
+          propertyType: "",
+          serviceType: "",
+          roofMaterial: "",
+          description: "",
+          photo: "",
+        });
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
+
+  // async function handleSubmit(evt) {
+  //   evt.preventDefault();
+  //   if (validate()) {
+  //     try {
+  //       const formData = new FormData();
+  //       formData.append("content", content);
+  //       // 'image' will be the name we use to access the file on the server
+  //       if (fileInputRef.current.files.length)
+  //         formData.append("image", fileInputRef.current.files[0]);
+  //       await quoteService.create(formData);
+  //       navigate("/");
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   }
+  // }
 
   return (
     <div className={styles.formContainer}>
@@ -97,7 +203,9 @@ export default function QuoteForm(props) {
             onChange={handleChange}
             className={styles.input}
           />
-          {errors.address && <p className={styles.errorText}>{errors.address}</p>}
+          {errors.address && (
+            <p className={styles.errorText}>{errors.address}</p>
+          )}
         </div>
 
         <div className={styles.inputGroup}>
@@ -122,7 +230,9 @@ export default function QuoteForm(props) {
           >
             <option value="">-- Select State --</option>
             {stateOptions.map((state) => (
-              <option key={state} value={state}>{state}</option>
+              <option key={state} value={state}>
+                {state}
+              </option>
             ))}
           </select>
           {errors.state && <p className={styles.errorText}>{errors.state}</p>}
@@ -138,7 +248,9 @@ export default function QuoteForm(props) {
             maxLength="5"
             className={styles.input}
           />
-          {errors.zipCode && <p className={styles.errorText}>{errors.zipCode}</p>}
+          {errors.zipCode && (
+            <p className={styles.errorText}>{errors.zipCode}</p>
+          )}
         </div>
 
         <div className={styles.inputGroup}>
@@ -151,10 +263,14 @@ export default function QuoteForm(props) {
           >
             <option value="">-- Select Property Type --</option>
             {propertyTypeOptions.map((type) => (
-              <option key={type} value={type}>{type}</option>
+              <option key={type} value={type}>
+                {type}
+              </option>
             ))}
           </select>
-          {errors.propertyType && <p className={styles.errorText}>{errors.propertyType}</p>}
+          {errors.propertyType && (
+            <p className={styles.errorText}>{errors.propertyType}</p>
+          )}
         </div>
 
         <div className={styles.inputGroup}>
@@ -167,10 +283,14 @@ export default function QuoteForm(props) {
           >
             <option value="">-- Select Service Type --</option>
             {serviceTypeOptions.map((type) => (
-              <option key={type} value={type}>{type}</option>
+              <option key={type} value={type}>
+                {type}
+              </option>
             ))}
           </select>
-          {errors.serviceType && <p className={styles.errorText}>{errors.serviceType}</p>}
+          {errors.serviceType && (
+            <p className={styles.errorText}>{errors.serviceType}</p>
+          )}
         </div>
 
         <div className={styles.inputGroup}>
@@ -183,10 +303,14 @@ export default function QuoteForm(props) {
           >
             <option value="">-- Select Roof Material --</option>
             {roofMaterialOptions.map((material) => (
-              <option key={material} value={material}>{material}</option>
+              <option key={material} value={material}>
+                {material}
+              </option>
             ))}
           </select>
-          {errors.roofMaterial && <p className={styles.errorText}>{errors.roofMaterial}</p>}
+          {errors.roofMaterial && (
+            <p className={styles.errorText}>{errors.roofMaterial}</p>
+          )}
         </div>
 
         <div className={styles.inputGroup}>
@@ -197,21 +321,31 @@ export default function QuoteForm(props) {
             onChange={handleChange}
             className={styles.textarea}
           />
-          {errors.description && <p className={styles.errorText}>{errors.description}</p>}
+          {errors.description && (
+            <p className={styles.errorText}>{errors.description}</p>
+          )}
         </div>
 
         <div className={styles.inputGroup}>
-          <label>Photo URL (optional):</label>
+          <label>Image File:</label>
           <input
+            type="file"
+            accept=".png, .gif, .jpg, .jpeg"
+            ref={fileInputRef}
+          />
+          <button type="submit">ADD POST</button>
+          {/* <input
             type="text"
             name="photo"
             value={formData.photo}
             onChange={handleChange}
             className={styles.input}
-          />
+          /> */}
         </div>
 
-        <button type="submit" className={styles.submitButton}>Submit</button>
+        <button type="submit" className={styles.submitButton}>
+          Submit
+        </button>
       </form>
     </div>
   );

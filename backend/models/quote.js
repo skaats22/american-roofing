@@ -51,6 +51,7 @@ const quoteSchema = new Schema({
   photo: {
     type: String,
     required: false,
+    default: 'https://i.imgur.com/KTEjbsw.png',
   },
   owner: {
     type: Schema.Types.ObjectId,
