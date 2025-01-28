@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router";
 import * as jobService from "../../services/jobService";
 import JobItem from "../../components/JobItem/JobItem";
+import styles from "./PortfolioPage.module.css";
 
 export default function PortfolioPage(props) {
-  // If state going to be array, then initialize to []
   const [jobs, setJobs] = useState([]);
 
   useEffect(() => {
@@ -13,36 +13,36 @@ export default function PortfolioPage(props) {
       setJobs(jobs);
     }
     fetchJobs();
-    // Empty dependency array means run this only once after rendering
   }, []);
 
-  // const jobItems = jobs.map((j) => <JobItem key={j._id} job={j} />);
-
   return (
-    <main>
-    {props.jobs.map((j) => (
-      <article key={j._id}>
-        {/* Link only around the title and photo */}
-        <Link to={`/jobs/${j._id}`}>
-          <header>
-            <h2>{j.title}</h2>
-            <h3>{j.photo}</h3>
-          </header>
+    <main className={styles.mainContainer}>
+      <div className={styles.jobList}>
+        {jobs.map((j) => (
+          <article key={j._id} className={styles.jobCard}>
+            <Link to={`/jobs/${j._id}`} className={styles.jobLink}>
+              <header className={styles.jobHeader}>
+                <h2 className={styles.jobTitle}>{j.title}</h2>
+                {j.photo && <img src={j.photo} alt={j.title} className={styles.jobImage} />}
+              </header>
+            </Link>
+            <ul className={styles.jobDetails}>
+              <li><strong>Location:</strong> {j.city}, {j.state}</li>
+              <li><strong>Property Type:</strong> {j.propertyType}</li>
+              <li><strong>Service Type:</strong> {j.serviceType}</li>
+              <li><strong>Roof Material:</strong> {j.roofMaterial}</li>
+              <li><strong>Project Length:</strong> {j.projectLength}</li>
+              <li><strong>Price:</strong> {j.projectPrice}</li>
+              <li><strong>Description:</strong> {j.description}</li>
+            </ul>
+          </article>
+        ))}
+      </div>
+      <div className={styles.addButtonContainer}>
+        <Link to="/jobs/new">
+          <button className={styles.addButton}>Add to Portfolio</button>
         </Link>
-
-        {/* Remaining details without wrapping them in a Link */}
-        <ul>
-          <li>{j.city}, {j.state}</li>
-          <li>{j.propertyType}</li>
-          <li>{j.serviceType}</li>
-          <li>{j.roofMaterial}</li>
-          <li>{j.projectLength}</li>
-          <li>{j.projectPrice}</li>
-          <li>{j.description}</li>
-        </ul>
-      </article>
-    ))}
-    <Link to="/jobs/new"><button>Add to Portfolio</button></Link>
-  </main>
+      </div>
+    </main>
   );
 }

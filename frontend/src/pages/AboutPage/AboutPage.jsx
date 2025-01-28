@@ -22,7 +22,7 @@ export default function AboutPage() {
     <>
       <h2>About Us</h2>
       <h3>Family-Owned and Operated for 50 Years</h3>
-      <p>
+      <p className={styles.blurb}>
         At American Roofing and Waterproofing, we take pride in being a trusted
         name in roofing for both residential and commercial properties across
         California. For over five decades, our family-owned and operated

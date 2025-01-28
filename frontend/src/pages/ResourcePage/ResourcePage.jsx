@@ -39,13 +39,13 @@ export default function ResourcePage() {
       <header className={styles.header}>
         <h1>Resources</h1>
         <p>Browse articles, guides, and tips for roofing and waterproofing.</p>
-        <input
+        {/* <input
           type="text"
           placeholder="Search resources..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className={styles.searchBar}
-        />
+        /> */}
       </header>
 
       <div className={styles.resourceGrid}>
