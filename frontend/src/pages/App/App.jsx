@@ -18,7 +18,6 @@ import QuoteFormPage from "../QuoteFormPage/QuoteFormPage";
 import QuotePage from "../QuotePage/QuotePage";
 import PortfolioFormPage from "../PortfolioFormPage/PortfolioFormPage";
 import QuoteDetailPage from "../QuoteDetailPage/QuoteDetailPage";
-import ResourceDetail from "../../components/ResourceDetail/ResourceDetail";
 import RoofVentilationResource from "../../components/ResourceDetail/RoofVentilationResource/RoofVentilationResource";
 import NoticeToOwnerResource from "../../components/ResourceDetail/NoticeToOwnerResource/NoticeToOwnerResource";
 import ConstructionConditionResource from "../../components/ResourceDetail/ConstructionConditionResource/ConstructionConditionResource";
@@ -71,113 +70,85 @@ export default function App() {
       <main className="App">
         <NavBar user={user} setUser={setUser} />
         <section id="main-section">
-          {user ? (
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/services" element={<ServicesPage />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/resources" element={<ResourcePage />} />
-              <Route
-                path="/resources/:resourceId"
-                element={<ResourceDetail />}
-              />
-              <Route path="/jobs" element={<PortfolioPage jobs={jobs} />} />
-              <Route
-                path="/jobs/new"
-                element={
-                  <PortfolioFormPage
-                    user={user}
-                    handleAddJob={handleAddJob}
-                    handleUpdateJob={handleUpdateJob}
-                  />
-                }
-              />
-              <Route
-                path="/jobs/:jobId/edit"
-                element={
-                  <PortfolioFormPage handleUpdateJob={handleUpdateJob} />
-                }
-              />
-              <Route
-                path="/jobs/:jobId"
-                element={
-                  <PortfolioDetailPage
-                    jobs={jobs}
-                    user={user}
-                    handleDeleteJob={handleDeleteJob}
-                  />
-                }
-              />
-              <Route path="/quotes" element={<QuotePage user={user} />} />
-              <Route
-                path="/quotes/:quoteId"
-                element={<QuoteDetailPage user={user} />}
-              />
-              <Route
-                path="/quotes/new"
-                element={
-                  <QuoteFormPage user={user} handleAddQuote={handleAddQuote} />
-                }
-              />
-              <Route
-                path="/resources/roofing-ventilation"
-                element={<RoofVentilationResource />}
-              />
-              <Route
-                path="/resources/notice-to-owner"
-                element={<NoticeToOwnerResource />}
-              />
-              <Route
-                path="/resources/construction-condition-report"
-                element={<ConstructionConditionResource />}
-              />
-            </Routes>
-          ) : (
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/services" element={<ServicesPage />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/resources" element={<ResourcePage />} />
-              <Route
-                path="/resources/:resourceId"
-                element={<ResourceDetail />}
-              />
-              <Route path="/jobs" element={<PortfolioPage jobs={jobs} />} />
-              <Route
-                path="/jobs/:jobId"
-                element={
-                  <PortfolioDetailPage
-                    jobs={jobs}
-                    user={user}
-                    handleDeleteJob={handleDeleteJob}
-                  />
-                }
-              />
-              <Route
-                path="/quotes/new"
-                element={
-                  <QuoteFormPage user={user} handleAddQuote={handleAddQuote} />
-                }
-              />
-              <Route
-                path="/resources/roofing-ventilation"
-                element={<RoofVentilationResource />}
-              />
-              <Route
-                path="/resources/notice-to-owner"
-                element={<NoticeToOwnerResource />}
-              />
-              <Route
-                path="/resources/construction-condition-report"
-                element={<ConstructionConditionResource />}
-              />
-              <Route
-                path="/signup"
-                element={<SignUpPage setUser={setUser} />}
-              />
-              <Route path="/login" element={<LogInPage setUser={setUser} />} />
-            </Routes>
-          )}
+          {/* Guest Routes */}
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/services" element={<ServicesPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route
+              path="/quotes/new"
+              element={
+                <QuoteFormPage user={user} handleAddQuote={handleAddQuote} />
+              }
+            />
+            <Route path="/resources" element={<ResourcePage />} />
+            <Route
+              path="/resources/roofing-ventilation"
+              element={<RoofVentilationResource />}
+            />
+            <Route
+              path="/resources/notice-to-owner"
+              element={<NoticeToOwnerResource />}
+            />
+            <Route
+              path="/resources/construction-condition-report"
+              element={<ConstructionConditionResource />}
+            />
+            <Route path="/jobs" element={<PortfolioPage jobs={jobs} />} />
+            <Route
+              path="/jobs/:jobId"
+              element={
+                <PortfolioDetailPage
+                  jobs={jobs}
+                  user={user}
+                  handleDeleteJob={handleDeleteJob}
+                />
+              }
+            />
+            <Route path="/signup" element={<SignUpPage setUser={setUser} />} />
+            <Route path="/login" element={<LogInPage setUser={setUser} />} />
+
+            {/* Admin Routes */}
+            {user && user.isAdmin && (
+              <>
+                <Route
+                  path="/jobs/new"
+                  element={
+                    <PortfolioFormPage
+                      user={user}
+                      handleAddJob={handleAddJob}
+                      handleUpdateJob={handleUpdateJob}
+                    />
+                  }
+                />
+                <Route
+                  path="/jobs/:jobId/edit"
+                  element={
+                    <PortfolioFormPage handleUpdateJob={handleUpdateJob} />
+                  }
+                />
+                <Route path="/quotes" element={<QuotePage user={user} />} />
+                <Route
+                  path="/quotes/:quoteId"
+                  element={<QuoteDetailPage user={user} />}
+                />
+              </>
+            )}
+
+            {/* Non-admin Logged-in User Routes */}
+            {user && !user.isAdmin && (
+              <>
+                <Route
+                  path="/jobs/:jobId/comments/new"
+                  element={<HomePage />}
+                />
+                <Route
+                  path="/jobs/:jobId/comments/edit"
+                  element={<HomePage />}
+                />
+              </>
+            )}
+          </Routes>
         </section>
       </main>
       <Footer />
