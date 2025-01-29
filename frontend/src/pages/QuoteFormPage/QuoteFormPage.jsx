@@ -5,6 +5,8 @@ import * as quoteService from "../../services/quoteService";
 
 export default function QuoteForm(props) {
   const [formData, setFormData] = useState({
+    firstName: props.user ? props.user.firstName : "",
+    lastName: props.user ? props.user.lastName : "",
     phone: "",
     address: "",
     city: "",
@@ -129,6 +131,8 @@ export default function QuoteForm(props) {
     if (validate()) {
       try {
         const formData2 = new FormData();
+        formData2.append("firstName", formData.firstName);
+        formData2.append("lastName", formData.lastName);
         formData2.append("phone", formData.phone);
         formData2.append("address", formData.address);
         formData2.append("city", formData.city);
