@@ -136,19 +136,40 @@ export default function App() {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/services" element={<ServicesPage />} />
-              <Route path="/jobs" element={<PortfolioPage jobs={jobs} />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/resources" element={<ResourcePage />} />
               <Route
-                path="/jobs/:jobId"
-                element={<PortfolioDetailPage jobs={jobs} user={user} />}
+                path="/resources/:resourceId"
+                element={<ResourceDetail />}
               />
-              <Route path="/quotes" element={<QuotePage user={user} />} />
+              <Route path="/jobs" element={<PortfolioPage jobs={jobs} />} />
+              <Route
+                path="/jobs/:jobId"
+                element={
+                  <PortfolioDetailPage
+                    jobs={jobs}
+                    user={user}
+                    handleDeleteJob={handleDeleteJob}
+                  />
+                }
+              />
               <Route
                 path="/quotes/new"
                 element={
                   <QuoteFormPage user={user} handleAddQuote={handleAddQuote} />
                 }
+              />
+              <Route
+                path="/resources/roofing-ventilation"
+                element={<RoofVentilationResource />}
+              />
+              <Route
+                path="/resources/notice-to-owner"
+                element={<NoticeToOwnerResource />}
+              />
+              <Route
+                path="/resources/construction-condition-report"
+                element={<ConstructionConditionResource />}
               />
               <Route
                 path="/signup"
