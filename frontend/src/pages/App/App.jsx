@@ -23,7 +23,6 @@ import RoofVentilationResource from "../../components/ResourceDetail/RoofVentila
 import NoticeToOwnerResource from "../../components/ResourceDetail/NoticeToOwnerResource/NoticeToOwnerResource";
 import ConstructionConditionResource from "../../components/ResourceDetail/ConstructionConditionResource/ConstructionConditionResource";
 
-
 export default function App() {
   const [user, setUser] = useState(getUser());
   const [jobs, setJobs] = useState([]);
@@ -68,7 +67,7 @@ export default function App() {
   }, []);
 
   return (
-    <div>
+    <>
       <main className="App">
         <NavBar user={user} setUser={setUser} />
         <section id="main-section">
@@ -120,9 +119,18 @@ export default function App() {
                   <QuoteFormPage user={user} handleAddQuote={handleAddQuote} />
                 }
               />
-              <Route path="/resources/roofing-ventilation" element={<RoofVentilationResource />} />
-              <Route path="/resources/notice-to-owner" element={<NoticeToOwnerResource />} />
-              <Route path="/resources/construction-condition-report" element={<ConstructionConditionResource />} />
+              <Route
+                path="/resources/roofing-ventilation"
+                element={<RoofVentilationResource />}
+              />
+              <Route
+                path="/resources/notice-to-owner"
+                element={<NoticeToOwnerResource />}
+              />
+              <Route
+                path="/resources/construction-condition-report"
+                element={<ConstructionConditionResource />}
+              />
             </Routes>
           ) : (
             <Routes>
@@ -152,6 +160,6 @@ export default function App() {
         </section>
       </main>
       <Footer />
-    </div>
+    </>
   );
 }

@@ -1,5 +1,5 @@
 .formContainer {
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
   background-color: #f9f9f9;
@@ -22,21 +22,20 @@ h1 {
 .inputGroup {
   display: flex;
   flex-direction: column;
-  display: flex;
-  flex-direction: column;
-  gap: 10px; /* Adds space between label and input */
+  gap: 5px; /* Adds space between label and input */
 }
 
 label {
   font-weight: bold;
   margin-bottom: 5px;
-  display: block;
 }
 
-.input, .select, .textarea {
-  width: 100%;
+.input,
+.select,
+.textarea {
+  width: 80%;
   padding: 10px;
-  margin: 5px 0;
+  margin: 5px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 1rem;
@@ -76,7 +75,6 @@ label {
   gap: 10px; /* Adds spacing between city and state fields */
 }
 
-
 .row {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -92,7 +90,7 @@ label {
 .row {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 15px; /* This ensures the input fields have space between them */
+  gap: 15px;
 }
 
 /* To ensure some space between the inputs in the row */
@@ -114,5 +112,3 @@ label {
   width: 50%;
   justify-self: center;
 }
-
-

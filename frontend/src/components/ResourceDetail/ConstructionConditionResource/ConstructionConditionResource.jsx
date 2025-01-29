@@ -5,7 +5,7 @@ import styles from "./ConstructionConditionResource.module.css";
 export default function ConstructionConditionResource() {
   return (
     <div className={styles.resourceContainer}>
-      <h1>Construction Condition Report</h1>
+      <h1>🔍 Construction Condition Report 🔎</h1>
       <p>
         We provide detailed Construction Condition Reports to document the
         current state of properties before, during, or after construction

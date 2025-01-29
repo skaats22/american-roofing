@@ -235,10 +235,9 @@ export default function QuoteForm(props) {
             <label>State:</label>
             <select
               name="state"
-              id="state"
               value={formData.state}
               onChange={handleChange}
-              className={styles.select}
+              className={styles.stateInput}
             >
               <option value="">-- Select State --</option>
               {stateOptions.map((state) => (
@@ -334,6 +333,7 @@ export default function QuoteForm(props) {
             type="file"
             accept=".png, .gif, .jpg, .jpeg"
             ref={fileInputRef}
+            className={styles.input}
           />
         </div>
 
