@@ -64,7 +64,7 @@ export default function App() {
   }, []);
 
   return (
-    <>
+    <div>
       <main className="App">
         <NavBar user={user} setUser={setUser} />
         <section id="main-section">
@@ -145,6 +145,6 @@ export default function App() {
         </section>
       </main>
       <Footer />
-    </>
+    </div>
   );
 }
