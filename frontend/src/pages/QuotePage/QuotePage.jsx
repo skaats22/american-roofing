@@ -28,6 +28,9 @@ export default function QuotePage() {
               </div>
               <ul className={styles.quoteDetails}>
                 <li>
+                  <strong>Name:</strong> {quote.firstName} {quote.lastName}
+                </li>
+                <li>
                   <strong>Phone:</strong> {quote.phone}
                 </li>
                 <li>

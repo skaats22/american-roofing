@@ -2,7 +2,7 @@ export default function ConstructionConditionReport() {
   return (
     <>
       <h1>
-        Construction Condition Report with American Roofing and Waterproofing
+        Construction Condition Report
       </h1>
       <div>
         At American Roofing and Waterproofing, we provide detailed Construction

@@ -1,7 +1,7 @@
 export default function RoofReplacementContent() {
   return (
     <>
-      <h1>Roof Replacement with American Roofing and Waterproofing</h1>
+      <h1>Roof Replacement Service</h1>
       <div>
         At American Roofing and Waterproofing, we specialize in hassle-free roof
         replacement services that restore the safety, durability, and appearance

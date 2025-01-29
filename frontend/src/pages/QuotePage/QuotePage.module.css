@@ -1,5 +1,5 @@
 .quotePageContainer {
-  max-width: 1350px;
+  max-width: 1500px;
   margin: 0 auto;
   padding: 20px;
   font-family: "Arial", sans-serif;
@@ -9,6 +9,7 @@
 .quoteList {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 20px;
 }
 

@@ -1,7 +1,7 @@
 export default function CommercialContent() {
   return (
     <>
-      <h1>Commercial Roofing with American Roofing and Waterproofing</h1>
+      <h1>Commercial Roofing Services</h1>
       <div>
         At American Roofing and Waterproofing, we specialize in providing
         top-quality commercial roofing solutions designed to meet the unique

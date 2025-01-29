@@ -1,7 +1,7 @@
 export default function RoofRepairContent() {
   return (
     <>
-      <h1>Roof Repair with American Roofing and Waterproofing</h1>
+      <h1>Roof Repair Service</h1>
       <div>
         At American Roofing and Waterproofing, we provide fast, reliable roof
         repair services to keep your home or business safe and secure. Whether

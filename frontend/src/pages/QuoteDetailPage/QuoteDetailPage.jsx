@@ -25,6 +25,9 @@ function QuoteDetailPage(props) {
         <div className={styles.textImgContainer}>
           <div>
             <ul className={styles.jobDetails}>
+            <li>
+                  <strong>Name:</strong> {quote.firstName} {quote.lastName}
+                </li>
               <li>
                 <strong>Phone:</strong> {quote.phone}
               </li>
