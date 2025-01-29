@@ -15,7 +15,7 @@ import PortfolioDetailPage from "../PortfolioDetailPage/PortfolioDetailPage";
 import * as jobService from "../../services/jobService";
 import * as quoteService from "../../services/quoteService";
 import QuoteFormPage from "../QuoteFormPage/QuoteFormPage";
-import QuotePage from "../QuotePage/Quotepage";
+import QuotePage from "../QuotePage/QuotePage"
 import PortfolioFormPage from "../PortfolioFormPage/PortfolioFormPage";
 import QuoteDetailPage from "../QuoteDetailPage/QuoteDetailPage"
 import ResourceDetail from "../../components/ResourceDetail/ResourceDetail";
@@ -41,7 +41,7 @@ export default function App() {
 
   async function handleDeleteJob(jobId) {
     const deletedJob = await jobService.deleteJob(jobId);
-    // Filter state using deletedHoot._id:
+    // Filter state using deletedJob._id:
     setJobs(jobs.filter((job) => job._id !== deletedJob._id));
     navigate("/jobs");
   }
@@ -122,7 +122,6 @@ export default function App() {
                   <PortfolioDetailPage
                     jobs={jobs}
                     user={user}
-                    // handleDeleteHoot={handleDeleteHoot}
                   />
                 }
               />
