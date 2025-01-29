@@ -15,9 +15,9 @@ import PortfolioDetailPage from "../PortfolioDetailPage/PortfolioDetailPage";
 import * as jobService from "../../services/jobService";
 import * as quoteService from "../../services/quoteService";
 import QuoteFormPage from "../QuoteFormPage/QuoteFormPage";
-import QuotePage from "../QuotePage/QuotePage"
+import QuotePage from "../QuotePage/QuotePage";
 import PortfolioFormPage from "../PortfolioFormPage/PortfolioFormPage";
-import QuoteDetailPage from "../QuoteDetailPage/QuoteDetailPage"
+import QuoteDetailPage from "../QuoteDetailPage/QuoteDetailPage";
 import ResourceDetail from "../../components/ResourceDetail/ResourceDetail";
 
 export default function App() {
@@ -74,7 +74,10 @@ export default function App() {
               <Route path="/services" element={<ServicesPage />} />
               <Route path="/about" element={<AboutPage />} />
               <Route path="/resources" element={<ResourcePage />} />
-              <Route path="/resources/:resourceId" element={<ResourceDetail />} />
+              <Route
+                path="/resources/:resourceId"
+                element={<ResourceDetail />}
+              />
               <Route path="/jobs" element={<PortfolioPage jobs={jobs} />} />
               <Route
                 path="/jobs/new"
@@ -88,7 +91,9 @@ export default function App() {
               />
               <Route
                 path="/jobs/:jobId/edit"
-                element={<PortfolioFormPage handleUpdateJob={handleUpdateJob} />}
+                element={
+                  <PortfolioFormPage handleUpdateJob={handleUpdateJob} />
+                }
               />
               <Route
                 path="/jobs/:jobId"
@@ -101,7 +106,10 @@ export default function App() {
                 }
               />
               <Route path="/quotes" element={<QuotePage user={user} />} />
-              <Route path="/quotes/:quoteId" element={<QuoteDetailPage user={user} />} />
+              <Route
+                path="/quotes/:quoteId"
+                element={<QuoteDetailPage user={user} />}
+              />
               <Route
                 path="/quotes/new"
                 element={
@@ -118,12 +126,7 @@ export default function App() {
               <Route path="/resources" element={<ResourcePage />} />
               <Route
                 path="/jobs/:jobId"
-                element={
-                  <PortfolioDetailPage
-                    jobs={jobs}
-                    user={user}
-                  />
-                }
+                element={<PortfolioDetailPage jobs={jobs} user={user} />}
               />
               <Route path="/quotes" element={<QuotePage user={user} />} />
               <Route
