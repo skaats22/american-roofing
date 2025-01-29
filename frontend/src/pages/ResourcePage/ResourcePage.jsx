@@ -15,7 +15,7 @@ const resources = [
     id: 2,
     title: "Notice to Owner Document",
     description: "Details on a Notice to Owner Document.",
-    link: "/resources/notice-to-owner-document",
+    link: "/resources/notice-to-owner",
     category: "All",
   },
   {

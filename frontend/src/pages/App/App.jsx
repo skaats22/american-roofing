@@ -19,6 +19,10 @@ import QuotePage from "../QuotePage/QuotePage";
 import PortfolioFormPage from "../PortfolioFormPage/PortfolioFormPage";
 import QuoteDetailPage from "../QuoteDetailPage/QuoteDetailPage";
 import ResourceDetail from "../../components/ResourceDetail/ResourceDetail";
+import RoofVentilationResource from "../../components/ResourceDetail/RoofVentilationResource/RoofVentilationResource";
+import NoticeToOwnerResource from "../../components/ResourceDetail/NoticeToOwnerResource/NoticeToOwnerResource";
+import ConstructionConditionReport from "../../components/ServiceComponents/ConstructionConditionReport";
+
 
 export default function App() {
   const [user, setUser] = useState(getUser());
@@ -116,6 +120,9 @@ export default function App() {
                   <QuoteFormPage user={user} handleAddQuote={handleAddQuote} />
                 }
               />
+              <Route path="/resources/roofing-ventilation" element={<RoofVentilationResource />} />
+              <Route path="/resources/notice-to-owner" element={<NoticeToOwnerResource />} />
+              <Route path="/resources/construction-condition-report" element={<ConstructionConditionReport />} />
             </Routes>
           ) : (
             <Routes>

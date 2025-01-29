@@ -27,7 +27,7 @@
   justify-items: center;
 }
 
-.resourceCard {
+.resourceComponent {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -37,19 +37,19 @@
   padding: 1rem;
 }
 
-.resourceCard img {
+.resourceComponent img {
   max-width: 100%;
   height: auto;
   border-radius: 8px;
   object-fit: cover;
 }
 
-.resourceCard h3 {
+.resourceComponent h3 {
   font-size: 1.25rem;
   color: #333;
 }
 
-.resourceCard p {
+.resourceComponent p {
   font-size: 1rem;
   color: #666;
 }
