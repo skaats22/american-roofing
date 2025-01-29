@@ -1,3 +1,62 @@
-#roofing1 {
-  width: 100px;
+.roofingContainer {
+  text-align: center;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.roofingImage {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.homeTitle {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 6vh;
+  font-weight: bold;
+  text-align: center;
+}
+
+.tagline {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.homeQuote {
+  top: 50%;
+  left:50%
+}
+
+
+@media (max-width: 768px) {
+  .homeTitle {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .homeTitle {
+    font-size: 16px;
+  }
 }
