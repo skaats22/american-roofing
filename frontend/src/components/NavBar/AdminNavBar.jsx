@@ -2,7 +2,8 @@ import { NavLink, Link, useNavigate } from "react-router";
 import { logOut } from "../../services/authService";
 import styles from "./NavBar.module.css";
 
-export default function NavBar({ user, setUser }) {
+export default function AdminNavBar({ user, setUser }) {
+
   const navigate = useNavigate();
 
   function handleLogOut() {
@@ -10,7 +11,6 @@ export default function NavBar({ user, setUser }) {
     setUser(null);
     navigate("/");
   }
-
   return (
     <>
       <div className={styles.topBanner}>
@@ -47,19 +47,11 @@ export default function NavBar({ user, setUser }) {
         &nbsp; | &nbsp;
         <NavLink to="/jobs">Our Portfolio</NavLink>
         &nbsp; | &nbsp;
-        {user ? (
-          <NavLink to="/" onClick={handleLogOut}>
+        <NavLink to="/" onClick={handleLogOut}>
             Log Out
           </NavLink>
-        ) : (
-          <div>
-            <NavLink to="/signup">Sign Up</NavLink> /{" "}
-            <NavLink to="/login">Log In</NavLink>
-          </div>
-        )}
         &nbsp; | &nbsp;
-        <NavLink to="/quotes/new">Request a free quote!</NavLink>
-        {user && user.isAdmin && <NavLink to="/quotes">View Quotes</NavLink>}
+        <NavLink to="/quotes">View Quotes</NavLink>
       </nav>
     </>
   );

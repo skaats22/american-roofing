@@ -7,7 +7,9 @@ import ServicesPage from "../ServicesPage/ServicesPage";
 import AboutPage from "../AboutPage/AboutPage";
 import SignUpPage from "../SignUpPage/SignUpPage";
 import LogInPage from "../LogInPage/LogInPage";
-import NavBar from "../../components/NavBar/NavBar";
+import GuestNavBar from "../../components/NavBar/GuestNavBar";
+import AdminNavBar from "../../components/NavBar/AdminNavBar";
+import UserNavBar from "../../components/NavBar/UserNavBar";
 import ResourcePage from "../ResourcePage/ResourcePage";
 import Footer from "../../components/Footer/Footer";
 import PortfolioPage from "../PortfolioPage/PortfolioPage";
@@ -68,7 +70,16 @@ export default function App() {
   return (
     <>
       <main className="App">
-        <NavBar user={user} setUser={setUser} />
+        {user ? (
+          user.isAdmin ? (
+            <AdminNavBar user={user} setUser={setUser} />
+          ) : (
+            <UserNavBar user={user} setUser={setUser} />
+          )
+        ) : (
+          <GuestNavBar />
+        )}
+        {/* <NavBar user={user} setUser={setUser} /> */}
         <section id="main-section">
           {/* Guest Routes */}
           <Routes>
