@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router";
 import styles from "./ConstructionConditionResource.module.css";
 
-export default function ConstructionConditionReportResource() {
+export default function ConstructionConditionResource() {
   return (
     <div className={styles.resourceContainer}>
       <h1>Construction Condition Report</h1>

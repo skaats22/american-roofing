@@ -1,0 +1,34 @@
+.resourceDetail {
+  background-color: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 900px;
+  margin: 30px auto;
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  transition: transform 0.3s ease-in-out;
+}
+
+.resourceDetail h1 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.resourceDetail p {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.resourceDetail a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.resourceDetail a:hover {
+  text-decoration: underline;
+}

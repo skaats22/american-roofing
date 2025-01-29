@@ -21,7 +21,7 @@ import QuoteDetailPage from "../QuoteDetailPage/QuoteDetailPage";
 import ResourceDetail from "../../components/ResourceDetail/ResourceDetail";
 import RoofVentilationResource from "../../components/ResourceDetail/RoofVentilationResource/RoofVentilationResource";
 import NoticeToOwnerResource from "../../components/ResourceDetail/NoticeToOwnerResource/NoticeToOwnerResource";
-import ConstructionConditionReport from "../../components/ServiceComponents/ConstructionConditionReport";
+import ConstructionConditionResource from "../../components/ResourceDetail/ConstructionConditionResource/ConstructionConditionResource";
 
 
 export default function App() {
@@ -122,7 +122,7 @@ export default function App() {
               />
               <Route path="/resources/roofing-ventilation" element={<RoofVentilationResource />} />
               <Route path="/resources/notice-to-owner" element={<NoticeToOwnerResource />} />
-              <Route path="/resources/construction-condition-report" element={<ConstructionConditionReport />} />
+              <Route path="/resources/construction-condition-report" element={<ConstructionConditionResource />} />
             </Routes>
           ) : (
             <Routes>
