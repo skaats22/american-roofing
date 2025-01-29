@@ -6,6 +6,7 @@
 // - Permissions
 //   - Logged in user sees a different Quote Form
 //     - Has first and last name already filled in
+//   - Display in Gallery
 // - Portfolio
 //   - Add pictures
 // - Home Page
