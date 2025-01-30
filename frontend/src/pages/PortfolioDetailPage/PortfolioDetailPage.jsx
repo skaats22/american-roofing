@@ -6,7 +6,7 @@ import roofing2 from "../../assets/roofing2.jpg";
 
 function PortfolioDetailPage(props) {
   const { jobId } = useParams();
-  const [job, setJob] = useState({});
+  const [job, setJob] = useState({ reviews: [] });
 
   const user = props.user;
 
@@ -72,17 +72,45 @@ function PortfolioDetailPage(props) {
           </div>
         </div>
       </section>
+      <section className={styles.commentsContainer}>
+        <h2>Reviews</h2>
+        {/* {!job.reviews.length && <p>There are no reviews.</p>} */}
+        {job.reviews.map((review) => (
+          <article key={review._id}>
+            <p><strong>{user.firstName} {user.lastName}</strong></p>
+            {/* <header>
+              <div>
+                {review.author._id === user._id && (
+                  <>
+                    <Link to={`/jobs/${jobId}/reviews/${review._id}/edit`}>
+                      <button>Edit</button>
+                    </Link>
+                    <button onClick={() => handleDeleteComment(review._id)}>
+                      <Icon category="Trash" />
+                    </button>
+                  </>
+                )}
+              </div>
+            </header> */}
+            <p>{review.comment}</p>
+          </article>
+        ))}
+      </section>
 
       <div className={styles.buttonContainer}>
-        <Link to={`/jobs/${jobId}/edit`}>
-          <button className={styles.editButton}>Edit Job</button>
-        </Link>
-        <button
-          className={styles.deleteButton}
-          onClick={handleDeleteJobWithConfirmation}
-        >
-          Delete Job
-        </button>
+        {props.user && props.user.isAdmin && (
+          <>
+            <Link to={`/jobs/${jobId}/edit`}>
+              <button className={styles.editButton}>Edit Job</button>
+            </Link>
+            <button
+              className={styles.deleteButton}
+              onClick={handleDeleteJobWithConfirmation}
+            >
+              Delete Job
+            </button>
+          </>
+        )}
       </div>
     </main>
   );

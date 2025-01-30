@@ -8,5 +8,10 @@ const ensureLoggedIn = require('../middleware/ensureLoggedIn');
 // CREATE
 router.post('/:jobId/reviews', reviewsCtrl.create);
 
+// UPDATE
+router.put("/:jobId/reviews/:reviewId", reviewsCtrl.update);
+
+// DELETE
+router.delete("/:jobId/reviews/:reviewId", reviewsCtrl.deleteReview);
 
 module.exports = router;
