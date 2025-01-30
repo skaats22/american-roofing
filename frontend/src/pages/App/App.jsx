@@ -23,6 +23,8 @@ import QuoteDetailPage from "../QuoteDetailPage/QuoteDetailPage";
 import RoofVentilationResource from "../../components/ResourceDetail/RoofVentilationResource/RoofVentilationResource";
 import NoticeToOwnerResource from "../../components/ResourceDetail/NoticeToOwnerResource/NoticeToOwnerResource";
 import ConstructionConditionResource from "../../components/ResourceDetail/ConstructionConditionResource/ConstructionConditionResource";
+import ReviewFormPage from "../ReviewFormPage/ReviewFormPage";
+
 
 export default function App() {
   const [user, setUser] = useState(getUser());
@@ -151,11 +153,11 @@ export default function App() {
               <>
                 <Route
                   path="/jobs/:jobId/comments/new"
-                  element={<HomePage />}
+                  element={<ReviewFormPage />}
                 />
                 <Route
                   path="/jobs/:jobId/comments/edit"
-                  element={<HomePage />}
+                  element={<ReviewFormPage />}
                 />
               </>
             )}

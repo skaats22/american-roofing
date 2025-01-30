@@ -1,14 +1,29 @@
 import { useParams, Link } from "react-router";
 import { useState, useEffect } from "react";
 import * as jobService from "../../services/jobService";
+import * as reviewService from "../../services/reviewService";
 import styles from "./PortfolioDetailPage.module.css";
 import roofing2 from "../../assets/roofing2.jpg";
+import ReviewFormPage from "../ReviewFormPage/ReviewFormPage";
 
 function PortfolioDetailPage(props) {
   const { jobId } = useParams();
   const [job, setJob] = useState({ reviews: [] });
 
   const user = props.user;
+
+  async function handleAddReview(reviewFormData) {
+    const newReview = await reviewService.createReview(jobId, reviewFormData);
+    setJob({ ...job, reviews: [...job.reviews, newReview] });
+  }
+
+  async function handleDeleteReview(reviewId) {
+    const deletedJob = await reviewService.deleteComment(jobId, reviewId);
+    setJob({
+      ...job,
+      reviews: job.reviews.filter((review) => review._id !== reviewId),
+    });
+  }
 
   useEffect(() => {
     async function fetchJob() {
@@ -72,12 +87,31 @@ function PortfolioDetailPage(props) {
           </div>
         </div>
       </section>
+      <div className={styles.buttonContainer}>
+        {props.user && props.user.isAdmin && (
+          <>
+            <Link to={`/jobs/${jobId}/edit`}>
+              <button className={styles.editButton}>Edit Job</button>
+            </Link>
+            <button
+              className={styles.deleteButton}
+              onClick={handleDeleteJobWithConfirmation}
+            >
+              Delete Job
+            </button>
+          </>
+        )}
+      </div>
       <section className={styles.commentsContainer}>
         <h2>Reviews</h2>
         {/* {!job.reviews.length && <p>There are no reviews.</p>} */}
         {job.reviews.map((review) => (
           <article key={review._id}>
-            <p><strong>{user.firstName} {user.lastName}</strong></p>
+            <p>
+              <strong>
+                {user.firstName} {user.lastName}
+              </strong>
+            </p>
             {/* <header>
               <div>
                 {review.author._id === user._id && (
@@ -95,23 +129,8 @@ function PortfolioDetailPage(props) {
             <p>{review.comment}</p>
           </article>
         ))}
+        <ReviewFormPage handleAddReview={handleAddReview} />
       </section>
-
-      <div className={styles.buttonContainer}>
-        {props.user && props.user.isAdmin && (
-          <>
-            <Link to={`/jobs/${jobId}/edit`}>
-              <button className={styles.editButton}>Edit Job</button>
-            </Link>
-            <button
-              className={styles.deleteButton}
-              onClick={handleDeleteJobWithConfirmation}
-            >
-              Delete Job
-            </button>
-          </>
-        )}
-      </div>
     </main>
   );
 }
