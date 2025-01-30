@@ -3,7 +3,6 @@ import { logOut } from "../../services/authService";
 import styles from "./NavBar.module.css";
 
 export default function AdminNavBar({ user, setUser }) {
-
   const navigate = useNavigate();
 
   function handleLogOut() {
@@ -16,6 +15,9 @@ export default function AdminNavBar({ user, setUser }) {
       <div className={styles.topBanner}>
         <span id={styles.license}>License # C39-1043795</span>
         <span id={styles.digits}>📞 213-270-3527</span>
+        <Link to="/jobs/admin">
+          <button className={styles.adminView}>ADMIN VIEW</button>
+        </Link>
       </div>
       <nav className={styles.NavBar}>
         <Link to="/">
@@ -48,8 +50,8 @@ export default function AdminNavBar({ user, setUser }) {
         <NavLink to="/resources">Resources</NavLink>
         &nbsp; | &nbsp;
         <NavLink to="/" onClick={handleLogOut}>
-            Log Out
-          </NavLink>
+          Log Out
+        </NavLink>
         &nbsp; | &nbsp;
         <NavLink to="/quotes">View Quotes</NavLink>
       </nav>
