@@ -34,9 +34,9 @@ export default function GuestNavBar({ user, setUser }) {
         &nbsp; | &nbsp;
         <NavLink to="/about">About Us</NavLink>
         &nbsp; | &nbsp;
-        <NavLink to="/resources">Resources</NavLink>
-        &nbsp; | &nbsp;
         <NavLink to="/jobs">Our Portfolio</NavLink>
+        &nbsp; | &nbsp;
+        <NavLink to="/resources">Resources</NavLink>
         &nbsp; | &nbsp;
         <div>
           <NavLink to="/signup">Sign Up</NavLink> /{" "}
