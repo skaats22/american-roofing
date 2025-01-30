@@ -112,20 +112,20 @@ function PortfolioDetailPage(props) {
                 {user.firstName} {user.lastName}
               </strong>
             </p>
-            {/* <header>
+            <header>
               <div>
-                {review.author._id === user._id && (
+                {review.owner === user._id && (
                   <>
                     <Link to={`/jobs/${jobId}/reviews/${review._id}/edit`}>
                       <button>Edit</button>
                     </Link>
-                    <button onClick={() => handleDeleteComment(review._id)}>
-                      <Icon category="Trash" />
+                    <button onClick={() => handleDeleteReview(review._id)}>
+                      Delete
                     </button>
                   </>
                 )}
               </div>
-            </header> */}
+            </header>
             <p>{review.comment}</p>
           </article>
         ))}

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router";
 import * as jobService from "../../services/jobService";
+import * as reviewService from "../../services/reviewService";
 import styles from './ReviewFormPage.module.css';
 
 
@@ -28,7 +29,7 @@ export default function ReviewFormPage(props) {
   async function handleSubmit(evt) {
     evt.preventDefault();
     if (jobId && reviewId) {
-      await jobService.updateReview(jobId, reviewId, formData);
+      await reviewService.updateReview(jobId, reviewId, formData);
       navigate(`/jobs/${jobId}`);
     } else {
       props.handleAddReview(formData);

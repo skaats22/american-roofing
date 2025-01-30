@@ -145,6 +145,14 @@ export default function App() {
                   path="/quotes/:quoteId"
                   element={<QuoteDetailPage user={user} />}
                 />
+                  <Route
+                  path="/jobs/:jobId/reviews/new"
+                  element={<ReviewFormPage />}
+                />
+                <Route
+                  path="/jobs/:jobId/reviews/edit"
+                  element={<ReviewFormPage />}
+                />
               </>
             )}
 
@@ -152,11 +160,11 @@ export default function App() {
             {user && (
               <>
                 <Route
-                  path="/jobs/:jobId/comments/new"
+                  path="/jobs/:jobId/reviews/:reviewId/new"
                   element={<ReviewFormPage />}
                 />
                 <Route
-                  path="/jobs/:jobId/comments/edit"
+                  path="/jobs/:jobId/reviews/:reviewId/edit"
                   element={<ReviewFormPage />}
                 />
               </>
