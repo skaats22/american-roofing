@@ -1,9 +1,6 @@
 // TODOs!
 
 
-// - Permissions
-//   - Logged in user sees a different Quote Form
-//     - Has first and last name already filled in
 //   - Display in Gallery
 //   - /jobs/new for guests shows a blank job
 //   - Add success message to page after quote submission

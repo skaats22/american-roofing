@@ -28,7 +28,10 @@ async function createJob(req, res) {
     if (req.file) {
       req.body.photo = await uploadFile(req.file);
     }
-    req.body.displayInGallery = true;
+     // Check permissions:
+     if (req.user.isAdmin === false) {
+      return res.status(403).json({ error: "You're not allowed to do that!" });
+    }
     const job = await Job.create(req.body);
     res.json(job);
   } catch (err) {
@@ -55,14 +58,15 @@ async function showJob(req, res) {
 // TODO: ensure isAdmin permission to update
 async function updateJob(req, res) {
   try {
+
     // Find the job:
     const job = await Job.findById(req.params.jobId);
 
     // Check permissions:
-    if (job.owner.isAdmin === false) {
-      return res.status(403).send("You're not allowed to do that!");
+    if (req.user.isAdmin === false) {
+      return res.status(403).json({ error: "You're not allowed to do that!" });
     }
-
+  
     // Update job:
     const updatedJob = await Job.findByIdAndUpdate(
       req.params.jobId,
@@ -83,7 +87,7 @@ async function deleteJob(req, res) {
     const job = await Job.findById(req.params.jobId);
 
     // Check permissions:
-    if (job.owner.isAdmin === false) {
+    if (req.user.isAdmin === false) {
       return res.status(403).send("You're not allowed to do that!");
     }
 

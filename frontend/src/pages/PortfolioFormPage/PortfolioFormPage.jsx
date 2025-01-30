@@ -16,12 +16,11 @@ export default function JobForm(props) {
     propertyType: "",
     serviceType: "",
     roofMaterial: "",
-    projectLength: "",
     projectPrice: "",
     description: "",
     photo: "",
     displayInGallery: false,
-    owner: props.user,
+    owner: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -90,10 +89,24 @@ export default function JobForm(props) {
   const roofMaterialOptions = ["Shingles", "Metal", "Tile", "Flat", "Other"];
 
   useEffect(() => {
-    const fetchJob = async () => {
+    async function fetchJob() {
       const jobData = await jobService.show(jobId);
-      setFormData(jobData);
-    };
+      setFormData((prevData) => ({
+        ...prevData,
+        title: jobData.title,
+        address: jobData.address,
+        city: jobData.city,
+        state: jobData.state,
+        propertyType: jobData.propertyType,
+        serviceType: jobData.serviceType,
+        roofMaterial: jobData.roofMaterial,
+        projectPrice: jobData.projectPrice,
+        description: jobData.description,
+        photo: jobData.photo,
+        displayInGallery: false,
+        owner: jobData.owner,
+      }));
+    }
 
     if (jobId) fetchJob();
   }, [jobId]);
@@ -121,6 +134,7 @@ export default function JobForm(props) {
   };
 
   const handleChange = (evt) => {
+    evt.preventDefault();
     const { name, value, type, checked } = evt.target;
     setFormData({
       ...formData,
@@ -128,54 +142,61 @@ export default function JobForm(props) {
     });
   };
 
-  const handleSubmit = async (evt) => {
+  async function handleSubmit(evt) {
     evt.preventDefault();
     if (validate()) {
+      const fileInput = formData.photo;
       try {
-        const formData2 = new FormData();
-        formData2.append("title", formData.title);
-        formData2.append("address", formData.address);
-        formData2.append("city", formData.city);
-        formData2.append("state", formData.state);
-        formData2.append("zipCode", formData.zipCode);
-        formData2.append("propertyType", formData.propertyType);
-        formData2.append("serviceType", formData.serviceType);
-        formData2.append("roofMaterial", formData.roofMaterial);
-        formData2.append("projectType", formData.projectType);
-        formData2.append("projectPrice", formData.projectPrice);
-        formData2.append("description", formData.description);
         if (fileInputRef.current.files.length) {
           formData2.append("photo", fileInputRef.current.files[0]);
+          fileInput = fileInputRef.current.files[0];
         }
+        const formData2 = {
+          title: formData.title,
+          address: formData.address,
+          city: formData.city,
+          state: formData.state,
+          zipCode: formData.zipCode,
+          propertyType: formData.propertyType,
+          serviceType: formData.serviceType,
+          roofMaterial: formData.roofMaterial,
+          projectType: formData.projectType,
+          projectPrice: formData.projectPrice,
+          description: formData.description,
+          displayInGallery: formData.displayInGallery,
+          photo: fileInput,
+        };
+
         if (jobId) {
           await props.handleUpdateJob(jobId, formData2);
-        } else await props.handleAddJob(formData2);
-          setFormData({
-            title: "",
-            address: "",
-            city: "",
-            state: "",
-            propertyType: "",
-            serviceType: "",
-            roofMaterial: "",
-            projectLength: "",
-            projectPrice: "",
-            description: "",
-            photo: "",
-            displayInGallery: false,
-            owner: "",
-          });
-          navigate("/jobs");
-        } catch (error) {
+        } else {
+          await props.handleAddJob(formData2);
+        }
+        setFormData({
+          title: "",
+          address: "",
+          city: "",
+          state: "",
+          propertyType: "",
+          serviceType: "",
+          roofMaterial: "",
+          projectPrice: "",
+          description: "",
+          photo: "",
+          displayInGallery: false,
+          owner: "",
+        });
+        navigate("/jobs");
+      } catch (error) {
         console.error("Error submitting job:", error);
         alert("Error submitting the job. Please try again.");
       }
     }
-  };
+  }
 
   return (
     <div className={styles.formContainer}>
-      <h1>{jobId ? "Edit Job" : "New Job"}</h1>
+      <h1>{jobId ? `Edit ${formData.title}` : "New Job"}</h1>
       <form onSubmit={handleSubmit}>
         <div className={styles.inputGroup}>
           <label>Title:</label>
@@ -289,15 +310,6 @@ export default function JobForm(props) {
           )}
         </div>
 
-        <div className={styles.inputGroup}>
-          <label>Project Length:</label>
-          <input
-            type="text"
-            name="projectLength"
-            value={formData.projectLength}
-            onChange={handleChange}
-          />
-        </div>
 
         <div className={styles.inputGroup}>
           <label>Project Price:</label>
@@ -324,7 +336,12 @@ export default function JobForm(props) {
 
         <div className={styles.inputGroup}>
           <label>Image File</label>
-          <input type="file" accept=".png, .gif, .jpg, .jpeg" ref={fileInputRef} />
+          <input
+            type="file"
+            accept=".png, .gif, .jpg, .jpeg"
+            name="photo"
+            ref={fileInputRef}
+          />
           {errors.photo && <p className={styles.errorText}>{errors.photo}</p>}
         </div>
 
@@ -333,8 +350,14 @@ export default function JobForm(props) {
           <input
             type="checkbox"
             name="displayInGallery"
+            value="checked"
             checked={formData.displayInGallery}
-            onChange={handleChange}
+            onChange={(evt) => {
+              setFormData({
+                ...formData,
+                displayInGallery: evt.target.checked,
+              });
+            }}
           />
           {errors.displayInGallery && (
             <p className={styles.errorText}>{errors.displayInGallery}</p>
@@ -351,9 +374,7 @@ export default function JobForm(props) {
         )}
 
         <Link to="/jobs">
-          <button className={styles.cancelButton}>
-            Cancel
-          </button>
+          <button className={styles.cancelButton}>Cancel</button>
         </Link>
       </form>
     </div>

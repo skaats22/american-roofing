@@ -24,6 +24,7 @@ import RoofVentilationResource from "../../components/ResourceDetail/RoofVentila
 import NoticeToOwnerResource from "../../components/ResourceDetail/NoticeToOwnerResource/NoticeToOwnerResource";
 import ConstructionConditionResource from "../../components/ResourceDetail/ConstructionConditionResource/ConstructionConditionResource";
 import ReviewFormPage from "../ReviewFormPage/ReviewFormPage";
+import AdminPortfolioPage from "../AdminPortfolioPage/AdminPortfolioPage";
 
 
 export default function App() {
@@ -35,6 +36,7 @@ export default function App() {
 
   async function handleAddJob(jobFormData) {
     const newJob = await jobService.create(jobFormData);
+    console.log(jobFormData)
     setJobs([newJob, ...jobs]);
     navigate("/jobs");
   }
@@ -54,6 +56,8 @@ export default function App() {
 
   async function handleUpdateJob(jobId, jobFormData) {
     const updatedJob = await jobService.updateJob(jobId, jobFormData);
+    console.log(jobId)
+    console.log(jobFormData)
     // We use map() here to update a specific job in the jobs state array.
     setJobs(jobs.map((job) => (jobId === job._id ? updatedJob : job)));
     navigate(`/jobs/${jobId}`);
@@ -135,9 +139,19 @@ export default function App() {
                   }
                 />
                 <Route
+                  path="/jobs/admin"
+                  element={
+                    <AdminPortfolioPage
+                      user={user}
+                      handleAddJob={handleAddJob}
+                      handleUpdateJob={handleUpdateJob}
+                    />
+                  }
+                />
+                <Route
                   path="/jobs/:jobId/edit"
                   element={
-                    <PortfolioFormPage handleUpdateJob={handleUpdateJob} />
+                    <PortfolioFormPage handleUpdateJob={handleUpdateJob} user={user} />
                   }
                 />
                 <Route path="/quotes" element={<QuotePage user={user} />} />

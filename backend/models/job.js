@@ -54,9 +54,6 @@ const jobSchema = new Schema({
     enum: ["Shingles", "Metal", "Tile", "Flat", "Other"],
     required: true,
   },
-  projectLength: {
-    type: String,
-  },
   projectPrice: {
     type: String,
   },
