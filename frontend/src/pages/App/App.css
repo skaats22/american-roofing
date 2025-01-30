@@ -1,0 +1,26 @@
+html, body {
+  height: 100%;
+  margin: 0; 
+}
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+
+#main-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+footer {
+  margin-top: auto; 
+  padding: 20px 0;
+  background-color: #f1f1f1; 
+  text-align: center;
+}

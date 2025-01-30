@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import * as jobService from "../../services/jobService";
 import * as reviewService from "../../services/reviewService";
 import styles from "./PortfolioDetailPage.module.css";
-import roofing2 from "../../assets/roofing2.jpg";
 import ReviewFormPage from "../ReviewFormPage/ReviewFormPage";
 
 function PortfolioDetailPage(props) {
@@ -110,21 +109,24 @@ function PortfolioDetailPage(props) {
               <strong>
                 {review.owner.firstName} {review.owner.lastName}
               </strong>
+                <p>{review.comment}</p>
             </p>
             <header>
               <div>
                 {/* Check if user exists before performing owner comparison */}
                 {user && review.owner?._id === user._id && (
-                  <>
+                  <div className={styles.reviewButtonContainer}>
                     <Link to={`/jobs/${jobId}/reviews/${review._id}/edit`}>
-                      <button>Edit</button>
+                      <button className={styles.editButton}>Edit Review</button>
                     </Link>
-                    <button onClick={() => handleDeleteReview(review._id)}>
-                      Delete
+                    <button
+                      onClick={() => handleDeleteReview(review._id)}
+                      className={styles.deleteButton}
+                    >
+                      Delete Review
                     </button>
-                  </>
+                  </div>
                 )}
-                <p>{review.comment}</p>
               </div>
             </header>
           </article>

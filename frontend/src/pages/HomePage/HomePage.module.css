@@ -1,65 +1,80 @@
 .roofingContainer {
   text-align: center;
   position: relative;
-  display: inline-block;
-  width: 100%;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  height: 100vh; 
+  overflow: hidden;
 }
 
 .roofingImage {
   max-width: 100%;
-  height: auto;
+  height: 100%; 
   display: block;
-  margin: 0 auto;
+  margin: 0;
   object-fit: cover;
-  object-position: top;
-  overflow: hidden;
+  object-position: center;
 }
 
 .contentContainer {
-  display: flex;
-  flex-direction: column;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  color: white;
+  text-align: center;
+  width: 90%;
+  z-index: 1;
 }
 
 .homeTitle {
-  position: absolute;
-  top: 10%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  font-size: 6vh;
+  font-size: 6vw;
   font-weight: bold;
-  text-align: center;
+  margin: 10px 0;
 }
 
 .tagline {
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  font-size: 1.5rem;
+  font-size: 2vw;
   font-weight: bold;
-  text-align: center;
-  padding: 10px;
-  border-radius: 8px;
+  margin: 10px 0;
 }
 
 .homeQuote {
-  top: 50%;
-  left:50%
+  margin-top: 20px;
+  max-width: 250px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block;
 }
-
 
 @media (max-width: 768px) {
   .homeTitle {
-    font-size: 18px;
+    font-size: 8vw;
+  }
+  .tagline {
+    font-size: 3vw;
+  }
+  .homeQuote {
+    font-size: 0.9rem;
+    padding: 8px 16px;
   }
 }
 
 @media (max-width: 480px) {
   .homeTitle {
-    font-size: 16px;
+    font-size: 10vw;
+  }
+  .tagline {
+    font-size: 4vw;
+  }
+  .homeQuote {
+    font-size: 0.8rem;
+    padding: 6px 12px;
   }
 }
