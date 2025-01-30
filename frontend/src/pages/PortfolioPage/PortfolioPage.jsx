@@ -17,9 +17,10 @@ export default function PortfolioPage(props) {
   return (
     <main className={styles.mainContainer}>
       <div className={styles.jobList}>
-        {jobs.map((j) => (
-          <article key={j._id} className={styles.jobCard}>
-            {j.displayInGallery && (
+        {jobs
+          .filter((j) => j.displayInGallery)
+          .map((j) => (
+            <article key={j._id} className={styles.jobCard}>
               <Link to={`/jobs/${j._id}`} className={styles.jobLink}>
                 <header className={styles.jobHeader}>
                   <h2 className={styles.jobTitle}>{j.title}</h2>
@@ -55,9 +56,8 @@ export default function PortfolioPage(props) {
                   </li>
                 </ul>
               </Link>
-            )}
-          </article>
-        ))}
+            </article>
+          ))}
       </div>
       <div className={styles.addButtonContainer}>
         {props.user && props.user.isAdmin && (

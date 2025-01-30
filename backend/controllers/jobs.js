@@ -14,7 +14,7 @@ module.exports = {
 // TODO: Admins needs to be able to see all jobs and decide if displayInGallery = T/F
 async function indexJob(req, res) {
   try {
-    const jobs = await Job.find({ displayInGallery: true });
+    const jobs = await Job.find({});
     res.status(200).json(jobs);
   } catch (err) {
     res.status(500).json({ err: err.message });

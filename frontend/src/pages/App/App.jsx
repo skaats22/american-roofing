@@ -51,7 +51,7 @@ export default function App() {
     const deletedJob = await jobService.deleteJob(jobId);
     // Filter state using deletedJob._id:
     setJobs(jobs.filter((job) => job._id !== deletedJob._id));
-    navigate("/jobs");
+    navigate("/jobs/admin");
   }
 
   async function handleUpdateJob(jobId, jobFormData) {
