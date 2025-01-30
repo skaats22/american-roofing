@@ -39,7 +39,13 @@ async function createJob(req, res) {
 
 async function showJob(req, res) {
   try {
-    const job = await Job.findById(req.params.jobId);
+    const job = await Job.findById(req.params.jobId).populate({
+      path: "reviews",
+      populate: {
+        path: "owner",
+        select: "firstName lastName",
+      },
+    });
     res.status(200).json(job);
   } catch (err) {
     res.status(500).json({ err: err.message });

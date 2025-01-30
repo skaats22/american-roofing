@@ -113,7 +113,8 @@ function PortfolioDetailPage(props) {
             </p>
             <header>
               <div>
-                {review.owner._id === user._id && (
+                {/* Check if user exists before performing owner comparison */}
+                {user && review.owner?._id === user._id && (
                   <>
                     <Link to={`/jobs/${jobId}/reviews/${review._id}/edit`}>
                       <button>Edit</button>

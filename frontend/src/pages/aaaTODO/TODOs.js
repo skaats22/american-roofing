@@ -2,8 +2,6 @@
 
 
 // - Permissions
-//   - If guest, then cannot display comments using user.firstName
-// - Permissions
 //   - Logged in user sees a different Quote Form
 //     - Has first and last name already filled in
 //   - Display in Gallery
