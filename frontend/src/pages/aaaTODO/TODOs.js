@@ -1,8 +1,8 @@
 // TODOs!
 
-// - Resources
-//   - Create resources to be posted
-//   - Ensure proper linking
+
+// - Permissions
+//   - If guest, then cannot display comments using user.firstName
 // - Permissions
 //   - Logged in user sees a different Quote Form
 //     - Has first and last name already filled in
@@ -10,10 +10,7 @@
 //   - /jobs/new for guests shows a blank job
 //   - Add success message to page after quote submission
 // - Portfolio
-//   - Add pictures
 //   - Display in gallery and give admin rights
-// - Home Page
-//   - Add pictures and tagline
 // - About Us
 //   - Add pictures
 // - NavBar
@@ -22,6 +19,7 @@
 // - isAdmin can:
 //   - View all quotes
 //   - CRUD Portfolio (jobs)
+// - isAdmin === false can CRUD reviews
 // - Quotes
 //   - Archive/unarchive finished quotes (not delete)
 // - Footer

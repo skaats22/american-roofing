@@ -108,12 +108,12 @@ function PortfolioDetailPage(props) {
           <article key={review._id}>
             <p>
               <strong>
-                {user.firstName} {user.lastName}
+                {review.owner.firstName} {review.owner.lastName}
               </strong>
             </p>
             <header>
               <div>
-                {review.owner === user._id && (
+                {review.owner._id === user._id && (
                   <>
                     <Link to={`/jobs/${jobId}/reviews/${review._id}/edit`}>
                       <button>Edit</button>
