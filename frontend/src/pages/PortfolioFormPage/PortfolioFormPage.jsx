@@ -127,7 +127,7 @@ export default function JobForm(props) {
       newErrors.description = "Description is required.";
     if (formData.displayInGallery === undefined)
       newErrors.displayInGallery = "Display in gallery must be selected.";
-    if (!formData.owner) newErrors.owner = "Owner is required.";
+    // if (!formData.owner) newErrors.owner = "Owner is required.";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -145,30 +145,27 @@ export default function JobForm(props) {
   async function handleSubmit(evt) {
     evt.preventDefault();
     if (validate()) {
-      const fileInput = formData.photo;
+      let fileInput = formData.photo;
       try {
+        const formData2 = new FormData();
+        formData2.append("title", formData.title);
+        formData2.append("address", formData.address);
+        formData2.append("city", formData.city);
+        formData2.append("state", formData.state);
+        formData2.append("zipCode", formData.zipCode);
+        formData2.append("propertyType", formData.propertyType);
+        formData2.append("serviceType", formData.serviceType);
+        formData2.append("roofMaterial", formData.roofMaterial);
+        formData2.append("projectType", formData.projectType);
+        formData2.append("projectPrice", formData.projectPrice);
+        formData2.append("description", formData.description);
+        formData2.append("displayInGallery", formData.displayInGallery);
         if (fileInputRef.current.files.length) {
           formData2.append("photo", fileInputRef.current.files[0]);
           fileInput = fileInputRef.current.files[0];
         }
-        const formData2 = {
-          title: formData.title,
-          address: formData.address,
-          city: formData.city,
-          state: formData.state,
-          zipCode: formData.zipCode,
-          propertyType: formData.propertyType,
-          serviceType: formData.serviceType,
-          roofMaterial: formData.roofMaterial,
-          projectType: formData.projectType,
-          projectPrice: formData.projectPrice,
-          description: formData.description,
-          displayInGallery: formData.displayInGallery,
-          photo: fileInput,
-        };
-
         if (jobId) {
-          await props.handleUpdateJob(jobId, formData2);
+          await props.handleUpdateJob(jobId, formData);
         } else {
           await props.handleAddJob(formData2);
         }
@@ -180,6 +177,7 @@ export default function JobForm(props) {
           propertyType: "",
           serviceType: "",
           roofMaterial: "",
+          projectLength: "",
           projectPrice: "",
           description: "",
           photo: "",
@@ -309,7 +307,6 @@ export default function JobForm(props) {
             <p className={styles.errorText}>{errors.roofMaterial}</p>
           )}
         </div>
-
 
         <div className={styles.inputGroup}>
           <label>Project Price:</label>

@@ -20,6 +20,8 @@
   transition: transform 0.3s ease;
   padding: 15px;
   cursor: pointer;
+  width: 300px;
+  height: 650px
 }
 
 .jobCard:hover {

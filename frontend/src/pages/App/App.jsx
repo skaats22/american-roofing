@@ -36,7 +36,6 @@ export default function App() {
 
   async function handleAddJob(jobFormData) {
     const newJob = await jobService.create(jobFormData);
-    console.log(jobFormData)
     setJobs([newJob, ...jobs]);
     navigate("/jobs");
   }
@@ -56,12 +55,11 @@ export default function App() {
 
   async function handleUpdateJob(jobId, jobFormData) {
     const updatedJob = await jobService.updateJob(jobId, jobFormData);
-    console.log(jobId)
-    console.log(jobFormData)
     // We use map() here to update a specific job in the jobs state array.
     setJobs(jobs.map((job) => (jobId === job._id ? updatedJob : job)));
     navigate(`/jobs/${jobId}`);
   }
+  
 
   useEffect(() => {
     async function fetchAllJobs() {

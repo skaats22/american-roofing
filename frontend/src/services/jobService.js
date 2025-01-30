@@ -7,7 +7,6 @@ export async function index() {
 }
 
 export async function create(content) {
-  console.log("content:", content)
   return sendRequest(BASE_URL, 'POST', content);
 }
 

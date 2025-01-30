@@ -21,7 +21,6 @@ async function indexJob(req, res) {
   }
 };
 
-// TODO: displayInGallery is always true - might need to change
 async function createJob(req, res) {
   try {
     req.body.owner = req.user._id;
@@ -58,15 +57,12 @@ async function showJob(req, res) {
 // TODO: ensure isAdmin permission to update
 async function updateJob(req, res) {
   try {
-
     // Find the job:
     const job = await Job.findById(req.params.jobId);
-
     // Check permissions:
     if (req.user.isAdmin === false) {
       return res.status(403).json({ error: "You're not allowed to do that!" });
     }
-  
     // Update job:
     const updatedJob = await Job.findByIdAndUpdate(
       req.params.jobId,
