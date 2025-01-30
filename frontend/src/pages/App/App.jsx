@@ -63,7 +63,7 @@ export default function App() {
       setJobs(jobsData);
     }
     fetchAllJobs();
-    // Adding user to dependency array cuases the effect to fire off when
+    // Adding user to dependency array causes the effect to fire off when
     //  page loads of the user state changes.
   }, []);
 
@@ -79,7 +79,6 @@ export default function App() {
         ) : (
           <GuestNavBar />
         )}
-        {/* <NavBar user={user} setUser={setUser} /> */}
         <section id="main-section">
           {/* Guest Routes */}
           <Routes>
@@ -105,7 +104,7 @@ export default function App() {
               path="/resources/construction-condition-report"
               element={<ConstructionConditionResource />}
             />
-            <Route path="/jobs" element={<PortfolioPage jobs={jobs} />} />
+            <Route path="/jobs" element={<PortfolioPage jobs={jobs} user={user} />} />
             <Route
               path="/jobs/:jobId"
               element={
@@ -117,6 +116,7 @@ export default function App() {
               }
             />
             <Route path="/signup" element={<SignUpPage setUser={setUser} />} />
+            <Route path="/login" element={<LogInPage setUser={setUser} />} />
             <Route path="/login" element={<LogInPage setUser={setUser} />} />
 
             {/* Admin Routes */}
@@ -147,7 +147,7 @@ export default function App() {
             )}
 
             {/* Non-admin Logged-in User Routes */}
-            {user && !user.isAdmin && (
+            {user && (
               <>
                 <Route
                   path="/jobs/:jobId/comments/new"

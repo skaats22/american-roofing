@@ -7,8 +7,10 @@
 //   - Logged in user sees a different Quote Form
 //     - Has first and last name already filled in
 //   - Display in Gallery
+//   - /jobs/new for guests shows a blank job
 // - Portfolio
 //   - Add pictures
+//   - Display in gallery and give admin rights
 // - Home Page
 //   - Add pictures and tagline
 // - About Us

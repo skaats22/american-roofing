@@ -22,10 +22,11 @@ app.use(require('./middleware/checkToken'));
 // API Routes
 app.use('/api/auth', require('./routes/auth'));
 
+app.use('/api/jobs', require('./routes/jobs'));
+
 // All routers below will have all routes protected
 app.use(require('./middleware/ensureLoggedIn'));
 
-app.use('/api/jobs', require('./routes/jobs'));
 
 app.use('/api/quotes', require('./routes/quotes'));
 

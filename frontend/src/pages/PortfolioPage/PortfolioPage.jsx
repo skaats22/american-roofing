@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router";
 import * as jobService from "../../services/jobService";
-import JobItem from "../../components/JobItem/JobItem";
 import styles from "./PortfolioPage.module.css";
 
 export default function PortfolioPage(props) {
@@ -59,9 +58,11 @@ export default function PortfolioPage(props) {
         ))}
       </div>
       <div className={styles.addButtonContainer}>
-        <Link to="/jobs/new">
-          <button className={styles.addButton}>Add to Portfolio</button>
-        </Link>
+        {props.user && props.user.isAdmin && (
+          <Link to="/jobs/new">
+            <button className={styles.addButton}>Add to Portfolio</button>
+          </Link>
+        )}
       </div>
     </main>
   );
