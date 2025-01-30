@@ -8,6 +8,7 @@
 //     - Has first and last name already filled in
 //   - Display in Gallery
 //   - /jobs/new for guests shows a blank job
+//   - Add success message to page after quote submission
 // - Portfolio
 //   - Add pictures
 //   - Display in gallery and give admin rights

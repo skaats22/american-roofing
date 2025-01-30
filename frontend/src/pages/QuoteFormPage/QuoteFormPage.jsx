@@ -158,6 +158,7 @@ export default function QuoteForm(props) {
           description: "",
           photo: "",
         });
+        navigate("/quotes/new")
       } catch (err) {
         console.log(err);
       }

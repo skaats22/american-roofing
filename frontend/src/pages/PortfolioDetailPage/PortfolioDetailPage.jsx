@@ -18,7 +18,7 @@ function PortfolioDetailPage(props) {
   }
 
   async function handleDeleteReview(reviewId) {
-    const deletedJob = await reviewService.deleteComment(jobId, reviewId);
+    const deletedJob = await reviewService.deleteReview(jobId, reviewId);
     setJob({
       ...job,
       reviews: job.reviews.filter((review) => review._id !== reviewId),
@@ -78,8 +78,7 @@ function PortfolioDetailPage(props) {
           <div className={styles.photo}>
             {job.photo && (
               <img
-                // src={job.photo}
-                src={roofing2}
+                src={job.photo}
                 alt={job.title}
                 className={styles.jobImage}
               />
@@ -104,7 +103,7 @@ function PortfolioDetailPage(props) {
       </div>
       <section className={styles.commentsContainer}>
         <h2>Reviews</h2>
-        {/* {!job.reviews.length && <p>There are no reviews.</p>} */}
+        {!job.reviews.length && <p>There are currently no reviews.</p>}
         {job.reviews.map((review) => (
           <article key={review._id}>
             <p>
@@ -124,12 +123,12 @@ function PortfolioDetailPage(props) {
                     </button>
                   </>
                 )}
+                <p>{review.comment}</p>
               </div>
             </header>
-            <p>{review.comment}</p>
           </article>
         ))}
-        <ReviewFormPage handleAddReview={handleAddReview} />
+        {user && <ReviewFormPage handleAddReview={handleAddReview} />}
       </section>
     </main>
   );

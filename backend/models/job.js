@@ -66,7 +66,7 @@ const jobSchema = new Schema({
   },
   photo: {
     type: String,
-    required: true,
+    default: 'https://i.imgur.com/KTEjbsw.png',
   },
   displayInGallery: {
     type: Boolean,

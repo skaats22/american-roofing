@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useParams } from "react-router";
 import * as jobService from "../../services/jobService";
 import styles from "./PortfolioFormPage.module.css";
 
 export default function JobForm(props) {
   const { jobId } = useParams();
+  const navigate = useNavigate();
+  const fileInputRef = useRef();
+
   const [formData, setFormData] = useState({
     title: "",
     address: "",
@@ -22,14 +25,68 @@ export default function JobForm(props) {
   });
 
   const [errors, setErrors] = useState({});
-  const navigate = useNavigate();
 
   const stateOptions = [
-    "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"
+    "AL",
+    "AK",
+    "AZ",
+    "AR",
+    "CA",
+    "CO",
+    "CT",
+    "DE",
+    "FL",
+    "GA",
+    "HI",
+    "ID",
+    "IL",
+    "IN",
+    "IA",
+    "KS",
+    "KY",
+    "LA",
+    "ME",
+    "MD",
+    "MA",
+    "MI",
+    "MN",
+    "MS",
+    "MO",
+    "MT",
+    "NE",
+    "NV",
+    "NH",
+    "NJ",
+    "NM",
+    "NY",
+    "NC",
+    "ND",
+    "OH",
+    "OK",
+    "OR",
+    "PA",
+    "RI",
+    "SC",
+    "SD",
+    "TN",
+    "TX",
+    "UT",
+    "VT",
+    "VA",
+    "WA",
+    "WV",
+    "WI",
+    "WY",
   ];
 
   const propertyTypeOptions = ["Commercial", "Residential", "Other"];
-  const serviceTypeOptions = ["Repair", "Replace", "New Roof", "Maintenance", "Other"];
+  const serviceTypeOptions = [
+    "Repair",
+    "Replace",
+    "New Roof",
+    "Maintenance",
+    "Other",
+  ];
   const roofMaterialOptions = ["Shingles", "Metal", "Tile", "Flat", "Other"];
 
   useEffect(() => {
@@ -47,12 +104,16 @@ export default function JobForm(props) {
     if (!formData.title) newErrors.title = "Title is required.";
     if (!formData.city) newErrors.city = "City is required.";
     if (!formData.state) newErrors.state = "State is required.";
-    if (!formData.propertyType) newErrors.propertyType = "Property type is required.";
-    if (!formData.serviceType) newErrors.serviceType = "Service type is required.";
-    if (!formData.roofMaterial) newErrors.roofMaterial = "Roof material is required.";
-    if (!formData.description) newErrors.description = "Description is required.";
-    if (!formData.photo) newErrors.photo = "Photo URL is required.";
-    if (formData.displayInGallery === undefined) newErrors.displayInGallery = "Display in gallery must be selected.";
+    if (!formData.propertyType)
+      newErrors.propertyType = "Property type is required.";
+    if (!formData.serviceType)
+      newErrors.serviceType = "Service type is required.";
+    if (!formData.roofMaterial)
+      newErrors.roofMaterial = "Roof material is required.";
+    if (!formData.description)
+      newErrors.description = "Description is required.";
+    if (formData.displayInGallery === undefined)
+      newErrors.displayInGallery = "Display in gallery must be selected.";
     if (!formData.owner) newErrors.owner = "Owner is required.";
 
     setErrors(newErrors);
@@ -71,10 +132,24 @@ export default function JobForm(props) {
     evt.preventDefault();
     if (validate()) {
       try {
+        const formData2 = new FormData();
+        formData2.append("title", formData.title);
+        formData2.append("address", formData.address);
+        formData2.append("city", formData.city);
+        formData2.append("state", formData.state);
+        formData2.append("zipCode", formData.zipCode);
+        formData2.append("propertyType", formData.propertyType);
+        formData2.append("serviceType", formData.serviceType);
+        formData2.append("roofMaterial", formData.roofMaterial);
+        formData2.append("projectType", formData.projectType);
+        formData2.append("projectPrice", formData.projectPrice);
+        formData2.append("description", formData.description);
+        if (fileInputRef.current.files.length) {
+          formData2.append("photo", fileInputRef.current.files[0]);
+        }
         if (jobId) {
-          await props.handleUpdateJob(jobId, formData);
-        } else {
-          await props.handleAddJob(formData);
+          await props.handleUpdateJob(jobId, formData2);
+        } else await props.handleAddJob(formData2);
           setFormData({
             title: "",
             address: "",
@@ -91,8 +166,7 @@ export default function JobForm(props) {
             owner: "",
           });
           navigate("/jobs");
-        }
-      } catch (error) {
+        } catch (error) {
         console.error("Error submitting job:", error);
         alert("Error submitting the job. Please try again.");
       }
@@ -105,24 +179,46 @@ export default function JobForm(props) {
       <form onSubmit={handleSubmit}>
         <div className={styles.inputGroup}>
           <label>Title:</label>
-          <input type="text" name="title" value={formData.title} onChange={handleChange} required />
+          <input
+            type="text"
+            name="title"
+            value={formData.title}
+            onChange={handleChange}
+            required
+          />
           {errors.title && <p className={styles.errorText}>{errors.title}</p>}
         </div>
 
         <div className={styles.inputGroup}>
           <label>Address:</label>
-          <input type="text" name="address" value={formData.address} onChange={handleChange} />
+          <input
+            type="text"
+            name="address"
+            value={formData.address}
+            onChange={handleChange}
+          />
         </div>
 
         <div className={styles.inputGroup}>
           <label>City:</label>
-          <input type="text" name="city" value={formData.city} onChange={handleChange} required />
+          <input
+            type="text"
+            name="city"
+            value={formData.city}
+            onChange={handleChange}
+            required
+          />
           {errors.city && <p className={styles.errorText}>{errors.city}</p>}
         </div>
 
         <div className={styles.inputGroup}>
           <label>State:</label>
-          <select name="state" value={formData.state} onChange={handleChange} required>
+          <select
+            name="state"
+            value={formData.state}
+            onChange={handleChange}
+            required
+          >
             <option value="">-- Select State --</option>
             {stateOptions.map((state) => (
               <option key={state} value={state}>
@@ -135,7 +231,12 @@ export default function JobForm(props) {
 
         <div className={styles.inputGroup}>
           <label>Property Type:</label>
-          <select name="propertyType" value={formData.propertyType} onChange={handleChange} required>
+          <select
+            name="propertyType"
+            value={formData.propertyType}
+            onChange={handleChange}
+            required
+          >
             <option value="">-- Select Property Type --</option>
             {propertyTypeOptions.map((type) => (
               <option key={type} value={type}>
@@ -143,12 +244,19 @@ export default function JobForm(props) {
               </option>
             ))}
           </select>
-          {errors.propertyType && <p className={styles.errorText}>{errors.propertyType}</p>}
+          {errors.propertyType && (
+            <p className={styles.errorText}>{errors.propertyType}</p>
+          )}
         </div>
 
         <div className={styles.inputGroup}>
           <label>Service Type:</label>
-          <select name="serviceType" value={formData.serviceType} onChange={handleChange} required>
+          <select
+            name="serviceType"
+            value={formData.serviceType}
+            onChange={handleChange}
+            required
+          >
             <option value="">-- Select Service Type --</option>
             {serviceTypeOptions.map((type) => (
               <option key={type} value={type}>
@@ -156,12 +264,19 @@ export default function JobForm(props) {
               </option>
             ))}
           </select>
-          {errors.serviceType && <p className={styles.errorText}>{errors.serviceType}</p>}
+          {errors.serviceType && (
+            <p className={styles.errorText}>{errors.serviceType}</p>
+          )}
         </div>
 
         <div className={styles.inputGroup}>
           <label>Roof Material:</label>
-          <select name="roofMaterial" value={formData.roofMaterial} onChange={handleChange} required>
+          <select
+            name="roofMaterial"
+            value={formData.roofMaterial}
+            onChange={handleChange}
+            required
+          >
             <option value="">-- Select Roof Material --</option>
             {roofMaterialOptions.map((material) => (
               <option key={material} value={material}>
@@ -169,39 +284,77 @@ export default function JobForm(props) {
               </option>
             ))}
           </select>
-          {errors.roofMaterial && <p className={styles.errorText}>{errors.roofMaterial}</p>}
+          {errors.roofMaterial && (
+            <p className={styles.errorText}>{errors.roofMaterial}</p>
+          )}
         </div>
 
         <div className={styles.inputGroup}>
           <label>Project Length:</label>
-          <input type="text" name="projectLength" value={formData.projectLength} onChange={handleChange} />
+          <input
+            type="text"
+            name="projectLength"
+            value={formData.projectLength}
+            onChange={handleChange}
+          />
         </div>
 
         <div className={styles.inputGroup}>
           <label>Project Price:</label>
-          <input type="text" name="projectPrice" value={formData.projectPrice} onChange={handleChange} />
+          <input
+            type="text"
+            name="projectPrice"
+            value={formData.projectPrice}
+            onChange={handleChange}
+          />
         </div>
 
         <div className={styles.inputGroup}>
           <label>Description:</label>
-          <textarea name="description" value={formData.description} onChange={handleChange} required />
-          {errors.description && <p className={styles.errorText}>{errors.description}</p>}
+          <textarea
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+            required
+          />
+          {errors.description && (
+            <p className={styles.errorText}>{errors.description}</p>
+          )}
         </div>
 
         <div className={styles.inputGroup}>
-          <label>Photo URL:</label>
-          <input type="text" name="photo" value={formData.photo} onChange={handleChange} required />
+          <label>Image File</label>
+          <input type="file" accept=".png, .gif, .jpg, .jpeg" ref={fileInputRef} />
           {errors.photo && <p className={styles.errorText}>{errors.photo}</p>}
         </div>
 
         <div className={styles.inputGroup}>
           <label>Display in Gallery:</label>
-          <input type="checkbox" name="displayInGallery" checked={formData.displayInGallery} onChange={handleChange} />
-          {errors.displayInGallery && <p className={styles.errorText}>{errors.displayInGallery}</p>}
+          <input
+            type="checkbox"
+            name="displayInGallery"
+            checked={formData.displayInGallery}
+            onChange={handleChange}
+          />
+          {errors.displayInGallery && (
+            <p className={styles.errorText}>{errors.displayInGallery}</p>
+          )}
         </div>
+        {!jobId ? (
+          <button type="submit" className={styles.submitButton}>
+            Submit New Job
+          </button>
+        ) : (
+          <button type="submit" className={styles.submitButton}>
+            Update Job
+          </button>
+        )}
 
-        <button type="submit" className={styles.submitButton}>Submit Job Details</button>
-        <Link to="/jobs"><button type="button" className={styles.cancelButton}>Cancel</button></Link>
+        <Link to="/jobs">
+          <button className={styles.cancelButton}>
+            Cancel
+          </button>
+        </Link>
       </form>
     </div>
   );

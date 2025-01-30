@@ -60,7 +60,9 @@ export default function PortfolioPage(props) {
       <div className={styles.addButtonContainer}>
         {props.user && props.user.isAdmin && (
           <Link to="/jobs/new">
-            <button className={styles.addButton}>Add to Portfolio</button>
+            <button className={styles.addButton}>
+              Add a new Job to the Portfolio
+            </button>
           </Link>
         )}
       </div>

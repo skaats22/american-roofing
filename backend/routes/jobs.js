@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const jobsCtrl = require('../controllers/jobs');
+const upload = require('multer')();
 const ensureLoggedIn = require('../middleware/ensureLoggedIn');
 
 // All paths start with '/api/jobs'
@@ -12,7 +13,7 @@ router.get('/', jobsCtrl.indexJob);
 router.get('/:jobId', jobsCtrl.showJob)
 
 // POST /api/jobs
-router.post('/', ensureLoggedIn, jobsCtrl.createJob);
+router.post('/', ensureLoggedIn, upload.single("photo"), jobsCtrl.createJob);
 
 // PUT /api/jobs/:jobId
 router.put('/:jobId', ensureLoggedIn, jobsCtrl.updateJob)

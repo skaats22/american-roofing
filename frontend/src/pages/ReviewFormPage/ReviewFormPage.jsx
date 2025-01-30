@@ -34,7 +34,7 @@ export default function ReviewFormPage(props) {
     } else {
       props.handleAddReview(formData);
     }
-    setFormData({ text: "" });
+    setFormData({ comment: "" });
   };
   
   if (jobId && reviewId) return (
