@@ -21,7 +21,6 @@ export default function QuoteForm(props) {
 
   const [errors, setErrors] = useState({});
 
-  const navigate = useNavigate();
   const fileInputRef = useRef();
 
   const stateOptions = [
@@ -167,7 +166,7 @@ export default function QuoteForm(props) {
 
   return (
     <div className={styles.formContainer}>
-      <h1>Request a Quote{props.user ? `, ${props.user.firstName}` : ""}</h1>
+      <h1>Request a Quote{props.user ? `, ${props.user.firstName}:` : ":"}</h1>
       {submitMessage && (
         <div className={styles.submitMessage}>{submitMessage}</div>
       )}
