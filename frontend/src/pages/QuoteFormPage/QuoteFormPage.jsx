@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 import styles from "./QuoteFormPage.module.css";
 
 export default function QuoteForm(props) {
+  const [submitMessage, setSubmitMessage] = useState("");
   const [formData, setFormData] = useState({
     firstName: props.user ? props.user.firstName : "",
     lastName: props.user ? props.user.lastName : "",
@@ -155,7 +156,9 @@ export default function QuoteForm(props) {
           description: "",
           photo: "",
         });
-        navigate("/quotes/new");
+        setSubmitMessage(
+          "Thank you! Your quote was submitted successfully and we will get back to you ASAP."
+        );
       } catch (err) {
         console.log(err);
       }
@@ -164,7 +167,10 @@ export default function QuoteForm(props) {
 
   return (
     <div className={styles.formContainer}>
-      <h1>Request a Quote{props.user ? `, ${props.user.firstName}` : ""}!</h1>
+      <h1>Request a Quote{props.user ? `, ${props.user.firstName}` : ""}</h1>
+      {submitMessage && (
+        <div className={styles.submitMessage}>{submitMessage}</div>
+      )}
       <form onSubmit={handleSubmit} className={styles.form}>
         {/* First Name & Last Name */}
         <div className={styles.row}>

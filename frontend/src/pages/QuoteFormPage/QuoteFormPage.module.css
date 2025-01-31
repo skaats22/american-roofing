@@ -110,3 +110,15 @@ label {
   width: 50%;
   justify-self: center;
 }
+
+.submitMessage {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 10px;
+  margin-bottom: 50px;
+  margin-top: 50px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 1.5em;
+  border: 2px solid darkgreen;
+}
