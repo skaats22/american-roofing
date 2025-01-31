@@ -104,34 +104,37 @@ function PortfolioDetailPage(props) {
         <h2>Reviews</h2>
         {!job.reviews.length && <p>There are currently no reviews.</p>}
         {job.reviews.map((review) => (
-          <article key={review._id}>
-            <div>
-              <strong>
-                {review.owner.firstName} {review.owner.lastName}
-              </strong>
-              <p>{review.comment}</p>
-            </div>
-            <header>
-              <div>
-                {/* Check if user exists before performing owner comparison */}
-                {user && review.owner?._id === user._id && (
-                  <div className={styles.reviewButtonContainer}>
-                    <Link to={`/jobs/${jobId}/reviews/${review._id}/edit`}>
-                      <button className={styles.editButton}>Edit Review</button>
-                    </Link>
-                    <button
-                      onClick={() => handleDeleteReview(review._id)}
-                      className={styles.deleteButton}
-                    >
-                      Delete Review
-                    </button>
-                  </div>
-                )}
-              </div>
+          <article key={review._id} className={styles.commentCard}>
+            <header className={styles.commentHeader}>
+              {review.owner.firstName} {review.owner.lastName}
             </header>
+            <p className={styles.commentText}>{review.comment}</p>
+            {user && review.owner?._id === user._id && (
+              <div className={styles.reviewButtonContainer}>
+                <Link to={`/jobs/${jobId}/reviews/${review._id}/edit`}>
+                  <button className={styles.editButton}>Edit Review</button>
+                </Link>
+                <button
+                  onClick={() => handleDeleteReview(review._id)}
+                  className={styles.deleteButton}
+                >
+                  Delete Review
+                </button>
+              </div>
+            )}
           </article>
         ))}
-        {user && <ReviewFormPage handleAddReview={handleAddReview} />}
+        {user ? (
+          <ReviewFormPage handleAddReview={handleAddReview} />
+        ) : (
+          <h4>
+            Please{" "}
+            <Link to="/login" className="text-blue-500 underline">
+              log in
+            </Link>{" "}
+            or <Link to="/signup">sign up</Link> to submit a review.
+          </h4>
+        )}
       </section>
     </main>
   );

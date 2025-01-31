@@ -152,6 +152,35 @@
   background-color: #c82333;
 }
 
+.commentsContainer {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  margin-bottom: 40px;
+}
+
+.commentCard {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.commentHeader {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.commentText {
+  font-size: 1rem;
+  color: #34495e;
+  margin-top: 10px;
+}
+
+
 @media (max-width: 768px) {
   .textImgContainer {
     grid-template-columns: 1fr;

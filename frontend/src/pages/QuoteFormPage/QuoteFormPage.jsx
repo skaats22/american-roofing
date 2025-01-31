@@ -155,9 +155,14 @@ export default function QuoteForm(props) {
           description: "",
           photo: "",
         });
+        
+        // Display success message
         setSubmitMessage(
           "Thank you! Your quote was submitted successfully and we will get back to you ASAP."
         );
+        // Scroll to top of page upon submission
+        window.scrollTo({ top: 0, behavior: "smooth" });
+
       } catch (err) {
         console.log(err);
       }
