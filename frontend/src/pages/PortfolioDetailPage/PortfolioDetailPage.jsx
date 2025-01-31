@@ -105,12 +105,12 @@ function PortfolioDetailPage(props) {
         {!job.reviews.length && <p>There are currently no reviews.</p>}
         {job.reviews.map((review) => (
           <article key={review._id}>
-            <p>
+            <div>
               <strong>
                 {review.owner.firstName} {review.owner.lastName}
               </strong>
               <p>{review.comment}</p>
-            </p>
+            </div>
             <header>
               <div>
                 {/* Check if user exists before performing owner comparison */}
