@@ -1,7 +1,14 @@
 import { NavLink, Link } from "react-router";
+import { useState } from "react";
 import styles from "./NavBar.module.css";
 
 export default function GuestNavBar({ user, setUser }) {
+
+  const [menuOpen, setMenuOpen] = useState(false);
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+  
   return (
     <>
       <div className={styles.topBanner}>
