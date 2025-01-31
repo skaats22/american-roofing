@@ -1,9 +1,9 @@
-import { useParams, Link } from "react-router";
+import { useParams } from "react-router";
 import { useState, useEffect } from "react";
 import * as quoteService from "../../services/quoteService";
-import styles from "./QuoteDetailPage.module.css"; // Assuming you've added styles for this page
+import styles from "./QuoteDetailPage.module.css";
 
-function QuoteDetailPage(props) {
+function QuoteDetailPage() {
   const { quoteId } = useParams();
   const [quote, setQuote] = useState([]);
 
@@ -25,9 +25,9 @@ function QuoteDetailPage(props) {
         <div className={styles.textImgContainer}>
           <div>
             <ul className={styles.jobDetails}>
-            <li>
-                  <strong>Name:</strong> {quote.firstName} {quote.lastName}
-                </li>
+              <li>
+                <strong>Name:</strong> {quote.firstName} {quote.lastName}
+              </li>
               <li>
                 <strong>Phone:</strong> {quote.phone}
               </li>

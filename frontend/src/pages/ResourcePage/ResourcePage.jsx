@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react';
-import ResourceComponent from "../../components/ResourceComponent/ResourceComponent"
-import * as jobService from '../../services/jobService';
-import styles from "./ResourcePage.module.css"
+import { Link } from "react-router";
+import ResourceComponent from "../../components/ResourceComponent/ResourceComponent";
+import styles from "./ResourcePage.module.css";
 
 const resources = [
   {
@@ -28,10 +27,8 @@ const resources = [
 ];
 
 export default function ResourcePage() {
-  const [searchQuery, setSearchQuery] = useState("");
-
   const filteredResources = resources.filter((resource) =>
-    resource.title.toLowerCase().includes(searchQuery.toLowerCase())
+    resource.title.toLowerCase()
   );
 
   return (
@@ -46,6 +43,9 @@ export default function ResourcePage() {
           <ResourceComponent key={resource.id} resource={resource} />
         ))}
       </div>
+      <Link to="/">
+        <button className={styles.homeButton}>🏠</button>
+      </Link>
     </div>
   );
 }

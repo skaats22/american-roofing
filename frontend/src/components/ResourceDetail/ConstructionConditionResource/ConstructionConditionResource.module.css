@@ -6,7 +6,9 @@
   max-width: 900px;
   margin: 30px auto;
   text-align: center;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
   transition: transform 0.3s ease-in-out;
 }
 
@@ -31,4 +33,11 @@
 
 .resourceContainer a:hover {
   text-decoration: underline;
+}
+
+.homeButton {
+  margin: 10px;
+  border-radius: 8px;
+  background-color: darkblue;
+  max-width: 100px;
 }

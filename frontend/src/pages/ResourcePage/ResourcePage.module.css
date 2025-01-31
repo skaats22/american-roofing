@@ -53,3 +53,10 @@
   font-size: 1rem;
   color: #666;
 }
+
+.homeButton {
+  margin: 10px;
+  border-radius: 8px;
+  background-color: darkblue;
+  max-width: 100px;
+}

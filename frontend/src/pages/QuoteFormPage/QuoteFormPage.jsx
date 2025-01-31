@@ -1,7 +1,6 @@
 import { useState, useRef } from "react";
-import { Link, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import styles from "./QuoteFormPage.module.css";
-import * as quoteService from "../../services/quoteService";
 
 export default function QuoteForm(props) {
   const [formData, setFormData] = useState({
@@ -19,7 +18,6 @@ export default function QuoteForm(props) {
     photo: "",
   });
 
-  const [content, setContent] = useState("");
   const [errors, setErrors] = useState({});
 
   const navigate = useNavigate();
@@ -142,7 +140,6 @@ export default function QuoteForm(props) {
         formData2.append("serviceType", formData.serviceType);
         formData2.append("roofMaterial", formData.roofMaterial);
         formData2.append("description", formData.description);
-        // 'image' will be the name we use to access the file on the server
         if (fileInputRef.current.files.length)
           formData2.append("photo", fileInputRef.current.files[0]);
         props.handleAddQuote(formData2);
@@ -158,7 +155,7 @@ export default function QuoteForm(props) {
           description: "",
           photo: "",
         });
-        navigate("/quotes/new")
+        navigate("/quotes/new");
       } catch (err) {
         console.log(err);
       }

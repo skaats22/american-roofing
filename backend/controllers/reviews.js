@@ -15,9 +15,7 @@ async function create(req, res) {
     job.reviews.push(req.body);
     await job.save();
 
-    //Find newly created review
     const newReview = job.reviews[job.reviews.length - 1];
-    // await newReview.populate('owner', 'firstName lastName')
     newReview._doc.owner = req.user;
     res.status(201).json(newReview)
   } catch (err) {
@@ -31,7 +29,6 @@ async function update(req, res) {
     const job = await Job.findById(req.params.jobId);
     const review = job.reviews.id(req.params.reviewId);
 
-    // ensures the current user is the author of the review
     if (review.owner.toString() !== req.user._id) {
       return res
         .status(403)
@@ -52,7 +49,6 @@ async function deleteReview(req, res) {
     const job = await Job.findById(req.params.jobId);
     const review = job.reviews.id(req.params.reviewId);
 
-    // ensures the current user is the author of the review
     if (review.owner.toString() !== req.user._id) {
       return res
         .status(403)

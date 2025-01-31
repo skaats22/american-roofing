@@ -1,9 +1,7 @@
 export default function ConstructionConditionReport() {
   return (
     <>
-      <h1>
-        Construction Condition Report
-      </h1>
+      <h1>Construction Condition Report</h1>
       <div>
         At American Roofing and Waterproofing, we provide detailed Construction
         Condition Reports to document the current state of properties before,

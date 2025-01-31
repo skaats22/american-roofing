@@ -54,7 +54,8 @@ export default function AdminPortfolioPage(props) {
                     <strong>Description:</strong> {j.description}
                   </li>
                   <li>
-                    <strong>Displayed in Gallery:</strong> {j.displayInGallery ? "Yes" : "No"}
+                    <strong>Displayed in Gallery:</strong>{" "}
+                    {j.displayInGallery ? "Yes" : "No"}
                   </li>
                 </ul>
               </Link>

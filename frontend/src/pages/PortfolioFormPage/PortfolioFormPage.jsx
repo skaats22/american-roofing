@@ -111,9 +111,9 @@ export default function JobForm(props) {
     if (jobId) fetchJob();
   }, [jobId]);
 
+  // Validation for required fields
   const validate = () => {
     const newErrors = {};
-    // Validation for required fields
     if (!formData.title) newErrors.title = "Title is required.";
     if (!formData.city) newErrors.city = "City is required.";
     if (!formData.state) newErrors.state = "State is required.";
@@ -127,7 +127,6 @@ export default function JobForm(props) {
       newErrors.description = "Description is required.";
     if (formData.displayInGallery === undefined)
       newErrors.displayInGallery = "Display in gallery must be selected.";
-    // if (!formData.owner) newErrors.owner = "Owner is required.";
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;

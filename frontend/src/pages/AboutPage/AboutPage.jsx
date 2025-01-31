@@ -1,22 +1,7 @@
-import { useState } from "react";
-import { useNavigate } from "react-router";
-import * as postService from "../../services/jobService";
 import styles from "./AboutPage.module.css";
+import logo from "../../assets/logo.jpg";
 
 export default function AboutPage() {
-  const [content, setContent] = useState("");
-
-  const navigate = useNavigate();
-
-  async function handleSubmit(evt) {
-    evt.preventDefault();
-    try {
-      const post = await postService.create(content);
-      navigate("/jobs");
-    } catch (err) {
-      console.log(err);
-    }
-  }
 
   return (
     <>
@@ -37,6 +22,9 @@ export default function AboutPage() {
           trust, and excellence.
         </p>
       </main>
+      <div className={styles.logo2}>
+        <img src={logo} alt="Logo" style={{ width: "15%", height: "auto" }} />
+      </div>
     </>
   );
 }

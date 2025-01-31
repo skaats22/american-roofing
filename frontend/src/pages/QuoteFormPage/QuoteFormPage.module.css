@@ -22,7 +22,7 @@ h1 {
 .inputGroup {
   display: flex;
   flex-direction: column;
-  gap: 5px; /* Adds space between label and input */
+  gap: 5px;
 }
 
 label {
@@ -55,7 +55,7 @@ label {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  grid-column: span 3; /* Make the button span the full width */
+  grid-column: span 3;
   width: 100%;
   justify-self: center;
 }
@@ -72,7 +72,7 @@ label {
 
 .stateCity {
   display: flex;
-  gap: 10px; /* Adds spacing between city and state fields */
+  gap: 10px;
 }
 
 .row {
@@ -93,18 +93,16 @@ label {
   gap: 15px;
 }
 
-/* To ensure some space between the inputs in the row */
 .inputGroup {
   display: flex;
   flex-direction: column;
-  gap: 10px; /* Adds space between label and input */
+  gap: 10px;
 }
 
-/* If you want to add space between inputs on the same line specifically */
 .inputGroup > input,
 .inputGroup > select,
 .inputGroup > textarea {
-  margin-right: 15px; /* Adds space between inputs */
+  margin-right: 15px;
 }
 
 .submitButton {

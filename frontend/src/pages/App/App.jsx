@@ -26,7 +26,6 @@ import ConstructionConditionResource from "../../components/ResourceDetail/Const
 import ReviewFormPage from "../ReviewFormPage/ReviewFormPage";
 import AdminPortfolioPage from "../AdminPortfolioPage/AdminPortfolioPage";
 
-
 export default function App() {
   const [user, setUser] = useState(getUser());
   const [jobs, setJobs] = useState([]);
@@ -48,18 +47,15 @@ export default function App() {
 
   async function handleDeleteJob(jobId) {
     const deletedJob = await jobService.deleteJob(jobId);
-    // Filter state using deletedJob._id:
     setJobs(jobs.filter((job) => job._id !== deletedJob._id));
     navigate("/jobs/admin");
   }
 
   async function handleUpdateJob(jobId, jobFormData) {
     const updatedJob = await jobService.updateJob(jobId, jobFormData);
-    // We use map() here to update a specific job in the jobs state array.
     setJobs(jobs.map((job) => (jobId === job._id ? updatedJob : job)));
     navigate(`/jobs/${jobId}`);
   }
-  
 
   useEffect(() => {
     async function fetchAllJobs() {
@@ -67,8 +63,6 @@ export default function App() {
       setJobs(jobsData);
     }
     fetchAllJobs();
-    // Adding user to dependency array causes the effect to fire off when
-    //  page loads of the user state changes.
   }, []);
 
   return (
@@ -108,7 +102,10 @@ export default function App() {
               path="/resources/construction-condition-report"
               element={<ConstructionConditionResource />}
             />
-            <Route path="/jobs" element={<PortfolioPage jobs={jobs} user={user} />} />
+            <Route
+              path="/jobs"
+              element={<PortfolioPage jobs={jobs} user={user} />}
+            />
             <Route
               path="/jobs/:jobId"
               element={
@@ -122,6 +119,14 @@ export default function App() {
             <Route path="/signup" element={<SignUpPage setUser={setUser} />} />
             <Route path="/login" element={<LogInPage setUser={setUser} />} />
             <Route path="/login" element={<LogInPage setUser={setUser} />} />
+            <Route
+              path="*"
+              element={
+                <h2 style={{ textAlign: "center", fontSize: "2rem" }}>
+                  Whoops, nothing here!
+                </h2>
+              }
+            />
 
             {/* Admin Routes */}
             {user && user.isAdmin && (
@@ -149,7 +154,10 @@ export default function App() {
                 <Route
                   path="/jobs/:jobId/edit"
                   element={
-                    <PortfolioFormPage handleUpdateJob={handleUpdateJob} user={user} />
+                    <PortfolioFormPage
+                      handleUpdateJob={handleUpdateJob}
+                      user={user}
+                    />
                   }
                 />
                 <Route path="/quotes" element={<QuotePage user={user} />} />
@@ -157,7 +165,7 @@ export default function App() {
                   path="/quotes/:quoteId"
                   element={<QuoteDetailPage user={user} />}
                 />
-                  <Route
+                <Route
                   path="/jobs/:jobId/reviews/new"
                   element={<ReviewFormPage />}
                 />

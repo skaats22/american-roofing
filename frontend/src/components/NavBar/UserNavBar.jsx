@@ -3,7 +3,6 @@ import { logOut } from "../../services/authService";
 import styles from "./NavBar.module.css";
 
 export default function UserNavBar({ user, setUser }) {
-
   const navigate = useNavigate();
 
   function handleLogOut() {
@@ -48,8 +47,8 @@ export default function UserNavBar({ user, setUser }) {
         <NavLink to="/resources">Resources</NavLink>
         &nbsp; | &nbsp;
         <NavLink to="/" onClick={handleLogOut}>
-            Log Out
-          </NavLink>
+          Log Out
+        </NavLink>
         &nbsp; | &nbsp;
         <NavLink to="/quotes/new">Request a free quote!</NavLink>
       </nav>

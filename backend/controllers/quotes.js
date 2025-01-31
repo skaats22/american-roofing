@@ -1,5 +1,4 @@
 const { S3Client, PutObjectCommand } = require('@aws-sdk/client-s3');
-// Ensure that the .env contains the following keys
 const { S3_REGION, S3_BUCKET, S3_BASE_URL } = process.env;
 const Quote = require('../models/quote');
 
@@ -11,7 +10,7 @@ module.exports = {
   uploadFile,
 }
 
-// TODO: Only admins can see all quotes
+
 async function indexQuote(req, res) {
   try {
     const quotes = await Quote.find({});
@@ -21,7 +20,6 @@ async function indexQuote(req, res) {
   }
 }
 
-// TODO: Permissions
 async function createQuote(req, res) {
   try {
     req.body.owner = req.user._id;
@@ -37,7 +35,6 @@ async function createQuote(req, res) {
   }
 }
 
-// TODO: Permissions
 async function showQuote(req, res) {
   try {
     const quote = await Quote.findById(req.params.quoteId);

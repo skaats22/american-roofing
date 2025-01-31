@@ -109,7 +109,7 @@ function PortfolioDetailPage(props) {
               <strong>
                 {review.owner.firstName} {review.owner.lastName}
               </strong>
-                <p>{review.comment}</p>
+              <p>{review.comment}</p>
             </p>
             <header>
               <div>

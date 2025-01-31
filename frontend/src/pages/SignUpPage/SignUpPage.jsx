@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import * as authService from "../../services/authService";
-import styles from "./SignUpPage.module.css"
+import styles from "./SignUpPage.module.css";
 
 export default function SignUpPage({ setUser }) {
   const [formData, setFormData] = useState({
@@ -25,7 +25,7 @@ export default function SignUpPage({ setUser }) {
     try {
       const user = await authService.signUp(formData);
       setUser(user);
-      navigate('/');
+      navigate("/");
     } catch (err) {
       console.log(err);
       setErrorMsg("Sign Up Failed - Try Again");
@@ -36,54 +36,58 @@ export default function SignUpPage({ setUser }) {
 
   return (
     <>
-    <main className={styles.mainBody}>
-      <h2>Sign Up!</h2>
-      <form autoComplete="off" onSubmit={handleSubmit} className={styles.suForm}>
-        <label>First Name</label>
-        <input
-          type="text"
-          name="firstName"
-          value={formData.firstName}
-          onChange={handleChange}
-          required
-        />
-        <label>Last Name</label>
-        <input
-          type="text"
-          name="lastName"
-          value={formData.lastName}
-          onChange={handleChange}
-          required
-        />
-        <label>Email</label>
-        <input
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
-        <label>Password</label>
-        <input
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
-        <label>Confirm</label>
-        <input
-          type="password"
-          name="confirm"
-          value={formData.confirm}
-          onChange={handleChange}
-          required
-        />
-        <button type="submit" disabled={disable}>
-          SIGN UP
-        </button>
-      </form>
-    </main>
+      <main className={styles.mainBody}>
+        <h2>Sign Up!</h2>
+        <form
+          autoComplete="off"
+          onSubmit={handleSubmit}
+          className={styles.suForm}
+        >
+          <label>First Name</label>
+          <input
+            type="text"
+            name="firstName"
+            value={formData.firstName}
+            onChange={handleChange}
+            required
+          />
+          <label>Last Name</label>
+          <input
+            type="text"
+            name="lastName"
+            value={formData.lastName}
+            onChange={handleChange}
+            required
+          />
+          <label>Email</label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+          <label>Password</label>
+          <input
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
+          <label>Confirm</label>
+          <input
+            type="password"
+            name="confirm"
+            value={formData.confirm}
+            onChange={handleChange}
+            required
+          />
+          <button type="submit" disabled={disable}>
+            SIGN UP
+          </button>
+        </form>
+      </main>
       <p className="error-message">&nbsp;{errorMsg}</p>
     </>
   );

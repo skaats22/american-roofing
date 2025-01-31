@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import * as authService from "../../services/authService";
-import styles from "./LogInPage.module.css"
+import styles from "./LogInPage.module.css";
 
 export default function SignUpPage({ setUser }) {
   const [formData, setFormData] = useState({
@@ -34,7 +34,11 @@ export default function SignUpPage({ setUser }) {
     <>
       <main className={styles.mainBody}>
         <h2>Log In!</h2>
-        <form autoComplete="off" onSubmit={handleSubmit} className={styles.suForm}>
+        <form
+          autoComplete="off"
+          onSubmit={handleSubmit}
+          className={styles.suForm}
+        >
           <label>Email</label>
           <input
             type="email"

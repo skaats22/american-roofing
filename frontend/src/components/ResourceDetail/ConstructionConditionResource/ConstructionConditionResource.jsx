@@ -25,6 +25,9 @@ export default function ConstructionConditionResource() {
       <p>
         For more details, visit our <Link to="/about">About Us</Link> page.
       </p>
+      <Link to="/resources">
+        <button className={styles.homeButton}>Back</button>
+      </Link>
     </div>
   );
 }

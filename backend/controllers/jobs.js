@@ -1,6 +1,5 @@
 const Job = require('../models/job');
 const { S3Client, PutObjectCommand } = require('@aws-sdk/client-s3');
-// Ensure that the .env contains the following keys
 const { S3_REGION, S3_BUCKET, S3_BASE_URL } = process.env;
 
 module.exports = {
@@ -11,7 +10,6 @@ module.exports = {
   deleteJob,
 };
 
-// TODO: Admins needs to be able to see all jobs and decide if displayInGallery = T/F
 async function indexJob(req, res) {
   try {
     const jobs = await Job.find({});
@@ -27,8 +25,8 @@ async function createJob(req, res) {
     if (req.file) {
       req.body.photo = await uploadFile(req.file);
     }
-     // Check permissions:
-     if (req.user.isAdmin === false) {
+    // Check permissions:
+    if (req.user.isAdmin === false) {
       return res.status(403).json({ error: "You're not allowed to do that!" });
     }
     const job = await Job.create(req.body);
@@ -54,10 +52,8 @@ async function showJob(req, res) {
   }
 };
 
-// TODO: ensure isAdmin permission to update
 async function updateJob(req, res) {
   try {
-    // Find the job:
     const job = await Job.findById(req.params.jobId);
     // Check permissions:
     if (req.user.isAdmin === false) {
@@ -77,7 +73,6 @@ async function updateJob(req, res) {
   }
 };
 
-// TODO: ensure isAdmin permission to delete
 async function deleteJob(req, res) {
   try {
     const job = await Job.findById(req.params.jobId);

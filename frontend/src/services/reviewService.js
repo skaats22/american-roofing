@@ -16,7 +16,7 @@ export function deleteReview(jobId, reviewId) {
 
 export function updateReview(jobId, reviewId, reviewFormData) {
   return sendRequest(
-    `${BASE_URL}/${jobId}/reviews/${reviewId}`, 
+    `${BASE_URL}/${jobId}/reviews/${reviewId}`,
     'PUT',
     reviewFormData
   );
