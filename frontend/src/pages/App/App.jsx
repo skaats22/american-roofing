@@ -42,7 +42,6 @@ export default function App() {
   async function handleAddQuote(quoteFormData) {
     const newQuote = await quoteService.create(quoteFormData);
     setQuotes([newQuote, ...quotes]);
-    navigate("/quotes");
   }
 
   async function handleDeleteJob(jobId) {

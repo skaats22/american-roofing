@@ -48,7 +48,7 @@
 
 .jobImage {
   width: 100%;
-  height: auto;
+  max-height: 250px;
   border-radius: 5px;
   object-fit: cover;
 }

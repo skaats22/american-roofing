@@ -22,7 +22,7 @@ async function indexQuote(req, res) {
 
 async function createQuote(req, res) {
   try {
-    req.body.owner = req.user._id;
+    req.body.owner = req.user;
     // Multer middleware will add a file property to the req object
     if (req.file) {
       req.body.photo = await uploadFile(req.file);

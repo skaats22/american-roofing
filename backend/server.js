@@ -24,12 +24,12 @@ app.use('/api/auth', require('./routes/auth'));
 
 app.use('/api/jobs', require('./routes/jobs'));
 app.use('/api/jobs', require('./routes/reviews'));
+app.use('/api/quotes', require('./routes/quotes'));
 
 // All routers below will have all routes protected
 app.use(require('./middleware/ensureLoggedIn'));
 
 
-app.use('/api/quotes', require('./routes/quotes'));
 
 app.use('/api/users', require('./routes/users'));
 
