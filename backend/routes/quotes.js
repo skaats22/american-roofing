@@ -14,6 +14,9 @@ router.get('/', quotesCtrl.indexQuote);
 // GET /api/quotes/:quoteId
 router.get('/:quoteId', quotesCtrl.showQuote)
 
+// DELETE /api/quotes/:quoteId
+router.delete('/:quoteId', quotesCtrl.deleteQuote)
+
 
 
 module.exports = router;
