@@ -1,3 +1,6 @@
+import commercialPic from "../../assets/St.-Dominic-Savio-School-5.jpeg";
+import styles from "./CommercialContent.module.css";
+
 export default function CommercialContent() {
   return (
     <>
@@ -14,6 +17,14 @@ export default function CommercialContent() {
         service. Whether you need a flat roof, metal roofing, or specialized
         coatings, we’ll work with you to create a solution that fits your budget
         and timeline. With AR&W, your business is always covered.
+      </div>
+      <div className={styles.servicesContainer}>
+        <img
+          src={commercialPic}
+          alt="Roofing crew on roof."
+          style={{ width: "30%", height: "auto" }}
+          className={styles.commercialPic}
+        />
       </div>
     </>
   );

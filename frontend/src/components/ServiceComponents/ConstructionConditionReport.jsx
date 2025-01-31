@@ -1,3 +1,6 @@
+import constructionCondition from "../../assets/construction-condition.jpg";
+import styles from "./CommercialContent.module.css";
+
 export default function ConstructionConditionReport() {
   return (
     <>
@@ -12,6 +15,14 @@ export default function ConstructionConditionReport() {
         assessments ensure transparency, minimize disputes, and safeguard your
         investment. Trust our expertise to deliver accurate, professional
         reports tailored to your project’s needs.
+      </div>
+      <div className={styles.servicesContainer}>
+        <img
+          src={constructionCondition}
+          alt="Roofing crew on roof."
+          style={{ width: "35%", height: "auto" }}
+          className={styles.roofRepairPic}
+        />
       </div>
     </>
   );

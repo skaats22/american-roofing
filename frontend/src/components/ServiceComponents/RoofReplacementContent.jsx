@@ -1,3 +1,6 @@
+import roofReplamcentPic from "../../assets/roof-replacement.jpeg";
+import styles from "./CommercialContent.module.css";
+
 export default function RoofReplacementContent() {
   return (
     <>
@@ -12,6 +15,14 @@ export default function RoofReplacementContent() {
         craftsmanship, efficiency, and minimal disruption to your daily life, we
         ensure your new roof is built to last and tailored to your needs. Trust
         us to protect what matters most with a roof you can depend on.
+      </div>
+      <div className={styles.servicesContainer}>
+        <img
+          src={roofReplamcentPic}
+          alt="Roofing crew on roof."
+          style={{ width: "40%", height: "auto" }}
+          className={styles.commercialPic}
+        />
       </div>
     </>
   );

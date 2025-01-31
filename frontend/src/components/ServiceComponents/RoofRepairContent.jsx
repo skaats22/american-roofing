@@ -1,3 +1,6 @@
+import roofRepairPic from "../../assets/roof-repair.jpeg";
+import styles from "./CommercialContent.module.css";
+
 export default function RoofRepairContent() {
   return (
     <>
@@ -11,6 +14,14 @@ export default function RoofRepairContent() {
         fixes to extensive repairs, we use high-quality materials and expert
         craftsmanship to ensure lasting results. Don’t let a damaged roof
         disrupt your day—trust us to get it back in top shape!
+      </div>
+      <div className={styles.servicesContainer}>
+        <img
+          src={roofRepairPic}
+          alt="Roofing crew on roof."
+          style={{ width: "30%", height: "auto" }}
+          className={styles.roofRepairPic}
+        />
       </div>
     </>
   );
