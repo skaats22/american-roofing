@@ -6,5 +6,23 @@
 }
 
 .suForm {
-  min-width: 280px;
+  min-width: 200px;
+}
+
+.fullWidthButton {
+  width: 80%; /* Full width */
+  padding: 1rem; /* Add some padding for better appearance */
+  background-color: #007bff; /* Change background color to suit your design */
+  color: white;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.fullWidthButton:hover {
+  background-color: #0056b3; /* Darker shade for hover effect */
 }

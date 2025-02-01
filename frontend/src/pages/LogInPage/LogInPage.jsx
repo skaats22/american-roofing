@@ -55,7 +55,7 @@ export default function SignUpPage({ setUser }) {
             onChange={handleChange}
             required
           />
-          <button type="submit">LOG IN</button>
+          <button type="submit" className={styles.fullWidthButton} >LOG IN</button>
         </form>
       </main>
       <p className="error-message">&nbsp;{errorMsg}</p>

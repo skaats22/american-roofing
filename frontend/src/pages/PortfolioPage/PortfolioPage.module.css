@@ -20,7 +20,9 @@
   transition: transform 0.3s ease;
   padding: 15px;
   cursor: pointer;
-  width: 300px;
+  width: 30%; /* Default for larger screens */
+  min-width: 25%; /* Minimum width for larger screens */
+  max-width: 33%; /* Maximum width for larger screens */
   height: 650px;
 }
 
@@ -91,13 +93,19 @@
   background-color: #0056b3;
 }
 
+/* For smaller screens (max-width: 768px) */
 @media (max-width: 768px) {
   .jobList {
-    grid-template-columns: 1fr;
+    display: grid;
+    grid-template-columns: 1fr; /* One card per row */
+    gap: 20px; /* Space between cards */
   }
 
   .jobCard {
-    padding: 10px;
+    width: 90%; /* Each card takes up 90% of the screen */
+    max-width: none; /* Remove the max-width to allow full use of available space */
+    height: auto; /* Allow the card to adjust in height */
+    margin: 0 auto; /* Center the card */
   }
 
   .jobTitle {

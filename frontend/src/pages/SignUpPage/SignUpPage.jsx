@@ -83,7 +83,7 @@ export default function SignUpPage({ setUser }) {
             onChange={handleChange}
             required
           />
-          <button type="submit" disabled={disable}>
+          <button type="submit" disabled={disable} className={styles.fullWidthButton} >
             SIGN UP
           </button>
         </form>
