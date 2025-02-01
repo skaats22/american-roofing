@@ -7,12 +7,13 @@ export default function TESTGuestNavBar({ user, setUser }) {
 
   function toggleMenu() {
     setMenuOpen(!menuOpen);
+    document.body.classList.toggle("menu-open");
   }
 
   // Function to close the menu on large screens (resizing)
   function handleResize() {
     if (window.innerWidth > 768) {
-      setMenuOpen(false);  // Close the menu when the screen is large
+      setMenuOpen(false); // Close the menu when the screen is large
     }
   }
 
@@ -37,7 +38,7 @@ export default function TESTGuestNavBar({ user, setUser }) {
               id="home"
               src="https://plus.unsplash.com/premium_photo-1666788168089-3142e8471488?q=80&w=3821&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt="Home"
-              style={{ width: "50px", height: "auto", objectFit: "contain" }}
+              style={{ width: "50px", height: "auto"}}
             />
           </Link>
           {/* Hamburger Button */}
@@ -53,19 +54,22 @@ export default function TESTGuestNavBar({ user, setUser }) {
           </span>
           {/* Dropdown for Our Services */}
           <div className={styles.dropdown}>
-            <span className={styles.dropdownToggle}>Our Services</span>
-            <div className={styles.dropdownMenu}>
-              <NavLink to="/services?type=commercial">
-                Commercial Roofing
-              </NavLink>
-              <NavLink to="/services?type=repair">Roof Repair</NavLink>
-              <NavLink to="/services?type=replacement">
-                Roof Replacement
-              </NavLink>
-              <NavLink to="/services?type=construction-condition-report">
-                Construction Condition Report
-              </NavLink>
-            </div>
+            <span className={styles.dropdownToggle}>
+              Our Services
+              <div className={styles.dropdownMenu}>
+                <NavLink to="/services?type=commercial">
+                  Commercial Roofing
+                </NavLink>
+                <NavLink to="/services?type=repair">Roof Repair</NavLink>
+                <NavLink to="/services?type=replacement">
+                  Roof Replacement
+                </NavLink>
+                <NavLink to="/services?type=construction-condition-report">
+                  Construction Condition Report
+                </NavLink>
+                <NavLink to="/resources">Resources</NavLink>
+              </div>
+            </span>
           </div>
           <span className={menuOpen ? styles.hidden : ""}>
             {" "}
@@ -79,15 +83,20 @@ export default function TESTGuestNavBar({ user, setUser }) {
           <NavLink to="/jobs">Our Portfolio</NavLink>
           <span className={menuOpen ? styles.hidden : ""}>
             {" "}
-            &nbsp; | &nbsp;
           </span>
-          <NavLink to="/resources">Resources</NavLink>
+          
           <span className={menuOpen ? styles.hidden : ""}>
             {" "}
             &nbsp; | &nbsp;
           </span>
-          <div>
-            <NavLink to="/signup">Sign Up</NavLink> /{" "}
+          <div className={styles.logging} >
+            <NavLink to="/signup">Sign Up</NavLink>
+          </div>
+          <span className={menuOpen ? styles.hidden : ""}>
+            {" "}
+            &nbsp; | &nbsp;
+          </span>
+          <div className={styles.logging}>
             <NavLink to="/login">Log In</NavLink>
           </div>
           <span className={menuOpen ? styles.hidden : ""}>

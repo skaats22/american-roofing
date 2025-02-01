@@ -1,11 +1,12 @@
 .NavBar {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 1vmin;
   font-size: 2.5vmin;
   font-weight: bold;
   position: relative;
+  text-align: center;
 }
 
 .topBanner {
@@ -17,10 +18,13 @@
 }
 
 #home img {
+  position: fixed;
+  top: 10px;
+  left: 10px;
   width: 50px;
   height: auto;
   object-fit: contain;
-  display: block;
+  z-index: 1100;
 }
 
 .NavBar a {
@@ -83,6 +87,12 @@
 .logoAndHamburger {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+}
+
+.logging {
+  text-align: center;
+  justify-content: center;
 }
 
 /* Hamburger Button (hidden on large screens) */
@@ -103,6 +113,7 @@
   justify-content: space-between;
   align-items: center;
   gap: 10px;
+  align-items: center;
 }
 
 .menu.open {
@@ -114,17 +125,31 @@
 /* Responsive Design */
 @media (max-width: 768px) {
   /* Show hamburger button only on small screens */
+
+  .NavBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
   .hamburger {
     display: block;
     position: absolute;
-    top: 0;
-    right: 10px;
-    max-width: 20%;
+    top: 3px;
+    right: 20px;
+    max-width: 2.7em;
+  }
+
+  .logoAndHamburger {
+    display: flex;
+    justify-content: space-evenly;
   }
 
   #home img {
     max-width: 20%;
     height: auto;
+    justify-content: left;
     top: 10px;
     left: 10px;
   }
@@ -144,7 +169,9 @@
   .menu.open {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
   }
 
   /* Make each link take up the full width on small screens */
