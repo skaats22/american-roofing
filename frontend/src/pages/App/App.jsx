@@ -8,7 +8,6 @@ import AboutPage from "../AboutPage/AboutPage";
 import SignUpPage from "../SignUpPage/SignUpPage";
 import LogInPage from "../LogInPage/LogInPage";
 import GuestNavBar from "../../components/NavBar/GuestNavBar";
-import TESTGuestNavBar from "../../components/NavBar/TESTGuestNavBar";
 import AdminNavBar from "../../components/NavBar/AdminNavBar";
 import UserNavBar from "../../components/NavBar/UserNavBar";
 import ResourcePage from "../ResourcePage/ResourcePage";
@@ -75,7 +74,7 @@ export default function App() {
             <UserNavBar user={user} setUser={setUser} />
           )
         ) : (
-          <TESTGuestNavBar />
+          <GuestNavBar />
         )}
         <section id="main-section">
           {/* Guest Routes */}
