@@ -1,16 +1,26 @@
-import { NavLink, Link, useNavigate } from "react-router";
+import { NavLink, Link } from "react-router";
 import { useState, useEffect } from "react";
-import { logOut } from "../../services/authService";
 import styles from "./NavBar.module.css";
 
 export default function UserNavBar({ user, setUser }) {
-  const navigate = useNavigate();
-
   const [menuOpen, setMenuOpen] = useState(false);
+
+    function handleLogOut() {
+      logOut();
+      setUser(null);
+      navigate("/");
+    }
 
   function toggleMenu() {
     setMenuOpen(!menuOpen);
     document.body.classList.toggle("menu-open");
+  }
+
+  // Function to close the menu on large screens (resizing)
+  function handleResize() {
+    if (window.innerWidth > 768) {
+      setMenuOpen(false); // Close the menu when the screen is large
+    }
   }
 
   // Add window resize event listener when the component mounts
@@ -20,19 +30,6 @@ export default function UserNavBar({ user, setUser }) {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
-  // Function to close the menu on large screens (resizing)
-  function handleResize() {
-    if (window.innerWidth > 768) {
-      setMenuOpen(false); // Close the menu when the screen is large
-    }
-  }
-
-  function handleLogOut() {
-    logOut();
-    setUser(null);
-    navigate("/");
-  }
 
   return (
     <>
@@ -51,12 +48,14 @@ export default function UserNavBar({ user, setUser }) {
             />
           </Link>
           {/* Hamburger Button */}
-          <button className={styles.hamburger} onClick={toggleMenu}>
-            ☰
+          <button className={`${styles.hamburger} ${menuOpen ? styles.open : ""}`} onClick={toggleMenu}>
+            {menuOpen ? "x" : "☰"}
           </button>
         </div>
         <div className={`${styles.menu} ${menuOpen ? styles.open : ""}`}>
-          <NavLink to="/">Home</NavLink>
+          <NavLink to="/" onClick={() => setMenuOpen(false)}>
+            Home
+          </NavLink>
           <span className={menuOpen ? styles.hidden : ""}>
             {" "}
             &nbsp; | &nbsp;
@@ -64,19 +63,37 @@ export default function UserNavBar({ user, setUser }) {
           {/* Dropdown for Our Services */}
           <div className={styles.dropdown}>
             <span className={styles.dropdownToggle}>
-              Our Services
+              <NavLink to="/services" onClick={() => setMenuOpen(false)}>
+                Our Services
+              </NavLink>
               <div className={styles.dropdownMenu}>
-                <NavLink to="/services?type=commercial">
+                <NavLink
+                  to="/services?type=commercial"
+                  onClick={() => setMenuOpen(false)}
+                >
                   Commercial Roofing
                 </NavLink>
-                <NavLink to="/services?type=repair">Roof Repair</NavLink>
-                <NavLink to="/services?type=replacement">
+                <NavLink
+                  to="/services?type=repair"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Roof Repair
+                </NavLink>
+                <NavLink
+                  to="/services?type=replacement"
+                  onClick={() => setMenuOpen(false)}
+                >
                   Roof Replacement
                 </NavLink>
-                <NavLink to="/services?type=construction-condition-report">
+                <NavLink
+                  to="/services?type=construction-condition-report"
+                  onClick={() => setMenuOpen(false)}
+                >
                   Construction Condition Report
                 </NavLink>
-                <NavLink to="/resources">Resources</NavLink>
+                <NavLink to="/resources" onClick={() => setMenuOpen(false)}>
+                  Resources
+                </NavLink>
               </div>
             </span>
           </div>
@@ -84,28 +101,34 @@ export default function UserNavBar({ user, setUser }) {
             {" "}
             &nbsp; | &nbsp;
           </span>
-          <NavLink to="/about">About Us</NavLink>
+          <NavLink to="/about" onClick={() => setMenuOpen(false)}>
+            About Us
+          </NavLink>
           <span className={menuOpen ? styles.hidden : ""}>
             {" "}
             &nbsp; | &nbsp;
           </span>
-          <NavLink to="/jobs">Our Portfolio</NavLink>
+          <NavLink to="/jobs" onClick={() => setMenuOpen(false)}>
+            Our Portfolio
+          </NavLink>
           <span className={menuOpen ? styles.hidden : ""}> </span>
 
-          <span className={menuOpen ? styles.hidden : ""}>
-            {" "}
-            &nbsp; | &nbsp;
-          </span>
-          <div className={styles.logging}>
-            <NavLink to="/" onClick={handleLogOut}>
-              Log Out
-            </NavLink>
-          </div>
-          <span className={menuOpen ? styles.hidden : ""}>
-            {" "}
-            &nbsp; | &nbsp;
-          </span>
-          <NavLink to="/quotes/new">Request a free quote!</NavLink>
+           <span className={menuOpen ? styles.hidden : ""}>
+                      {" "}
+                      &nbsp; | &nbsp;
+                    </span>
+                    <div className={styles.logging}>
+                      <NavLink to="/" onClick={handleLogOut}>
+                        Log Out
+                      </NavLink>
+                    </div>
+                    <span className={menuOpen ? styles.hidden : ""}>
+                      {" "}
+                      &nbsp; | &nbsp;
+                    </span>
+          <NavLink to="/quotes/new" onClick={() => setMenuOpen(false)}>
+            Request a free quote!
+          </NavLink>
         </div>
       </nav>
     </>

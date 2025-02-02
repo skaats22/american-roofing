@@ -26,6 +26,7 @@ import ConstructionConditionResource from "../../components/ResourceDetail/Const
 import ReviewFormPage from "../ReviewFormPage/ReviewFormPage";
 import AdminPortfolioPage from "../AdminPortfolioPage/AdminPortfolioPage";
 
+
 export default function App() {
   const [user, setUser] = useState(getUser());
   const [jobs, setJobs] = useState([]);

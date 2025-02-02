@@ -4,13 +4,24 @@ import { logOut } from "../../services/authService";
 import styles from "./NavBar.module.css";
 
 export default function AdminNavBar({ user, setUser }) {
-  const navigate = useNavigate();
-
   const [menuOpen, setMenuOpen] = useState(false);
+
+  function handleLogOut() {
+    logOut();
+    setUser(null);
+    navigate("/");
+  }
 
   function toggleMenu() {
     setMenuOpen(!menuOpen);
     document.body.classList.toggle("menu-open");
+  }
+
+  // Function to close the menu on large screens (resizing)
+  function handleResize() {
+    if (window.innerWidth > 768) {
+      setMenuOpen(false); // Close the menu when the screen is large
+    }
   }
 
   // Add window resize event listener when the component mounts
@@ -21,29 +32,15 @@ export default function AdminNavBar({ user, setUser }) {
     };
   }, []);
 
-  // Function to close the menu on large screens (resizing)
-  function handleResize() {
-    if (window.innerWidth > 768) {
-      setMenuOpen(false); // Close the menu when the screen is large
-    }
-  }
-
-  function handleLogOut() {
-    logOut();
-    setUser(null);
-    navigate("/");
-  }
-
   return (
     <>
       <div className={styles.topBanner}>
         <span id={styles.license}>License # C39-1043795</span>
         <span id={styles.digits}>📞 213-270-3527</span>
-        <Link to="/jobs/admin">
-          <button className={styles.adminView}>ADMIN VIEW</button>
+        <Link to="/jobs">
+          <button>ADMIN VIEW</button>
         </Link>
       </div>
-
       <nav className={styles.NavBar}>
         <div className={styles.logoAndHamburger}>
           <Link to="/">
@@ -55,12 +52,17 @@ export default function AdminNavBar({ user, setUser }) {
             />
           </Link>
           {/* Hamburger Button */}
-          <button className={styles.hamburger} onClick={toggleMenu}>
-            ☰
+          <button
+            className={`${styles.hamburger} ${menuOpen ? styles.open : ""}`}
+            onClick={toggleMenu}
+          >
+            {menuOpen ? "x" : "☰"}
           </button>
         </div>
         <div className={`${styles.menu} ${menuOpen ? styles.open : ""}`}>
-          <NavLink to="/">Home</NavLink>
+          <NavLink to="/" onClick={() => setMenuOpen(false)}>
+            Home
+          </NavLink>
           <span className={menuOpen ? styles.hidden : ""}>
             {" "}
             &nbsp; | &nbsp;
@@ -68,19 +70,37 @@ export default function AdminNavBar({ user, setUser }) {
           {/* Dropdown for Our Services */}
           <div className={styles.dropdown}>
             <span className={styles.dropdownToggle}>
-              Our Services
+              <NavLink to="/services" onClick={() => setMenuOpen(false)}>
+                Our Services
+              </NavLink>
               <div className={styles.dropdownMenu}>
-                <NavLink to="/services?type=commercial">
+                <NavLink
+                  to="/services?type=commercial"
+                  onClick={() => setMenuOpen(false)}
+                >
                   Commercial Roofing
                 </NavLink>
-                <NavLink to="/services?type=repair">Roof Repair</NavLink>
-                <NavLink to="/services?type=replacement">
+                <NavLink
+                  to="/services?type=repair"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Roof Repair
+                </NavLink>
+                <NavLink
+                  to="/services?type=replacement"
+                  onClick={() => setMenuOpen(false)}
+                >
                   Roof Replacement
                 </NavLink>
-                <NavLink to="/services?type=construction-condition-report">
+                <NavLink
+                  to="/services?type=construction-condition-report"
+                  onClick={() => setMenuOpen(false)}
+                >
                   Construction Condition Report
                 </NavLink>
-                <NavLink to="/resources">Resources</NavLink>
+                <NavLink to="/resources" onClick={() => setMenuOpen(false)}>
+                  Resources
+                </NavLink>
               </div>
             </span>
           </div>
@@ -88,12 +108,16 @@ export default function AdminNavBar({ user, setUser }) {
             {" "}
             &nbsp; | &nbsp;
           </span>
-          <NavLink to="/about">About Us</NavLink>
+          <NavLink to="/about" onClick={() => setMenuOpen(false)}>
+            About Us
+          </NavLink>
           <span className={menuOpen ? styles.hidden : ""}>
             {" "}
             &nbsp; | &nbsp;
           </span>
-          <NavLink to="/jobs">Our Portfolio</NavLink>
+          <NavLink to="/jobs" onClick={() => setMenuOpen(false)}>
+            Our Portfolio
+          </NavLink>
           <span className={menuOpen ? styles.hidden : ""}> </span>
 
           <span className={menuOpen ? styles.hidden : ""}>
@@ -109,7 +133,9 @@ export default function AdminNavBar({ user, setUser }) {
             {" "}
             &nbsp; | &nbsp;
           </span>
-          <NavLink to="/quotes">View Quotes</NavLink>
+          <NavLink to="/quotes" onClick={() => setMenuOpen(false)}>
+            View Quotes
+          </NavLink>
         </div>
       </nav>
     </>

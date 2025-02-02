@@ -2,7 +2,7 @@ import { NavLink, Link } from "react-router";
 import { useState, useEffect } from "react";
 import styles from "./NavBar.module.css";
 
-export default function TESTGuestNavBar({ user, setUser }) {
+export default function GuestNavBar({ user, setUser }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   function toggleMenu() {
@@ -38,16 +38,18 @@ export default function TESTGuestNavBar({ user, setUser }) {
               id="home"
               src="https://plus.unsplash.com/premium_photo-1666788168089-3142e8471488?q=80&w=3821&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt="Home"
-              style={{ width: "50px", height: "auto"}}
+              style={{ width: "50px", height: "auto" }}
             />
           </Link>
           {/* Hamburger Button */}
-          <button className={styles.hamburger} onClick={toggleMenu}>
-            ☰
+          <button className={`${styles.hamburger} ${menuOpen ? styles.open : ""}`} onClick={toggleMenu}>
+            {menuOpen ? "x" : "☰"}
           </button>
         </div>
         <div className={`${styles.menu} ${menuOpen ? styles.open : ""}`}>
-          <NavLink to="/">Home</NavLink>
+          <NavLink to="/" onClick={() => setMenuOpen(false)}>
+            Home
+          </NavLink>
           <span className={menuOpen ? styles.hidden : ""}>
             {" "}
             &nbsp; | &nbsp;
@@ -55,19 +57,37 @@ export default function TESTGuestNavBar({ user, setUser }) {
           {/* Dropdown for Our Services */}
           <div className={styles.dropdown}>
             <span className={styles.dropdownToggle}>
-              Our Services
+              <NavLink to="/services" onClick={() => setMenuOpen(false)}>
+                Our Services
+              </NavLink>
               <div className={styles.dropdownMenu}>
-                <NavLink to="/services?type=commercial">
+                <NavLink
+                  to="/services?type=commercial"
+                  onClick={() => setMenuOpen(false)}
+                >
                   Commercial Roofing
                 </NavLink>
-                <NavLink to="/services?type=repair">Roof Repair</NavLink>
-                <NavLink to="/services?type=replacement">
+                <NavLink
+                  to="/services?type=repair"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Roof Repair
+                </NavLink>
+                <NavLink
+                  to="/services?type=replacement"
+                  onClick={() => setMenuOpen(false)}
+                >
                   Roof Replacement
                 </NavLink>
-                <NavLink to="/services?type=construction-condition-report">
+                <NavLink
+                  to="/services?type=construction-condition-report"
+                  onClick={() => setMenuOpen(false)}
+                >
                   Construction Condition Report
                 </NavLink>
-                <NavLink to="/resources">Resources</NavLink>
+                <NavLink to="/resources" onClick={() => setMenuOpen(false)}>
+                  Resources
+                </NavLink>
               </div>
             </span>
           </div>
@@ -75,35 +95,43 @@ export default function TESTGuestNavBar({ user, setUser }) {
             {" "}
             &nbsp; | &nbsp;
           </span>
-          <NavLink to="/about">About Us</NavLink>
+          <NavLink to="/about" onClick={() => setMenuOpen(false)}>
+            About Us
+          </NavLink>
           <span className={menuOpen ? styles.hidden : ""}>
             {" "}
             &nbsp; | &nbsp;
           </span>
-          <NavLink to="/jobs">Our Portfolio</NavLink>
-          <span className={menuOpen ? styles.hidden : ""}>
-            {" "}
-          </span>
-          
+          <NavLink to="/jobs" onClick={() => setMenuOpen(false)}>
+            Our Portfolio
+          </NavLink>
+          <span className={menuOpen ? styles.hidden : ""}> </span>
+
           <span className={menuOpen ? styles.hidden : ""}>
             {" "}
             &nbsp; | &nbsp;
           </span>
-          <div className={styles.logging} >
-            <NavLink to="/signup">Sign Up</NavLink>
+          <div className={styles.logging}>
+            <NavLink to="/signup" onClick={() => setMenuOpen(false)}>
+              Sign Up
+            </NavLink>
           </div>
           <span className={menuOpen ? styles.hidden : ""}>
             {" "}
             &nbsp; | &nbsp;
           </span>
           <div className={styles.logging}>
-            <NavLink to="/login">Log In</NavLink>
+            <NavLink to="/login" onClick={() => setMenuOpen(false)}>
+              Log In
+            </NavLink>
           </div>
           <span className={menuOpen ? styles.hidden : ""}>
             {" "}
             &nbsp; | &nbsp;
           </span>
-          <NavLink to="/quotes/new">Request a free quote!</NavLink>
+          <NavLink to="/quotes/new" onClick={() => setMenuOpen(false)}>
+            Request a free quote!
+          </NavLink>
         </div>
       </nav>
     </>
