@@ -37,7 +37,7 @@ export default function AdminNavBar({ user, setUser }) {
       <div className={styles.topBanner}>
         <span id={styles.license}>License # C39-1043795</span>
         <span id={styles.digits}>📞 213-270-3527</span>
-        <Link to="/jobs">
+        <Link to="/jobs/admin">
           <button>ADMIN VIEW</button>
         </Link>
       </div>

@@ -58,5 +58,6 @@
   margin: 10px;
   border-radius: 8px;
   background-color: darkblue;
-  max-width: 100px;
+  padding: 0.7em;
+  font-size: 1.5em;
 }
