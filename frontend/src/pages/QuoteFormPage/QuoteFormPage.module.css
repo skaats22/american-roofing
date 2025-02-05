@@ -93,6 +93,16 @@ label {
   gap: 15px;
 }
 
+.inputEmail {
+  width: 45%;
+  margin-left: 5px;
+}
+
+.inputPhone {
+  width: 35%;
+  margin-left: 5px;
+}
+
 .inputGroup {
   display: flex;
   flex-direction: column;

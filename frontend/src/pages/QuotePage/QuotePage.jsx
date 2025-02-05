@@ -31,6 +31,9 @@ export default function QuotePage() {
                   <strong>Name:</strong> {quote.firstName} {quote.lastName}
                 </li>
                 <li>
+                  <strong>Email:</strong> {quote.email}
+                </li>
+                <li>
                   <strong>Phone:</strong> {quote.phone}
                 </li>
                 <li>

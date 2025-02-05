@@ -19,6 +19,7 @@ app.use(express.json());
 // Check & verify token. If so, add user payload to req.user
 app.use(require('./middleware/checkToken'));
 
+
 // API Routes
 app.use('/api/auth', require('./routes/auth'));
 
@@ -28,8 +29,6 @@ app.use('/api/quotes', require('./routes/quotes'));
 
 // All routers below will have all routes protected
 app.use(require('./middleware/ensureLoggedIn'));
-
-
 
 app.use('/api/users', require('./routes/users'));
 

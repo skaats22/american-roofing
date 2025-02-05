@@ -100,6 +100,7 @@ export default function QuoteForm(props) {
     if (!formData.phone || !phoneRegex.test(formData.phone)) {
       newErrors.phone = "Phone number must be in the format xxx-xxx-xxxx.";
     }
+    if (!formData.email) newErrors.email = "Email is required.";
     if (!formData.address) newErrors.address = "Address is required.";
     if (!formData.city) newErrors.city = "City is required.";
     if (!formData.state) newErrors.state = "State is required.";
@@ -131,6 +132,7 @@ export default function QuoteForm(props) {
         const formData2 = new FormData();
         formData2.append("firstName", formData.firstName);
         formData2.append("lastName", formData.lastName);
+        formData2.append("email", formData.email);
         formData2.append("phone", formData.phone);
         formData2.append("address", formData.address);
         formData2.append("city", formData.city);
@@ -144,7 +146,10 @@ export default function QuoteForm(props) {
           formData2.append("photo", fileInputRef.current.files[0]);
         props.handleAddQuote(formData2);
         setFormData({
+          firstName: "",
+          lastName: "",
           phone: "",
+          email: "",
           address: "",
           city: "",
           state: "",
@@ -201,6 +206,19 @@ export default function QuoteForm(props) {
           </div>
         </div>
 
+
+        {/* Email */}
+        <div className={styles.inputGroup}>
+          <label>Email:</label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            className={styles.inputEmail}
+          />
+        </div>
+        
         {/* Phone */}
         <div className={styles.inputGroup}>
           <label>Phone:</label>
@@ -210,7 +228,7 @@ export default function QuoteForm(props) {
             value={formData.phone}
             onChange={handleChange}
             placeholder="xxx-xxx-xxxx"
-            className={styles.input}
+            className={styles.inputPhone}
           />
         </div>
 
@@ -338,6 +356,7 @@ export default function QuoteForm(props) {
         <div className={styles.inputGroup}>
           <label>Image File:</label>
           <input
+          name="photo"
             type="file"
             accept=".png, .gif, .jpg, .jpeg"
             ref={fileInputRef}
